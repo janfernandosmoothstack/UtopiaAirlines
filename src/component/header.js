@@ -7,7 +7,7 @@ export const Header = () => {
     return (
         <Navbar bg="dark" variant="dark">
             <Navbar.Brand href="/">
-                <img width="80px" height="60px" src="https://imgur.com/P43ESmH.png" alt="logo" />
+                <img width="80px" height="60px" src="https://imgur.com/WLQWpIv.png" alt="logo" />
             </Navbar.Brand>
 
             <Nav className="mr-auto">
