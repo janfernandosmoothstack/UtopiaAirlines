@@ -21,3 +21,12 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+html {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(white,#0275D8);
+  width: 100%;
+}
