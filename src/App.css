@@ -21,3 +21,12 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+html {
+  height: 100%;
+}
+
+body {
+  background-image: url('https://imgur.com/QruyqEE.png');
+  width: 100%;
+}
