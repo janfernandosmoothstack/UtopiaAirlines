@@ -5,9 +5,9 @@ import {SignIn} from './signin.js'
 
 export const Header = () => {
     return (
-        <Navbar bg="primary" variant="dark">
+        <Navbar>
             <Navbar.Brand href="/">
-                <img width="80px" height="60px" src="https://imgur.com/P43ESmH.png" alt="logo" />
+                <img width="80px" height="60px" src="https://imgur.com/WLQWpIv.png" alt="logo" />
             </Navbar.Brand>
 
             <Nav className="mr-auto">
