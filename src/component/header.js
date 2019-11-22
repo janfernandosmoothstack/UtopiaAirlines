@@ -5,7 +5,7 @@ import {SignIn} from './signin.js'
 
 export const Header = () => {
     return (
-        <Navbar bg="dark" variant="dark">
+        <Navbar>
             <Navbar.Brand href="/">
                 <img width="80px" height="60px" src="https://imgur.com/WLQWpIv.png" alt="logo" />
             </Navbar.Brand>
