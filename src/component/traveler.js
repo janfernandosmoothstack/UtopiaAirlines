@@ -1,57 +1,56 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
 
-const space = {
-    marginRight: "100px"
-  }
+  const move = {
+    marginLeft: "18px",
+    fontSize:"25px",
+    color: "white"
+  };
+
+  const head = {
+    marginLeft: "18px",
+    fontSize:"50px",
+    color: "white"
+  };
 export const Traveler = () => {
 
 return(
     <React.Fragment>
     <Form>
-      <h2> <u> Traveler Info </u> </h2>
-
-        <div class="input-group mb-3 input-group-sm">
-        <div class="input-group-prepend">
-          
-            <span class="input-group-text">First Name: </span>
-            <input type="text" class="form-control" style = {space}/> 
-            <span class="input-group-text">Last Name: </span>
-            <input type="text" class="form-control" /> 
-            <br></br>
-            </div>
-          </div>
+      <h1 style = {head}>  Traveler Info </h1>
       
-            <div class="input-group mb-3 input-group-sm">
-        <div class="input-group-prepend">
-            <span class="input-group-text">Phone Number:  </span>
-            <input type="tel" class="form-control" /> 
-            <br></br>
-            </div>
-        </div> 
 
-            <div class="input-group mb-3 input-group-sm">
-        <div class="input-group-prepend">
-    
-            <span class="input-group-text">Email: </span>
-            <input type="email" class="form-control" />  
-            <br></br>
-            </div>
-        </div>
-         
-            <div class="input-group mb-3 input-group-sm">
-        <div class="input-group-prepend">
-            <span class="input-group-text">DOB:  </span>
-            <input type="date" class="form-control" />  
-            <br></br>
-            </div>
-        </div>
-         
-            <div class="input-group mb-3 input-group-sm">
-        <div class="input-group-prepend">
-            <input type="submit" value="Continue to Payment" />
-        </div>
-        </div>
+      <div class="form-group row" >
+        <label class="col-sm-2 col-form-label" style = {move}>First Name</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" placeholder="First Name" />
+      </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label" style = {move}>Last Name</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" placeholder="Last Name"/>
+      </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label" style = {move}>Phone Number</label>
+      <div class="col-sm-5">
+        <input type="tel" class="form-control" placeholder="Phone Number"/>
+      </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label" style = {move}>Email</label>
+      <div class="col-sm-5">
+        <input type="email" class="form-control" placeholder="Email"/>
+      </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label" style = {move}>DOB</label>
+      <div class="col-sm-5">
+        <input type="date" class="form-control" />
+      </div>
+      </div>
+      <button type="button" class= {"rounded btn border border-dark"} style = {move}>Continue to Payment</button>
     </Form>
     </React.Fragment>
 );
