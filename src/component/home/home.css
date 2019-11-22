@@ -1,0 +1,11 @@
+.headerContainer {
+    text-align: center;
+}
+
+.headerText {
+    margin-top: 10%;
+    padding: 60px;
+    font-family: Arial;
+    font-size: 30px;
+    color: white;
+}
