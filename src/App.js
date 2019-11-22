@@ -4,8 +4,9 @@ import {Home} from './component/home.js';
 import {Header} from './component/header.js';
 import {Ticket} from './component/ticket.js';
 import {Traveler} from './component/traveler.js';
-import './App.css';
 import {Payment} from './component/payment.js';
+import './App.css';
+
 
 class App extends Component {
   render() {
