@@ -1,5 +1,9 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
+
+const space = {
+    marginRight: "100px"
+  }
 export const Traveler = () => {
 
 return(
@@ -11,8 +15,7 @@ return(
         <div class="input-group-prepend">
           
             <span class="input-group-text">First Name: </span>
-            <input type="text" class="form-control" /> 
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" class="form-control" style = {space}/> 
             <span class="input-group-text">Last Name: </span>
             <input type="text" class="form-control" /> 
             <br></br>
