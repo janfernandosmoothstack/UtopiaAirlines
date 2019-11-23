@@ -1,28 +1,29 @@
 // Contact.js
 
 import React from 'react';  
+import './flights/flights.css'
 
 const style = {
   marginLeft: "18px",
   fontSize:"20px",
-  color: "white"
+  color: "white",
+  fontWeight: "bold"
 };
-
-const style1 = {
+const rightstyle = {
   marginLeft: "18px",
   fontSize:"20px",
   color: "white",
+  textAlign:"right"
 };
 
 const button = {
   backgroundColor:"#3C5E83",
   border:"none",
   color:"white",
-  padding:"6px 10px",
+  padding:"6px 25px",
   textAlign:"center",
-  textDecoration:"none",
   display:"inline-block",
-  marginLeft: "530px",
+  marginLeft: "390px",
   borderRadius:"5px",
   fontSize:"20px"
 };
@@ -38,6 +39,7 @@ export const Flights = () => {
   
   return (
     <React.Fragment>
+<section class="custom-form-container">
       
       <h2 style={header}>Book a Flight</h2>
       <br></br> 
@@ -64,7 +66,7 @@ export const Flights = () => {
         <div class="col-2">
             <input class="form-control" type="date" value="2011-08-19" id="example-date-local-input"/>
         </div>
-            <label for="depart" class="col-2 col-form-label" style={style}>Return Date</label>
+            <label for="depart" class="col-2 col-form-label" style={rightstyle}>Return Date</label>
         <div class="col-2">
             <input class="form-control" type="date" value="2011-08-19" id="depart"/>
         </div>
@@ -75,7 +77,7 @@ export const Flights = () => {
             <label for="fromLocation" class="col-2 col-form-label" style={style}>Flying From</label>
         <div class="col-2">
         <select id="fromLocation" class="form-control">
-          <option selected>departing from...</option>
+          <option selected>Departing from...</option>
           <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
           <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
           <option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option>
@@ -86,10 +88,10 @@ export const Flights = () => {
           <option>Virginia</option><option>Washington</option>
         </select>
         </div>
-            <label for="toLocation" class="col-2 col-form-label" style={style}>Flying To</label>
+            <label for="toLocation" class="col-2 col-form-label" style={rightstyle}>Flying To</label>
         <div class="col-2">
         <select id="toLocation" class="form-control">
-          <option selected>arriving at...</option>
+          <option selected>Arriving at...</option>
           <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
           <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
           <option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option>
@@ -104,7 +106,7 @@ export const Flights = () => {
 
         <br></br>
         <div class="form-group row">
-            <label for="numberTravelers" class="col-2 col-form-label" style={style}>Number of Travelers</label>
+            <label for="numberTravelers" class="col-2 col-form-label" style={style}>Travelers</label>
         <div class="col-2">
         <select id="fromLocation" class="form-control">
           <option selected>No. of Travelers</option>
@@ -119,6 +121,8 @@ export const Flights = () => {
     <br></br><br></br><br></br>
 
       </form>
+
+</section>
 
   </React.Fragment>
     );
