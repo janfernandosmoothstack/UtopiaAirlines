@@ -1,0 +1,25 @@
+.custom-form-container {
+    height: 100vh;
+
+    /* The Magic */
+    background-size: cover;
+ 
+    background-color: rgba(0,0,0, 0.4);
+    width: 1000px;
+    height: 550px;
+    margin-left: 150px;
+    
+    
+}
+
+label {
+    color: #fff;
+  }
+  
+  .custom-form-container {
+    padding: 30px 60px;
+  }
+  
+  .form-horizontal, .form-group {
+    background: none;
+  }
