@@ -6,7 +6,7 @@ import React from 'react';
     
     return(
         <React.Fragment>
-    <button type="button" class= {"rounded btn-info"}>Select</button>
+    <button type="button" class={"rounded btn-info"}>Select</button>
     </React.Fragment>
     );
    }

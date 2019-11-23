@@ -1,8 +1,9 @@
 "use strict"
 
 import React from 'react';
-import {Modal, Form, Nav} from 'react-bootstrap';
+import {Modal, Form} from 'react-bootstrap';
 import './header/header.css';
+import {Link} from 'react-router-dom';
 
 const btnStyle = {
   marginRight: "10px",
@@ -21,7 +22,7 @@ export const SignUp = () => {
 
     return (
       <React.Fragment>
-        <Nav.Link className="navLink" href="/signUp" onClick={handleShow}>Sign Up</Nav.Link>
+        <Link className="accountLink" to="/signUp" onClick={handleShow}>Sign Up</Link>
 
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
@@ -29,7 +30,7 @@ export const SignUp = () => {
           </Modal.Header>
                     
           <Modal.Body>
-            <Form onSubmit = {handleSubmit}>
+            <Form onSubmit={handleSubmit}>
 
               <div className="form-group">
                   <label htmlFor="firstName">First Name:</label>

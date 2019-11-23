@@ -5,7 +5,8 @@
 .headerText {
     margin-top: 10%;
     padding: 60px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: serif;
+    font-stretch: ultra-expanded;
     font-size: 30px;
     color: white;
 }
