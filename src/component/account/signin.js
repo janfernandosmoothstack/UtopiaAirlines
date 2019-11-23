@@ -2,14 +2,8 @@
 
 import React from 'react';
 import {Modal, Form} from 'react-bootstrap';
-import './header/header.css';
+import './account.css';
 import {Link} from 'react-router-dom';
-
-const btnStyle = {
-  marginRight: "10px",
-  borderRadius: "7px",
-  width: "100px"
-}
 
 export const SignIn = () => {
     const [show, setShow] = React.useState(false);
@@ -22,7 +16,7 @@ export const SignIn = () => {
 
     return (
       <React.Fragment>
-        <Link className="accountLink" to="/signIn" onClick={handleShow}>Sign In</Link>
+        <Link className="accountLink" onClick={handleShow}>Sign In</Link>
         
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
@@ -44,7 +38,7 @@ export const SignIn = () => {
 
                   <br></br>
 
-                  <button type="submit" className="btn-primary" onClick={handleClose} style={btnStyle}>Sign In</button> 
+                  <button type="submit" className="btn-primary" onClick={handleClose} className="btnStyle">Sign In</button> 
                 </Form>
             </Modal.Body>
           </Modal>

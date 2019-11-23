@@ -2,14 +2,8 @@
 
 import React from 'react';
 import {Modal, Form} from 'react-bootstrap';
-import './header/header.css';
+import './account.css';
 import {Link} from 'react-router-dom';
-
-const btnStyle = {
-  marginRight: "10px",
-  borderRadius: "7px",
-  width: "100px"
-}
 
 export const SignUp = () => {
     const [show, setShow] = React.useState(false);
@@ -22,7 +16,7 @@ export const SignUp = () => {
 
     return (
       <React.Fragment>
-        <Link className="accountLink" to="/signUp" onClick={handleShow}>Sign Up</Link>
+        <Link className="accountLink" onClick={handleShow}>Sign Up</Link>
 
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
@@ -41,10 +35,25 @@ export const SignUp = () => {
                   <label htmlFor="lastName">Last Name:</label>
                   <input name="lastName" type="text" className="form-control"></input>
               </div>  
+
+              <div className="form-group">
+                  <label htmlFor="phone">Phone Number:</label>
+                  <input name="phone" type="text" className="form-control"></input>
+              </div> 
                         
               <div className="form-group">
                   <label htmlFor="email">E-mail:</label>
                   <input name="email" type="email" className="form-control"></input>
+              </div> 
+              
+              <div className="form-group">
+                  <label htmlFor="address">Address:</label>
+                  <input name="address" type="text" className="form-control"></input>
+              </div>
+
+              <div className="form-group">
+                  <label htmlFor="username">Username:</label>
+                  <input name="username" type="text" className="form-control"></input>
               </div>         
                               
               <div>
@@ -54,7 +63,7 @@ export const SignUp = () => {
 
               <br></br>         
                             
-              <button type="submit" className="btn-primary" onClick={handleClose} style={btnStyle}>Sign Up</button>               
+              <button type="submit" onClick={handleClose} className="btnStyle">Sign Up</button>               
             </Form>
           </Modal.Body>
         </Modal>

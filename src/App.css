@@ -29,4 +29,7 @@ html {
 body {
   background-image: url('https://imgur.com/QruyqEE.png');
   width: 100%;
+  background-repeat: no-repeat;
+  background-color: #040130 !important;
+  background-size: cover;
 }

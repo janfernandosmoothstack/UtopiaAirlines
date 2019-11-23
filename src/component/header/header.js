@@ -3,8 +3,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import {Link} from 'react-router-dom';
 import './header.css';
-import {SignIn} from '../signin.js';
-import {SignUp} from '../signup.js';
+import {SignIn} from '../account/signin.js';
+import {SignUp} from '../account/signup.js';
 import { NavDropdown } from 'react-bootstrap';
 
 export const Header = () => {
@@ -32,8 +32,8 @@ export const Header = () => {
                             <Link className="navLink">Account</Link>
                         }
                         id="nav-dropdown">
-                        <NavDropdown.Item><SignUp/></NavDropdown.Item>
                         <NavDropdown.Item><SignIn/></NavDropdown.Item>
+                        <NavDropdown.Item><SignUp/></NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
             </Navbar.Collapse>
