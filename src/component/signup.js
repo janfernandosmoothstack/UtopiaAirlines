@@ -2,15 +2,12 @@
 
 import React from 'react';
 import {Modal, Form, Nav} from 'react-bootstrap';
+import './header/header.css';
 
 const btnStyle = {
   marginRight: "10px",
   borderRadius: "7px",
   width: "100px"
-}
-
-const style = {
-  color: "white"
 }
 
 export const SignUp = () => {
@@ -24,7 +21,7 @@ export const SignUp = () => {
 
     return (
       <React.Fragment>
-        <Nav.Link style={style} href="/signUp" onClick={handleShow}>Sign Up</Nav.Link>
+        <Nav.Link className="navLink" href="/signUp" onClick={handleShow}>Sign Up</Nav.Link>
 
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
