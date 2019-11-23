@@ -8,15 +8,21 @@ const style = {
   color: "white"
 };
 
-const style1 = {
+const button = {
+  backgroundColor:"#3C5E83",
+  border:"none",
+  color:"white",
+  padding:"6px 10px",
+  textAlign:"center",
+  textDecoration:"none",
+  display:"inline-block",
   marginLeft: "18px",
-  fontSize:"20px",
-  color: "white"
+  borderRadius:"5px",
+  fontSize:"20px"
 };
 
-
-
 const header = {
+  textAlign:"center",
   marginLeft: "18px",
   fontSize:"40px",
   color: "white"
@@ -29,7 +35,7 @@ export const Payment = () => {
 
       
       <h2 style={header}>Payment</h2>
-         
+      <br></br> 
       <form>
         
       <div class="form-group row">
@@ -77,9 +83,10 @@ export const Payment = () => {
       </div>
       </div>
 
+      <br></br>
       <div class="form-group row">
     <div class="col-sm-10">
-      <button type="submit" class= {"rounded btn border border-dark"} style={style1}>Continue to Billing</button>
+      <button type="submit" style={button}>Continue to Billing</button>
     </div>
   </div>
   
