@@ -1,0 +1,7 @@
+.navLink {
+    color: white !important;
+}
+
+.navLink:hover {
+    color: #DAAB97 !important;
+}

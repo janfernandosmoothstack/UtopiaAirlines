@@ -6,7 +6,7 @@ export const Home = () => {
     return(
         <div className="headerContainer">
             <div className="headerText">
-                <h1>UTOPIA AIRLINE</h1>
+                <h1>UTOPIA AIRLINES</h1>
             </div>
         </div>
     );

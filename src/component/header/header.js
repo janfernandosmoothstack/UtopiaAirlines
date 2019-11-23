@@ -1,12 +1,9 @@
 import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import {SignIn} from './signin.js'
-import {SignUp} from './signup.js'
-
-const style = {
-    color: "white"
-}
+import './header.css';
+import {SignIn} from '../signin.js';
+import {SignUp} from '../signup.js';
 
 export const Header = () => {
     return (
@@ -16,9 +13,9 @@ export const Header = () => {
             </Navbar.Brand>
 
             <Nav className="mr-auto">
-                <Nav.Link style={style} href="/">Home</Nav.Link>
-                <Nav.Link style={style} href="/flights">Flights</Nav.Link>
-                <Nav.Link style={style} href="/cancel">Cancellation</Nav.Link>
+                <Nav.Link className="navLink" href="/">Home</Nav.Link>
+                <Nav.Link className="navLink" href="/flights">Flights</Nav.Link>
+                <Nav.Link className="navLink" href="/cancel">Cancellation</Nav.Link>
             </Nav>
 
             <Nav className="justify-content-end">
