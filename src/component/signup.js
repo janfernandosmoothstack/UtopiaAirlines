@@ -1,7 +1,17 @@
 "use strict"
 
 import React from 'react';
-import {Modal} from 'react-bootstrap';
+import {Modal, Form, Nav} from 'react-bootstrap';
+
+const btnStyle = {
+  marginRight: "10px",
+  borderRadius: "7px",
+  width: "100px"
+}
+
+const style = {
+  color: "white"
+}
 
 export const SignUp = () => {
     const [show, setShow] = React.useState(false);
@@ -10,58 +20,47 @@ export const SignUp = () => {
 
     const handleSubmit = (event) => {
       event.preventDefault();
-      console.log(signup);
     }
 
     return (
-        <React.Fragment>
-            <button type="button" className="btn-primary" onClick={handleShow}>SignUp</button>
-            <Modal show={show} onHide={handleClose}>
-                      <Modal.Header closeButton>
-                      </Modal.Header>
-                      <Modal.Body>
-                      <form onSubmit = {handleSubmit}>
-                          <Row>
-                          <Col>
-                        <label>
-                           First Name:  
-                                    <input type="text" />
-                                </label>
-                                </Col>
-                                <Col>
-                                <label>
-                                    Last Name:  
-                                    <input type="text" />
-                                </label>
-                                <br></br>
-                                </Col>
-                                </Row>
-                               
-                                <Row>
-                                <label>
-                                   Email address: 
-                                    <input type="email" />
-                                </label>
-                                </Row>
-                                <br></br>
-                                <Row>
-                                <label>
-                                   Create a password: 
-                                    <input type="password" placeholder="at least 6 characters"/>
-                                </label>
-                                </Row>
+      <React.Fragment>
+        <Nav.Link style={style} href="/signUp" onClick={handleShow}>Sign Up</Nav.Link>
 
-                                <Row>
-                        <button variant="primary" onClick={handleClose}>
-                          Sign Up
-                        </button>  </Row>
-                            </form>
-                          </Modal.Body>
-                      <Modal.Footer>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Sign Up</Modal.Title>  
+          </Modal.Header>
+                    
+          <Modal.Body>
+            <Form onSubmit = {handleSubmit}>
+
+              <div className="form-group">
+                  <label htmlFor="firstName">First Name:</label>
+                  <input name="firstName" type="text" className="form-control"></input>
+              </div>
+
+              <div className="form-group">
+                  <label htmlFor="lastName">Last Name:</label>
+                  <input name="lastName" type="text" className="form-control"></input>
+              </div>  
                         
-                      </Modal.Footer>
-                    </Modal>
-                    </React.Fragment>
-        );
-        }
+              <div className="form-group">
+                  <label htmlFor="email">E-mail:</label>
+                  <input name="email" type="email" className="form-control"></input>
+              </div>         
+                              
+              <div>
+                  <label htmlFor="password">Password:</label>
+                  <input name="password" type="password" className="form-control"></input>
+              </div> 
+
+              <br></br>         
+                            
+              <button type="submit" className="btn-primary" onClick={handleClose} style={btnStyle}>Sign Up</button>               
+            </Form>
+          </Modal.Body>
+        </Modal>
+      </React.Fragment>
+    );
+}
         
