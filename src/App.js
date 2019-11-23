@@ -5,7 +5,7 @@ import {Header} from './component/header/header.js';
 import {Ticket} from './component/ticket.js';
 import {Traveler} from './component/traveler.js';
 import {Payment} from './component/payment.js';
-import {Billing} from './component/billing.js';
+import {Flights} from './component/flights.js';
 import './App.css';
 
 
@@ -19,7 +19,7 @@ class App extends Component {
               <Route path='/payment' component={Payment}/>
               <Route path='/ticket' component={Ticket}/>
               <Route path='/traveler' component={Traveler}/>
-              <Route path='/billing' component={Billing}/>
+              <Route path='/flights' component={Flights}/>
           </Switch>
       </div>
     );

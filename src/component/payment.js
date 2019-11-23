@@ -8,6 +8,12 @@ const style = {
   color: "white"
 };
 
+const style1 = {
+  marginLeft: "18px",
+  fontSize:"20px",
+  color: "white",
+};
+
 const button = {
   backgroundColor:"#3C5E83",
   border:"none",
@@ -16,7 +22,7 @@ const button = {
   textAlign:"center",
   textDecoration:"none",
   display:"inline-block",
-  marginLeft: "18px",
+  marginLeft: "530px",
   borderRadius:"5px",
   fontSize:"20px"
 };
@@ -32,7 +38,6 @@ export const Payment = () => {
   
   return (
     <React.Fragment>
-
       
       <h2 style={header}>Payment</h2>
       <br></br> 
@@ -83,13 +88,55 @@ export const Payment = () => {
       </div>
       </div>
 
-      <br></br>
+      {
+      //BILLING
+      }
+
+      <h2 style={header}>Billing Address</h2>
+      <br></br> 
+
       <div class="form-group row">
-    <div class="col-sm-10">
-      <button type="submit" style={button}>Continue to Billing</button>
-    </div>
-  </div>
-  
+        <label for="address1" class="col-sm-2 col-form-label" style={style}>Address</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" id="address1" placeholder="1234 Main St" />
+      </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="city" class="col-sm-2 col-form-label" style={style}>City</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="city" placeholder="Name of the City"/>
+      </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="state" class="col-sm-2 col-form-label" style={style}>State</label>
+      <div class="col-sm-2">
+        <select id="inputState" class="form-control">
+          <option selected>Pick State...</option>
+          <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
+          <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
+          <option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option>
+          <option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option>
+          <option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option>
+          <option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>MontanaNebraska</option>
+          <option>Nevada</option><option>New Hampshire</option><option>New York</option><option>South Carolina</option><option>Texas</option>
+          <option>Virginia</option><option>Washington</option>
+        </select>
+      </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="city" class="col-sm-2 col-form-label" style={style}>Zip Code</label>
+      <div class="col-sm-1">
+        <input type="text" class="form-control" id="city" placeholder="6 digits"/>
+      </div>
+      </div>
+
+    <br></br>
+    <button type="submit" style={button}>Continue to Review</button>
+    <br></br><br></br><br></br>
+
       </form>
 
   </React.Fragment>
