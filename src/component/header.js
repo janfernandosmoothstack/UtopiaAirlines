@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import {SignIn} from './signin.js'
+import {SignUp} from './signup.js'
 
 const style = {
     color: "white"
@@ -21,7 +22,7 @@ export const Header = () => {
             </Nav>
 
             <Nav className="justify-content-end">
-                <Nav.Link style={style} href="/signup">Sign Up</Nav.Link>
+                <SignUp/>
                 <SignIn/>
             </Nav>
         </Navbar>
