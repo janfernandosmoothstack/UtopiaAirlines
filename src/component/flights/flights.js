@@ -1,5 +1,5 @@
 import React from 'react';
-import './flights/flights.css'
+import './flights.css'
 import { Link } from 'react-router-dom';
 
 const style = {

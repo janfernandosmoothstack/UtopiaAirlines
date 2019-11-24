@@ -5,7 +5,7 @@ import {Header} from './component/header/header.js';
 import {Ticket} from './component/ticket.js';
 import {Traveler} from './component/traveler.js';
 import {Payment} from './component/payment/payment.js';
-import {Flights} from './component/flights.js';
+import {Flights} from './component/flights/flights.js';
 import {Confirmation} from './component/confirmation.js';
 import './App.css';
 
