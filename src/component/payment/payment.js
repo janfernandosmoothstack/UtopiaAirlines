@@ -1,5 +1,3 @@
-// Contact.js
-
 import React from 'react';
 import './payment.css';
 import './visa.css';

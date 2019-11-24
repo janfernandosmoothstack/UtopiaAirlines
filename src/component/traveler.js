@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
   const move = {
     marginLeft: "18px",
@@ -50,7 +51,7 @@ return(
         <input type="date" className="form-control" />
       </div>
       </div>
-      <button type="button" className= {"rounded btn border border-dark"} style = {move}>Continue to Payment</button>
+      <Link to="/payment"><button type="button" className= {"rounded btn border border-dark"} style = {move}>Continue to Payment</button></Link>
     </Form>
     </React.Fragment>
 );
