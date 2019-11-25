@@ -13,7 +13,6 @@
   padding: 20px;
   color: white;
 }
-
 .App-intro {
   font-size: large;
 }
@@ -21,4 +20,16 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-image: url('https://imgur.com/QruyqEE.png');
+  width: 100%;
+  background-repeat: no-repeat;
+  background-color: #040130 !important;
+  background-size: cover;
 }

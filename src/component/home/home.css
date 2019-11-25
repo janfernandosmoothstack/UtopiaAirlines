@@ -1,0 +1,12 @@
+.headerContainer {
+    text-align: center;
+}
+
+.headerText {
+    margin-top: 10%;
+    padding: 60px;
+    font-family: 'Roboto', sans-serif !important;
+    font-stretch: ultra-expanded;
+    font-size: 30px;
+    color: white;
+}

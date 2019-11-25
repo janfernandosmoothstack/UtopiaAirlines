@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import {Switch, Route} from 'react-router-dom';
-import {Home} from './component/home.js';
-import {Header} from './component/header.js';
+import {Home} from './component/home/home.js';
+import {Header} from './component/header/header.js';
+import {Ticket} from './component/ticket.js';
+import {Traveler} from './component/traveler.js';
+import {Payment} from './component/payment/payment.js';
+import {Flights} from './component/flights/flights.js';
+import {Confirmation} from './component/confirmation.js';
+import {cancelReservation, CancelReservation} from './component/cancelRes/cancelReservation.js';
 import './App.css';
+
 
 class App extends Component {
   render() {
@@ -11,6 +18,12 @@ class App extends Component {
           <Header />
           <Switch>
               <Route exact path='/' component={Home}/>
+              <Route path='/payment' component={Payment}/>
+              <Route path='/tickets' component={Ticket}/>
+              <Route path='/traveler' component={Traveler}/>
+              <Route path='/flights' component={Flights}/>
+              <Route path='/confirmation' component={Confirmation}/>
+              <Route path='/cancel' component={CancelReservation}/>
           </Switch>
       </div>
     );
