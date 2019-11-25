@@ -118,9 +118,9 @@ export const Payment = () => {
         </div>
 
         <div class="form-group row">
-          <label for="city" class="col-sm-2 col-form-label" className="labelStyle">Zip Code</label>
+          <label for="zipcode" class="col-sm-2 col-form-label" className="labelStyle">Zip Code</label>
           <div class="col-sm-1">
-            <input type="text" class="form-control" id="city" placeholder="6 digits" />
+            <input type="text" class="form-control" id="zipcode" placeholder="5 digits" />
           </div>
         </div>
 
