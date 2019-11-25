@@ -23,6 +23,7 @@ export const Header = () => {
                     <Link className="navLink" to="/tickets">Tickets</Link>
                     <Link className="navLink" to="/traveler">Traveler Information</Link>
                     <Link className="navLink" to="/payment">Payment</Link>
+                    <Link className="navLink" to="/cancel">Cancel Booking</Link>
                 </Nav>
 
                 <Nav className="justify-content-end">
