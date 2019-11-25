@@ -33,10 +33,9 @@ export const CancelReservation = () => {
           <div class="col-sm-5">
             <input type="text" class="form-control" id="reservationId" placeholder="Confirmation Number" />
           </div>
-        </div>
-
-        <div class="form-group row">
-            <button type="submit" style={button}>View Booking</button>
+          <div class="col-sm-5">
+          <button type="submit" style={button}>View Booking</button>
+          </div>
         </div>
         
         <br></br><br></br><br></br>
