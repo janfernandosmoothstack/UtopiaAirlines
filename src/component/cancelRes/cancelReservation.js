@@ -9,6 +9,23 @@ const button = {
   padding: "6px 10px",
   textAlign: "center",
   display: "inline-block",
+  //marginLeft: "550px",
+  borderRadius: "5px",
+  fontSize: "20px"
+};
+const text = {
+  //textAlign: "center",
+  marginLeft: "450px",
+  color: "white",
+  fontSize: "20px"
+}
+const button1 = {
+  backgroundColor: "#3C5E83",
+  border: "none",
+  color: "white",
+  padding: "6px 10px",
+  textAlign: "center",
+  display: "inline-block",
   marginLeft: "550px",
   borderRadius: "5px",
   fontSize: "20px"
@@ -26,25 +43,27 @@ export const CancelReservation = () => {
       </div>
 
       <br></br>
-      <form>
-
-        <div class="form-group row">
-          <label for="reservationId" class="col-sm-2 col-form-label" className="labelStyle">Confirmation Number</label>
-          <div class="col-sm-5">
-            <input type="text" class="form-control" id="reservationId" placeholder="Confirmation Number" />
+      <form >
+        <div class="form-inline">
+          <div class="form-group mb-2">
+            <label for="reservationId" class="col-2 col-form-label" className="labelStyle">Confirmation Number</label>
+            <input class="form-control" type="text" placeholder="Confirmation Number" id="reservationId" />
           </div>
+          <div class="form-group mx-sm-1 mb-1">
+          </div>
+          <button type="submit" class="btn btn-primary mb-2" style={button}>View Booking</button>
+         
+       
         </div>
+        <br></br>
+        <br></br><br></br><br></br>
+        <p style={text}> Ticket information appears here</p>
 
-        <div class="form-group row">
-            <button type="submit" style={button}>View Booking</button>
-        </div>
-        
+        <br></br>
         <br></br><br></br><br></br>
 
-        <div class="form-group row">
-            <button type="submit" style={button}>Delete</button>
-            <Link to="/"><button type="submit" style={button}>Return to home page</button></Link> 
-        </div>
+        <Link to="/"><button type="submit" style={button1}>Delete</button></Link>
+
 
       </form>
 
