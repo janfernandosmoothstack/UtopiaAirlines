@@ -48,14 +48,11 @@ export const Flights = () => {
             <label for="cardType" class="col-sm-2 col-form-label" style={style}>Flight Type :</label>
             <div class="custom-control custom-radio custom-control-inline">
               <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" />
-              <label class="custom-control-label" for="customRadioInline1" style={style}>
-                <img width="60px" height="60px" src="https://img.icons8.com/dusk/64/000000/circular-arrows.png" />
-              </label>
+              <label class="custom-control-label" for="customRadioInline1" style={style}>Round Trip</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
               <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input" />
-              <label class="custom-control-label" for="customRadioInline2"></label>
-              <img width="60px" height="60px" src="https://img.icons8.com/doodle/48/000000/one-way-road-sign.png"></img>
+              <label class="custom-control-label" for="customRadioInline2" style={style}>One-way</label>
             </div>
           </div>
 

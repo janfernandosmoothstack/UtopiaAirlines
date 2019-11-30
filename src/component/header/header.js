@@ -22,7 +22,6 @@ export const Header = () => {
                     <Link className="navLink" to="/flights">Flights</Link>
                     <Link className="navLink" to="/tickets">Tickets</Link>
                     <Link className="navLink" to="/traveler">Traveler Information</Link>
-                    <Link className="navLink" to="/payment">Payment</Link>
                     <Link className="navLink" to="/cancel">Cancel Reservation</Link>
                 </Nav>
 
