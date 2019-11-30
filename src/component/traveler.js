@@ -1,6 +1,8 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
+import './payment/payment.css';
 import { Link } from 'react-router-dom';
+import {Payment} from './payment/payment.js';
 
   const move = {
     marginLeft: "18px",
@@ -13,6 +15,19 @@ import { Link } from 'react-router-dom';
     fontSize:"50px",
     color: "white"
   };
+
+  const button = {
+    backgroundColor: "#3C5E83",
+    border: "none",
+    color: "white",
+    padding: "6px 10px",
+    textAlign: "center",
+    display: "inline-block",
+    marginLeft: "550px",
+    borderRadius: "5px",
+    fontSize: "20px"
+  };
+  
 export const Traveler = () => {
 
 return(
@@ -51,7 +66,12 @@ return(
         <input type="date" className="form-control" />
       </div>
       </div>
+      <Payment></Payment>
+
+      {/*
       <Link to="/payment"><button type="button" className= {"rounded btn border border-dark"} style = {move}>Continue to Payment</button></Link>
+      */}
+
     </Form>
     </React.Fragment>
 );
