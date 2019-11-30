@@ -14,7 +14,18 @@
     "reactstrap": "^8.1.1",
     "stripe-client": "^1.1.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babelify": "^10.0.0",
+    "browserify": "^16.5.0",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.7.0",
+    "gulp-eslint": "^6.0.0",
+    "gulp-html-replace": "^1.6.2",
+    "gulp-open": "^3.0.1",
+    "gulp-uglify": "^3.0.2",
+    "vinyl-source-stream": "^2.0.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
