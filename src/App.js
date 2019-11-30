@@ -10,7 +10,7 @@ import {Confirmation} from './component/confirmation.js';
 import {cancelReservation, CancelReservation} from './component/cancelRes/cancelReservation.js';
 import './App.css';
 
-
+//app/js
 class App extends Component {
   render() {
     return (
