@@ -7,7 +7,7 @@ import {Traveler} from './component/traveler.js';
 import {Payment} from './component/payment/payment.js';
 import {Flights} from './component/flights/flights.js';
 import {Confirmation} from './component/confirmation.js';
-import {cancelReservation, CancelReservation} from './component/cancelRes/cancelReservation.js';
+import {CancelReservation} from './component/cancelRes/cancelReservation.js';
 import './App.css';
 
 //app/js
