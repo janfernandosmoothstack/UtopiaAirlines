@@ -2,16 +2,42 @@ import React, { Component } from 'react';
 import {Switch, Route} from 'react-router-dom';
 import {Home} from './component/home/home.js';
 import {Header} from './component/header/header.js';
-import {Ticket} from './component/ticket.js';
+import Ticket from './component/ticket.js';
 import {Traveler} from './component/traveler.js';
 import {Payment} from './component/payment/payment.js';
 import {Flights} from './component/flights/flights.js';
 import {Confirmation} from './component/confirmation.js';
 import {CancelReservation} from './component/cancelRes/cancelReservation.js';
+import TicketStore from './store/ticketStore';
 import './App.css';
 
 //app/js
-class App extends Component {
+export class App extends Component {
+  
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      ticket: {
+        ticketList: [],
+
+        readState: {
+            pending:false,
+            success:false,
+            failure:false
+        },
+
+        createState: {
+            pending:false,
+            success:false,
+            failure:false
+        },
+
+        error: ''
+      }
+    }
+  }
+
   render() {
     return (
       <div>
@@ -28,6 +54,17 @@ class App extends Component {
       </div>
     );
   }
-}
 
-export default App;
+  componentDidMount() {
+    TicketStore.addChangeListener(this,_onTicketChange.bind(this));
+  }
+
+  componentWillUnmount() {
+    TicketStore.removeChangeListener(this._onTicketChange.bind(this));
+  }
+
+  _onTicketChange() {
+    this.setState({ticket: TicketStore.getTicketsState()});
+  }
+
+}
