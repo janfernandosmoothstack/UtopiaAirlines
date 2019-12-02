@@ -58,21 +58,28 @@ class Ticket extends React.Component {
                             <thead>
                                 <tr>
                                     <th >FlightNo </th>
+                                    <th>Depart Date</th>
                                     <th>Depart Time</th>
+                                    <th>Arrival Date</th>
                                     <th>Arrival Time</th>
+                                    <th>Departure Airport</th>\
+                                    <th>Arrival Airport</th>
                                     <th>Price</th>
                                 </tr>
                             </thead>
                             <tbody>
                             <tr>
                                 <td>1008</td>
+                                <td>2019-12-12</td>
                                 <td>10:06 pm </td>
+                                <td>2019-12-15</td>
                                 <td>1:15 am </td>
+                                <td>Los Angeles</td>
+                                <td>Houston</td>
                                 <td>$100</td>
-                                <td><Buy> </Buy> </td>
-                                
+                                <td><Buy> </Buy> </td>       
                             </tr>
-                            <tr>
+                            {/* <tr>
                                 <td>1549</td>
                                 <td>08:06 pm </td>
                                 <td>06:15 am </td>
@@ -85,7 +92,7 @@ class Ticket extends React.Component {
                                 <td>11:19 am </td>
                                 <td>$100</td>
                                 <td><Buy> </Buy> </td>
-                            </tr>
+                            </tr> */}
                             </tbody>    
                         </table>
             </div>

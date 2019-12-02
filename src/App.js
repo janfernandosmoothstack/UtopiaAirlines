@@ -60,7 +60,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    TicketStore.addChangeListener(this,_onTicketChange.bind(this));
+    TicketStore.addChangeListener(this._onTicketChange.bind(this));
   }
 
   componentWillUnmount() {

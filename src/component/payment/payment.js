@@ -25,7 +25,7 @@ export const Payment = () => {
       amount: 15000,
       token: token
     };
-    axios.post("http://localhost:8000/pay", body).then(response => {
+    axios.post("https://zdt56bh758.execute-api.us-east-2.amazonaws.com/dev/pay", body).then(response => {
       console.log(response);
       alert("Payment Success");
     }).catch(error => {
