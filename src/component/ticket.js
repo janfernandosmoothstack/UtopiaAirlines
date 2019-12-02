@@ -1,7 +1,8 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
 import {Buy} from './buy';
-import TicketActions from '../actions/ticketActions';
+import TicketActions from '../actions/ticketActions.js';
+import PropTypes from 'prop-types';
 
 const space = {
   marginRight: "80px"
@@ -92,5 +93,9 @@ class Ticket extends React.Component {
         );
     }
 }
+
+Ticket.propTypes = {
+    ticket: PropTypes.object.isRequired
+};
 
 export default Ticket;

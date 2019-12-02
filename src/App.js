@@ -12,7 +12,7 @@ import TicketStore from './store/ticketStore';
 import './App.css';
 
 //app/js
-export class App extends Component {
+class App extends Component {
   
   constructor(props) {
     super(props);
@@ -55,6 +55,10 @@ export class App extends Component {
     );
   }
 
+  _onTicketChange() {
+    this.setState({ticket: TicketStore.getTicketsState()});
+  }
+
   componentDidMount() {
     TicketStore.addChangeListener(this,_onTicketChange.bind(this));
   }
@@ -62,9 +66,6 @@ export class App extends Component {
   componentWillUnmount() {
     TicketStore.removeChangeListener(this._onTicketChange.bind(this));
   }
-
-  _onTicketChange() {
-    this.setState({ticket: TicketStore.getTicketsState()});
-  }
-
 }
+
+export default App;

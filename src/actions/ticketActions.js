@@ -45,4 +45,4 @@ const TicketActions = {
     }
 }
 
-module.exports = TicketActions;
+export default TicketActions;
