@@ -1,21 +1,37 @@
 .custom-form-container {
-    height: 100vh;
+  /* The Magic */
+  background-size: cover;
 
-    /* The Magic */
-    background-size: cover;
- 
-    background-color: rgba(0,0,0, 0.4);
-    width: 1000px;
-    height: 550px;
-    margin-left: 150px;
-    
-    
+  background-color: rgba(0,0,0, 0.4);
+  height: 550px;
+  margin-top: 50px;
+  margin: auto;
+  vertical-align: middle;
 }
   
-  .custom-form-container {
-    padding: 30px 60px;
-  }
-  
-  .form-horizontal, .form-group {
-    background: none;
-  }
+.custom-form-container {
+  padding: 30px 60px;
+}
+
+.form-horizontal, .form-group {
+  background: none;
+}
+
+.formCenter {
+  text-align: center;
+}
+
+.radio {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.parentCenter {
+  text-align: center;
+}
+
+.childCenter {
+  margin: 0 auto;
+  display: block;
+  width: 100px;
+}

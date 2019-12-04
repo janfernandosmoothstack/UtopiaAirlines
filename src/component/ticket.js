@@ -1,14 +1,14 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
 import {Buy} from './buy';
-import TicketActions from '../actions/ticketActions.js';
+import TicketActions from '../actions/ticketActions';
 import PropTypes from 'prop-types';
 
 const space = {
   marginRight: "80px"
 }
 
-class Ticket extends React.Component {
+export class Ticket extends React.Component {
 
     createTicketRow(ticket) {
         return (
@@ -104,5 +104,3 @@ class Ticket extends React.Component {
 Ticket.propTypes = {
     ticket: PropTypes.object.isRequired
 };
-
-export default Ticket;

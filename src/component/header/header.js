@@ -10,7 +10,7 @@ import { NavDropdown } from 'react-bootstrap';
 
 export const Header = () => {
     return (
-        <Navbar>
+        <Navbar className="navBar">
             <Navbar.Brand href="/">
                 <img width="80px" height="60px" src="https://imgur.com/WLQWpIv.png" alt="logo" />
             </Navbar.Brand>

@@ -6,3 +6,7 @@
 .navLink:hover {
     color: #DAAB97 !important;
 }
+
+.navBar {
+    margin-bottom: 40px;
+}
