@@ -1,0 +1,21 @@
+.labelStyle {
+    margin-left: 250px;
+    font-size:20px;
+    color: white;
+    padding-right: 50px;
+    display: inline-block;
+    text-align: right;
+    width: 200px;
+    
+  };
+
+  .headerContainer{
+    text-align:center;
+    
+  }
+
+  .headertext {
+    margin-left: 18px;
+    font-size:40px;
+    color: white;
+  }

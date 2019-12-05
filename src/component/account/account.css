@@ -1,0 +1,17 @@
+.accountLink {
+    color: black !important;
+}
+
+.accountLink:hover {
+    color: #DAAB97 !important;
+}
+
+.btnStyle {
+    margin-right: 10px;
+    border-radius: 5px;
+    width: 100px;
+    color: white;
+    background-color: #3C5E83;
+    border: none;
+    padding: 5px 5px 5px 5px;
+  }
