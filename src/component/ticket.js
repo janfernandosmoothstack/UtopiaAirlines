@@ -9,7 +9,7 @@ const space = {
 }
 
 export class Ticket extends React.Component {
-
+    
     createTicketRow(ticket) {
         return (
             <tr key = {ticket.flightNo}>
@@ -19,19 +19,48 @@ export class Ticket extends React.Component {
                 <td> {ticket.arrivalTime} </td>
                 <td> {ticket.departureAirport} </td>
                 <td> {ticket.arrivalAirport} </td>
-                <td> {ticket.price} </td>
+                <td> {ticket.flightPrice} </td>
                 <td> <Buy></Buy> </td>
             </tr>
         );
     }
 
     componentDidMount() {
-        TicketActions.readTickets();
+        // var flightFilter = {
+        //     departureDate: '2019-12-12',
+        //     departureAirport: 'LAX',
+        //     arrivalAirport: 'IAH'
+        // }
+
+        //console.log(flightFilter)
+        console.log(this.props.flight.flightFilter);
+
+        TicketActions.readTickets(this.props.flight.flightFilter);
     }
 
     render(){  
-        
+        //{this.props.ticket.ticketList.map(this.createTicketRow, this)}
         let content = '';
+
+        content = (
+            <table class="table table-dark table-hover" >
+                <thead>
+                    <tr>
+                        <th>Flight No.</th>
+                        <th>Departure Date</th>
+                        <th>Departure Time</th>
+                        <th>Arrival Time</th>
+                        <th>Departure Airport</th>
+                        <th>Arrival Airport</th>
+                        <th>Price</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>                    
+                    {this.props.ticket.ticketList.map(this.createTicketRow, this)}
+                </tbody>    
+            </table>
+        );
 
         return(
             <React.Fragment>
@@ -54,47 +83,7 @@ export class Ticket extends React.Component {
             </Form>
 
             <div>
-                <table class="table table-dark table-hover" >
-                            <thead>
-                                <tr>
-                                    <th >FlightNo </th>
-                                    <th>Depart Date</th>
-                                    <th>Depart Time</th>
-                                    <th>Arrival Date</th>
-                                    <th>Arrival Time</th>
-                                    <th>Departure Airport</th>\
-                                    <th>Arrival Airport</th>
-                                    <th>Price</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>1008</td>
-                                <td>2019-12-12</td>
-                                <td>10:06 pm </td>
-                                <td>2019-12-15</td>
-                                <td>1:15 am </td>
-                                <td>Los Angeles</td>
-                                <td>Houston</td>
-                                <td>$100</td>
-                                <td><Buy> </Buy> </td>       
-                            </tr>
-                            {/* <tr>
-                                <td>1549</td>
-                                <td>08:06 pm </td>
-                                <td>06:15 am </td>
-                                <td>$100</td>
-                                <td><Buy> </Buy> </td>
-                            </tr>
-                            <tr>
-                                <td>1104</td>
-                                <td>09:11 pm </td>
-                                <td>11:19 am </td>
-                                <td>$100</td>
-                                <td><Buy> </Buy> </td>
-                            </tr> */}
-                            </tbody>    
-                        </table>
+                {content}
             </div>
             </React.Fragment>
         );

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './flights.css';
 import { Link } from 'react-router-dom';
 import FlightActions from '../../actions/flightActions';
+import TicketActions from '../../actions/ticketActions';
 
 const style = {
   fontSize: "20px",
@@ -60,18 +61,20 @@ export class Flights extends React.Component {
     const handleSubmit = (event) =>{
       event.preventDefault();
   
-      let flightFilter = {
-          flightType: event.target.flightType.value,
-          departureDate: event.target.departureDate.value,
-          returnDate: event.target.returnDate.value,
-          departureAirport: event.target.departureAirport.value,
-          arrivalAirport: event.target.arrivalAirport.value,
-          totalTravelers: event.target.totalTravelers.value
+      this.props.flight.flightFilter = {
+        flightType: event.target.flightType.value,
+        departureDate: event.target.departureDate.value,
+        returnDate: event.target.returnDate.value,
+        departureAirport: event.target.departureAirport.value,
+        arrivalAirport: event.target.arrivalAirport.value,
+        totalTravelers: event.target.totalTravelers.value
       }
+      //console.log(flightFilter);
 
-      console.log(flightFilter);
+      //this.props.flight.flightFilter = filter;
+      console.log(this.props.flight.flightFilter);
   
-      //readTickets(flightFilter);
+      //TicketActions.readTickets(this.props.flight.flightFilter);
     }
 
    // if (this.props.airport.readState.success) {
@@ -164,6 +167,7 @@ export class Flights extends React.Component {
 }
 
 Flights.propTypes = {
-  airport: PropTypes.object.isRequired
+  airport: PropTypes.object.isRequired,
+  flight: PropTypes.object.isRequired
 };
 

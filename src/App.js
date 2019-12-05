@@ -47,6 +47,17 @@ class App extends Component {
         },
 
         error: ''
+      },
+
+      flight: {
+        flightFilter: {
+          flightType: "",
+          departureDate: "",
+          returnDate: "",
+          departureAirport: "",
+          arrivalAirport: "",
+          totalTravelers: ""
+        }
       }
     }
   }
@@ -58,9 +69,9 @@ class App extends Component {
           <Switch>
               <Route exact path='/' component={Home}/>
               <Route path='/payment' component={Payment}/>
-              <Route path='/tickets' component={Ticket}/>
+              <Route path='/tickets' render={(props) => (<Ticket {...props} ticket={this.state.ticket} flight={this.state.flight}></Ticket>)}/>
               <Route path='/traveler' component={Traveler}/>
-              <Route path='/flights' render={(props) => (<Flights {...props} airport={this.state.airport}></Flights>)}/>
+              <Route path='/flights' render={(props) => (<Flights {...props} airport={this.state.airport} flight={this.state.flight}></Flights>)}/>
               <Route path='/confirmation' component={Confirmation}/>
               <Route path='/cancel' component={CancelReservation}/>
           </Switch>
@@ -73,7 +84,10 @@ class App extends Component {
   }
 
   _onFlightChange() {
-    this.setState({airport: FlightStore.getFlightState()});
+    this.setState({
+      airport: FlightStore.getAirportState(),
+      flight: FlightStore.getFlightState()
+    });
   }
 
   componentDidMount() {

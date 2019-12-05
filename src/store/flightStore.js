@@ -14,7 +14,18 @@ let _flightStore = {
         },
 
         error: ''
-    }
+    },
+
+    flight: {
+        flightFilter: {
+          flightType: "",
+          departureDate: "",
+          returnDate: "",
+          departureAirport: "",
+          arrivalAirport: "",
+          totalTravelers: ""
+        }
+      }
 };
 
 //to listen for events
@@ -34,8 +45,12 @@ class FlightStoreClass extends EventEmitter{
         this.emit(CHANGE_EVENT);
     }
 
-    getFlightState() {
+    getAirportState() {
         return _flightStore.airport;
+    }
+
+    getFlightState() {
+        return _flightStore.flight;
     }
 
     resetReadState() {

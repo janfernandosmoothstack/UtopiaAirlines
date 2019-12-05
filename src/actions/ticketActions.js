@@ -7,11 +7,11 @@ const TicketActions = {
             actionType: 'read_ticket_started'
         });
 
-        axios.get(`https://localhost:8000/flights/from/${flightFilter.departureAirport}/to/${flightFilter.arrivalAirport}/on/${flightFilter.departureDate}`, res)
-        .then(() => {
+        axios.get(`http://localhost:8000/flights/from/${flightFilter.departureAirport}/to/${flightFilter.arrivalAirport}/on/${flightFilter.departureDate}`)
+        .then(res => {
             Dispatcher.dispatch({
                 actionType: 'read_ticket_successful',
-                data: res
+                data: res.data
             });
         })
         .catch((error) => {
@@ -28,7 +28,7 @@ const TicketActions = {
             actionType: 'create_ticket_started'
         });
 
-        axios.post(`https://localhost:8000/reservations/${reservationId}/tickets`, ticket)
+        axios.post(`http://localhost:8000/reservations/${reservationId}/tickets`, ticket)
         .then(res => {
             Dispatcher.dispatch({
                 actionType: 'create_ticket_successful',

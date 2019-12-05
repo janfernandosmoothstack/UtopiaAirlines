@@ -27,8 +27,8 @@ export const SignIn = () => {
                 <Form onSubmit={handleSubmit}>
 
                   <div className="form-group">
-                    <label htmlFor="email">E-mail:</label>
-                    <input name="email" type="email" className="form-control"></input>
+                    <label htmlFor="username">Username:</label>
+                    <input name="username" type="text" className="form-control"></input>
                   </div>        
                   
                   <div>
