@@ -1,15 +1,24 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
 import {Buy} from './buy';
+<<<<<<< HEAD
 import TicketActions from '../actions/ticketActions.js';
+=======
+import TicketActions from '../actions/ticketActions';
+>>>>>>> fc7df326b7f522866c33d007a5c36ef1e87a3ed1
 import PropTypes from 'prop-types';
 
 const space = {
   marginRight: "80px"
 }
 
+<<<<<<< HEAD
 class Ticket extends React.Component {
 
+=======
+export class Ticket extends React.Component {
+    
+>>>>>>> fc7df326b7f522866c33d007a5c36ef1e87a3ed1
     createTicketRow(ticket) {
         return (
             <tr key = {ticket.flightNo}>
@@ -19,13 +28,18 @@ class Ticket extends React.Component {
                 <td> {ticket.arrivalTime} </td>
                 <td> {ticket.departureAirport} </td>
                 <td> {ticket.arrivalAirport} </td>
+<<<<<<< HEAD
                 <td> {ticket.price} </td>
+=======
+                <td> {ticket.flightPrice} </td>
+>>>>>>> fc7df326b7f522866c33d007a5c36ef1e87a3ed1
                 <td> <Buy></Buy> </td>
             </tr>
         );
     }
 
     componentDidMount() {
+<<<<<<< HEAD
         TicketActions.readTickets();
     }
 
@@ -33,6 +47,44 @@ class Ticket extends React.Component {
         
         let content = '';
 
+=======
+        // var flightFilter = {
+        //     departureDate: '2019-12-12',
+        //     departureAirport: 'LAX',
+        //     arrivalAirport: 'IAH'
+        // }
+
+        //console.log(flightFilter)
+        console.log(this.props.flight.flightFilter);
+
+        TicketActions.readTickets(this.props.flight.flightFilter);
+    }
+
+    render(){  
+        //{this.props.ticket.ticketList.map(this.createTicketRow, this)}
+        let content = '';
+
+        content = (
+            <table class="table table-dark table-hover" >
+                <thead>
+                    <tr>
+                        <th>Flight No.</th>
+                        <th>Departure Date</th>
+                        <th>Departure Time</th>
+                        <th>Arrival Time</th>
+                        <th>Departure Airport</th>
+                        <th>Arrival Airport</th>
+                        <th>Price</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>                    
+                    {this.props.ticket.ticketList.map(this.createTicketRow, this)}
+                </tbody>    
+            </table>
+        );
+
+>>>>>>> fc7df326b7f522866c33d007a5c36ef1e87a3ed1
         return(
             <React.Fragment>
             <Form>
@@ -54,6 +106,7 @@ class Ticket extends React.Component {
             </Form>
 
             <div>
+<<<<<<< HEAD
                 <table class="table table-dark table-hover" >
                             <thead>
                                 <tr>
@@ -95,6 +148,9 @@ class Ticket extends React.Component {
                             </tr> */}
                             </tbody>    
                         </table>
+=======
+                {content}
+>>>>>>> fc7df326b7f522866c33d007a5c36ef1e87a3ed1
             </div>
             </React.Fragment>
         );
@@ -104,5 +160,8 @@ class Ticket extends React.Component {
 Ticket.propTypes = {
     ticket: PropTypes.object.isRequired
 };
+<<<<<<< HEAD
 
 export default Ticket;
+=======
+>>>>>>> fc7df326b7f522866c33d007a5c36ef1e87a3ed1
