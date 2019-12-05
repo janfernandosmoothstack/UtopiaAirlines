@@ -50,15 +50,10 @@ class App extends Component {
       },
 
       flight: {
-        flightFilter: {
-          flightType: "",
-          departureDate: "",
-          returnDate: "",
-          departureAirport: "",
-          arrivalAirport: "",
-          totalTravelers: ""
-        }
-      }
+        flightFilter: {}
+      },
+
+      counter: 1
     }
   }
 
@@ -88,6 +83,14 @@ class App extends Component {
       airport: FlightStore.getAirportState(),
       flight: FlightStore.getFlightState()
     });
+  }
+
+  _onPageNext() {
+    this.setState({counter: this.state.counter + 1});
+  }
+
+  _onPageBack() {
+    this.setState({counter: this.state.counter - 1});
   }
 
   componentDidMount() {

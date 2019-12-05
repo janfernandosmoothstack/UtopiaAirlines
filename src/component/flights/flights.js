@@ -74,7 +74,7 @@ export class Flights extends React.Component {
       //this.props.flight.flightFilter = filter;
       console.log(this.props.flight.flightFilter);
   
-      //TicketActions.readTickets(this.props.flight.flightFilter);
+      TicketActions.readTickets(this.props.flight.flightFilter);
     }
 
    // if (this.props.airport.readState.success) {
@@ -148,7 +148,7 @@ export class Flights extends React.Component {
 
               <div class="form-group row" className="parentCenter">
                 <div className="childCenter">
-                  <Link to="/tickets"><button type="submit" style={button}>Search</button></Link>
+                  {/*<Link to="/tickets">*/}<button type="submit" style={button}>Search</button>{/*</Link>*/}
                 </div>
               </div>
 

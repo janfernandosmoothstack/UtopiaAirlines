@@ -17,14 +17,7 @@ let _flightStore = {
     },
 
     flight: {
-        flightFilter: {
-          flightType: "",
-          departureDate: "",
-          returnDate: "",
-          departureAirport: "",
-          arrivalAirport: "",
-          totalTravelers: ""
-        }
+        flightFilter: {}
       }
 };
 
