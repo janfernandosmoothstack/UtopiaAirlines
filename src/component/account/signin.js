@@ -17,7 +17,7 @@ export const SignIn = () => {
       //   headers: {'Content-Type': 'application/json',
       //             'Accept': 'application/json'}
       // }).then(response => {
-      //   console.log(response);
+      //   console.log(response);oo
       //   alert("Login Success");
     
       // }).catch(error => {
@@ -54,6 +54,10 @@ export const SignIn = () => {
   
     }
 
+    const hello = () => {
+      console.log("hello janet i am here");
+    }
+
     return (
       <React.Fragment>
         <Link className="accountLink" onClick={handleShow}>Sign In</Link>
@@ -64,7 +68,7 @@ export const SignIn = () => {
             </Modal.Header>
             
             <Modal.Body>
-                <Form onSubmit={handleSubmit}>
+                <Form onSubmit={hello}>
 
                   <div className="form-group">
                     <label htmlFor="username">Username:</label>
