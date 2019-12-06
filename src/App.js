@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Switch, Route} from 'react-router-dom';
 import {Home} from './component/home/home.js';
 import {Header} from './component/header/header.js';
-import {Ticket} from './component/ticket.js';
+import Ticket from './component/ticket.js';
 import {Traveler} from './component/traveler.js';
 import {Payment} from './component/payment/payment.js';
 import {Flights} from './component/flights/flights.js';

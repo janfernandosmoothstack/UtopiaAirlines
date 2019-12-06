@@ -82,7 +82,7 @@ export class Ticket extends React.Component {
                         </Form.Group>
 
                         <Form.Group controlId="totalTravelers">
-                            <Form.Label>Travelers</Form.Label>
+                            <Form.Label>Return Date</Form.Label>
                             <Form.Control></Form.Control>
                         </Form.Group>
 

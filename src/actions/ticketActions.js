@@ -7,11 +7,11 @@ const TicketActions = {
             actionType: 'read_ticket_started'
         });
 
-        axios.get(`http://localhost:8000/flights/from/${flightFilter.departureAirport}/to/${flightFilter.arrivalAirport}/on/${flightFilter.departureDate}`)
-        .then(res => {
+        axios.get(`http://localhost:8000/flights/from/${flightFilter.departureAirport}/to/${flightFilter.arrivalAirport}/on/${flightFilter.departureDate}`,flightFilter)
+        .then(() => {
             Dispatcher.dispatch({
                 actionType: 'read_ticket_successful',
-                data: res.data
+                data: flightFilter
             });
         })
         .catch((error) => {
