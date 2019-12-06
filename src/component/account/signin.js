@@ -12,6 +12,8 @@ export const SignIn = () => {
 
     const handleSubmit = (event) => {
       event.preventDefault();
+
+      console.log(event.target.username.value);
     }
 
     return (

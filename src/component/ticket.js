@@ -1,11 +1,11 @@
 import React from 'react';
-import { Form } from 'react-bootstrap';
+import {Form} from 'react-bootstrap';
 import {Buy} from './buy';
 import TicketActions from '../actions/ticketActions';
 import PropTypes from 'prop-types';
 
 const space = {
-  marginRight: "80px"
+  marginLeft: "20px"
 }
 
 export class Ticket extends React.Component {
@@ -26,15 +26,6 @@ export class Ticket extends React.Component {
     }
 
     componentDidMount() {
-        // var flightFilter = {
-        //     departureDate: '2019-12-12',
-        //     departureAirport: 'LAX',
-        //     arrivalAirport: 'IAH'
-        // }
-
-        //console.log(flightFilter)
-        console.log(this.props.flight.flightFilter);
-
         TicketActions.readTickets(this.props.flight.flightFilter);
     }
 
@@ -64,23 +55,50 @@ export class Ticket extends React.Component {
 
         return(
             <React.Fragment>
-            <Form>
-                
-                <div class="input-group mb-3 input-group-sm">
-                <div class="input-group-prepend">
-                    
-                    <span class="input-group-text" >From: </span>
-                    <input type="text" class="form-control" style = {space}/> 
-                    <span class="input-group-text">To: </span>
-                    <input type="text" class="form-control" style = {space}/> 
-                    <span class="input-group-text">Departure Date:  </span>
-                    <input type="date" class="form-control" style = {space}/>  
-                    <span class="input-group-text">Return Date: </span>
-                    <input type="date" class="form-control" style = {space}/>  
-            
-                </div>
-                </div>
-            </Form>
+                <Form style={space}>
+                    <Form.Row>
+                        <Form.Group controlId="departureAirport">
+                            <Form.Label>From</Form.Label>
+                            <Form.Control as="select">
+                                <option>airport</option>
+                            </Form.Control>
+                        </Form.Group>
+
+                        <Form.Group controlId="arrivalAirport">
+                            <Form.Label>To</Form.Label>
+                            <Form.Control as="select">
+                                <option>airport</option>
+                            </Form.Control>
+                        </Form.Group>
+
+                        <Form.Group controlId="departureDate">
+                            <Form.Label>Departure Date</Form.Label>
+                            <Form.Control type="date"></Form.Control>
+                        </Form.Group>
+
+                        <Form.Group controlId="returnDate">
+                            <Form.Label>Return Date</Form.Label>
+                            <Form.Control type="date"></Form.Control>
+                        </Form.Group>
+
+                        <Form.Group controlId="totalTravelers">
+                            <Form.Label>Travelers</Form.Label>
+                            <Form.Control></Form.Control>
+                        </Form.Group>
+
+                        {/* <div class="input-group-prepend">
+                                
+                                
+                                
+                               
+                                <span class="input-group-text">Departure Date:  </span>
+                                <input type="date" class="form-control" style = {space}/>  
+                                <span class="input-group-text">Return Date: </span>
+                                <input type="date" class="form-control" style = {space}/>  
+                        
+                            </div> */}
+                    </Form.Row>
+                </Form>
 
             <div>
                 {content}
