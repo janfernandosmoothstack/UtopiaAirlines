@@ -34,6 +34,8 @@ export const SignIn = () => {
       console.log("im here");
       console.log(event.target.username.value);
       console.log(event.target.password.value);
+      handleClose();
+
         // axios({
         //   method: 'get',
         //   url: 'http://localhost:8080/users/verified',
@@ -78,7 +80,7 @@ export const SignIn = () => {
 
                   <br></br>
 
-                  <button type="submit" className="btn-primary" onClick={handleClose} className="btnStyle">Sign In</button> 
+                  <button type="submit" className="btn-primary" className="btnStyle">Sign In</button> 
                 </Form>
             </Modal.Body>
           </Modal>

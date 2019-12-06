@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Switch, Route} from 'react-router-dom';
 import {Home} from './component/home/home.js';
 import {Header} from './component/header/header.js';
-import {Ticket} from './component/ticket.js';
+import {Ticket} from './component/ticket/ticket.js';
 import {Traveler} from './component/traveler.js';
 import {Payment} from './component/payment/payment.js';
 import {Flights} from './component/flights/flights.js';
@@ -62,7 +62,7 @@ class App extends Component {
           <Switch>
               <Route exact path='/' component={Home}/>
               <Route path='/payment' component={Payment}/>
-              <Route path='/tickets' render={(props) => (<Ticket {...props} ticket={this.state.ticket} flight={this.state.flight}></Ticket>)}/>
+              <Route path='/tickets' render={(props) => (<Ticket {...props} airport={this.state.airport} ticket={this.state.ticket} flight={this.state.flight}></Ticket>)}/>
               <Route path='/traveler' component={Traveler}/>
               <Route path='/flights' render={(props) => (<Flights {...props} airport={this.state.airport} flight={this.state.flight}></Flights>)}/>
               <Route path='/confirmation' component={Confirmation}/>
@@ -73,7 +73,11 @@ class App extends Component {
   }
 
   _onTicketChange() {
-    this.setState({ticket: TicketStore.getTicketsState()});
+    this.setState({
+      ticket: TicketStore.getTicketsState(),
+      airport: FlightStore.getAirportState(),
+      flight: FlightStore.getFlightState()
+    });
   }
 
   _onFlightChange() {

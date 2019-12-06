@@ -2,9 +2,7 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import './flights.css';
-import { Link } from 'react-router-dom';
 import FlightActions from '../../actions/flightActions';
-import TicketActions from '../../actions/ticketActions';
 
 const style = {
   fontSize: "20px",
@@ -64,9 +62,7 @@ export class Flights extends React.Component {
 
     const handleSubmit = (event) =>{
       event.preventDefault();
-
-      //console.log(event.target.flightType.value);
-      
+   
       this.props.flight.flightFilter = {
         flightType: event.target.flightType.value,
         departureDate: event.target.departureDate.value,
