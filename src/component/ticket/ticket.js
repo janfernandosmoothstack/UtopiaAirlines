@@ -47,15 +47,6 @@ export class Ticket extends React.Component {
         FlightActions.readAirports();
     }
 
-    /*
-        flightType: event.target.flightType.value,
-        departureDate: event.target.departureDate.value,
-        returnDate: event.target.returnDate.value,
-        departureAirport: event.target.departureAirport.value,
-        arrivalAirport: event.target.arrivalAirport.value,
-        totalTravelers: event.target.totalTravelers.value
-    */
-
     render() {
         let content = '';
 
@@ -69,13 +60,12 @@ export class Ticket extends React.Component {
             }
         }
 
-        function ticketPage() {
-            window.location.href = "http://localhost:3000/#/tickets";
-        };
+        // function ticketPage() {
+        //     window.location.href = "http://localhost:3000/#/tickets";
+        // };
 
         const handleSubmit = (event) => {
             event.preventDefault();
-
             
             this.props.flight.flightFilter = {
                 flightType: event.target.flightType.value,
@@ -162,7 +152,7 @@ export class Ticket extends React.Component {
                         </Form.Group>
 
                         <Form.Group>
-                            <button className="buttonStyle" type="submit" onClick={ticketPage}>Search</button>
+                            <button className="buttonStyle" type="submit">Search</button>
                         </Form.Group>
 
                     </Form.Row>

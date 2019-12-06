@@ -3,7 +3,7 @@ import {Switch, Route} from 'react-router-dom';
 import {Home} from './component/home/home.js';
 import {Header} from './component/header/header.js';
 import {Ticket} from './component/ticket/ticket.js';
-import {Traveler} from './component/traveler.js';
+import {Traveler} from './component/traveler/traveler.js';
 import {Payment} from './component/payment/payment.js';
 import {Flights} from './component/flights/flights.js';
 import {Confirmation} from './component/confirmation.js';
@@ -74,9 +74,9 @@ class App extends Component {
 
   _onTicketChange() {
     this.setState({
-      ticket: TicketStore.getTicketsState(),
-      airport: FlightStore.getAirportState(),
-      flight: FlightStore.getFlightState()
+      ticket: TicketStore.getTicketsState()
+      // airport: FlightStore.getAirportState(),
+      // flight: FlightStore.getFlightState()
     });
   }
 
