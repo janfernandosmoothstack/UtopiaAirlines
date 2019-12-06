@@ -12,7 +12,6 @@ import {Confirmation} from './component/confirmation.js';
 import {CancelReservation} from './component/cancelRes/cancelReservation.js';
 import TicketStore from './store/ticketStore';
 import FlightStore from './store/flightStore';
-import SignInStore from './store/signinStore';
 import './App.css';
 
 //app/js
@@ -54,12 +53,6 @@ class App extends Component {
 
       flight: {
         flightFilter: {}
-      },
-
-      counter: 1,
-
-      signIn: {
-        signInData: {}
       }
     }
   }
@@ -92,18 +85,6 @@ class App extends Component {
       airport: FlightStore.getAirportState(),
       flight: FlightStore.getFlightState()
     });
-  }
-
-  _onSignInChange() {
-    this.setState({signIn: TicketStore.getTicketsState()});
-  }
-
-  _onPageNext() {
-    this.setState({counter: this.state.counter + 1});
-  }
-
-  _onPageBack() {
-    this.setState({counter: this.state.counter - 1});
   }
 
   componentDidMount() {
