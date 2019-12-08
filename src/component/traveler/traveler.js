@@ -18,7 +18,6 @@ const labelStyle = {
 }
 
 export const Traveler = () => {
-
   return (
     <section class="custom-form-container">
       <React.Fragment>

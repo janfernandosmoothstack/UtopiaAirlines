@@ -12,11 +12,19 @@ const buttonStyle = {
 }
 
 //Functional Component; handle set, close are for showing and cllsing modal
-export const Buy = () => {
+export const Buy = (props) => {
+
+    travelerPage = () => {
+        window.location.href = "http://localhost:3000/#/traveler";
+    };
+
+    const handleSubmit = () => {
+        this.props.ticket.selectedTicketList.push(props.ticket);
+    }
 
     return (
         <React.Fragment>
-            <button type="button" style={buttonStyle}>Select</button>
+            <button type="button" style={buttonStyle} onClick={() => {handleSubmit(); travelerPage();}}>Select</button>
         </React.Fragment>
     );
 }

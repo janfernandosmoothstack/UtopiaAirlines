@@ -22,6 +22,8 @@ class App extends Component {
       ticket: {
         ticketList: [],
 
+        selectedTicketList: [],
+
         readState: {
             pending:false,
             success:false,

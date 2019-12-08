@@ -46,7 +46,7 @@ export class Flights extends React.Component {
   render() {
     let content = '';
 
-    function disableTextBox() {
+    disableTextBox = () => {
       var flightType = document.getElementById("oneWay");
       
       if(flightType.checked) {
@@ -56,7 +56,7 @@ export class Flights extends React.Component {
       }
     }
 
-    function ticketPage() {
+    ticketPage = () => {
       window.location.href = "http://localhost:3000/#/tickets";
     };
 
