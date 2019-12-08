@@ -32,7 +32,9 @@ const TicketActions = {
         .then(res => {
             Dispatcher.dispatch({
                 actionType: 'create_ticket_successful',
-                data: ticket
+                data: {
+                    ticketId: res.data.insertId
+                }    
             });
         })
         .catch((error) => {

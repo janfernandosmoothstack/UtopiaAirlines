@@ -3,9 +3,9 @@ import {EventEmitter} from 'events';
 
 const CHANGE_EVENT = 'change';
 
-let _reservationStore = {
-    reservation: {
-        reservationList: [],
+let _travelerStore = {
+    traveler: {
+        travelerList: [],
 
         readState: {
             pending:false,
@@ -19,18 +19,12 @@ let _reservationStore = {
             failure:false
         },
 
-        deleteState: {
-            pending:false,
-            success:false,
-            failure:false
-        },
-
         error: ''
     }
 };
 
 //to listen for events
-class ReservationStoreClass extends EventEmitter{
+class TravelerStoreClass extends EventEmitter{
     
     //listens for changes
     addChangeListener(callback) {
@@ -47,11 +41,11 @@ class ReservationStoreClass extends EventEmitter{
     }
 
     getTravelerState() {
-        return _reservationStore.reservation;
+        return _travelerStore.traveler;
     }
 
     resetReadState() {
-        _reservationStore.reservation.readState = {
+        _travelerStore.traveler.readState = {
             pending:false,
             success:false,
             failure:false
@@ -59,15 +53,7 @@ class ReservationStoreClass extends EventEmitter{
     }
 
     resetCreateState() {
-        _reservationStore.reservation.createState = {
-            pending:false,
-            success:false,
-            failure:false
-        }
-    }
-
-    resetDeleteState() {
-        _reservationStore.reservation.deleteState = {
+        _travelerStore.traveler.createState = {
             pending:false,
             success:false,
             failure:false

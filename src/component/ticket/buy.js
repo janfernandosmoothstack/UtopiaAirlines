@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const buttonStyle = {
@@ -19,7 +18,7 @@ export const Buy = (props) => {
     };
 
     const handleSubmit = () => {
-        this.props.ticket.selectedTicketList.push(props.ticket);
+        props.selectedTicketList.push(props.ticket);
     }
 
     return (
@@ -28,5 +27,3 @@ export const Buy = (props) => {
         </React.Fragment>
     );
 }
-
-

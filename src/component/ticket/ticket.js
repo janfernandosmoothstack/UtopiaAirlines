@@ -29,7 +29,7 @@ export class Ticket extends React.Component {
                 <td> {ticket.departureAirport} </td>
                 <td> {ticket.arrivalAirport} </td>
                 <td> {ticket.flightPrice} </td>
-                <td> <Buy ticket={ticket}></Buy> </td>
+                <td> <Buy ticket={ticket} selectedTicketList={this.props.ticket.selectedTicketList}></Buy> </td>
             </tr>
         );
     }
@@ -59,10 +59,6 @@ export class Ticket extends React.Component {
                 document.getElementById("returnDate").disabled = false;
             }
         }
-
-        // function ticketPage() {
-        //     window.location.href = "http://localhost:3000/#/tickets";
-        // };
 
         const handleSubmit = (event) => {
             event.preventDefault();
