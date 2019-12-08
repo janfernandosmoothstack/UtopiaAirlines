@@ -2,9 +2,7 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import './flights.css';
-import { Link } from 'react-router-dom';
 import FlightActions from '../../actions/flightActions';
-import TicketActions from '../../actions/ticketActions';
 
 const style = {
   fontSize: "20px",
@@ -48,7 +46,7 @@ export class Flights extends React.Component {
   render() {
     let content = '';
 
-    function disableTextBox() {
+    disableTextBox = () => {
       var flightType = document.getElementById("oneWay");
       
       if(flightType.checked) {
@@ -58,9 +56,13 @@ export class Flights extends React.Component {
       }
     }
 
+    ticketPage = () => {
+      window.location.href = "http://localhost:3000/#/tickets";
+    };
+
     const handleSubmit = (event) =>{
       event.preventDefault();
-  
+   
       this.props.flight.flightFilter = {
         flightType: event.target.flightType.value,
         departureDate: event.target.departureDate.value,
@@ -69,17 +71,9 @@ export class Flights extends React.Component {
         arrivalAirport: event.target.arrivalAirport.value,
         totalTravelers: event.target.totalTravelers.value
       }
-      //console.log(flightFilter);
-
-      //this.props.flight.flightFilter = filter;
-      console.log(this.props.flight.flightFilter);
-  
-      TicketActions.readTickets(this.props.flight.flightFilter);
     }
 
    // if (this.props.airport.readState.success) {
-
-      // {this.props.airport.airportList.map(this.createAirportOptions, this)}
 
       content = (
         <section class="custom-form-container">
@@ -148,7 +142,7 @@ export class Flights extends React.Component {
 
               <div class="form-group row" className="parentCenter">
                 <div className="childCenter">
-                  {/*<Link to="/tickets">*/}<button type="submit" style={button}>Search</button>{/*</Link>*/}
+                  <button onClick={ticketPage} type="submit" style={button}>Search</button>
                 </div>
               </div>
 

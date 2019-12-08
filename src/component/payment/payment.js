@@ -5,7 +5,7 @@ import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 
 const button = {
-  backgroundColor: "#3C5E83",
+  backgroundColor: "#48A1A3",
   border: "none",
   color: "white",
   padding: "6px 10px",
@@ -13,7 +13,9 @@ const button = {
   display: "inline-block",
   marginLeft: "550px",
   borderRadius: "5px",
-  fontSize: "20px"
+  fontSize: "20px",
+  marginTop: "20px",
+  fontWeight: "bold"
 };
 
 export const Payment = () => {
