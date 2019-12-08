@@ -7,6 +7,8 @@ let _ticketStore = {
     ticket: {
         ticketList: [],
 
+        selectedTicketList: [],
+
         readState: {
             pending:false,
             success:false,

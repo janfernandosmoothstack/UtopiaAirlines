@@ -1,0 +1,17 @@
+.custom-form-container {
+    /* The Magic */
+    background-size: cover;
+  
+    background-color: rgba(0,0,0, 0.4);
+    margin-top: 50px;
+    margin: auto;
+    vertical-align: middle;
+}
+
+.custom-form-container {
+    padding: 30px 60px;
+}
+
+.input {
+    margin-right: 30px;
+}
