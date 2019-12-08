@@ -1,7 +1,6 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
 import './payment/payment.css';
-import { Link } from 'react-router-dom';
 import {Payment} from './payment/payment.js';
 
   const move = {
@@ -67,10 +66,6 @@ return(
       </div>
       </div>
       <Payment></Payment>
-
-      {/*
-      <Link to="/payment"><button type="button" className= {"rounded btn border border-dark"} style = {move}>Continue to Payment</button></Link>
-      */}
 
     </Form>
     </React.Fragment>
