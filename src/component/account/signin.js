@@ -5,56 +5,37 @@ import {Modal, Form} from 'react-bootstrap';
 import './account.css';
 import {Link} from 'react-router-dom';
 
+
+var bcrypt = require('bcryptjs');
+
 export const SignIn = () => {
-
-      // const body = {
-      //   username: event.target.username.value,
-      //   password: event.target.password.value
-      // };
-
-      // axios.get("http://localhost:8080/users/verified", body,
-      // {
-      //   headers: {'Content-Type': 'application/json',
-      //             'Accept': 'application/json'}
-      // }).then(response => {
-      //   console.log(response);
-      //   alert("Login Success");
-    
-      // }).catch(error => {
-      //   console.log("Login Error: ", error);
-      //   alert("Login Error");
-      // });
-   
     const [show, setShow] = React.useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
+    const handleClose = () => {setShow(false);}
+    const handleShow = () => {setShow(true);}
     const handleSubmit = (event) => {
       event.preventDefault();
-      console.log("im here");
-      console.log(event.target.username.value);
-      console.log(event.target.password.value);
-      handleClose();
 
-        // axios({
-        //   method: 'get',
-        //   url: 'http://localhost:8080/users/verified',
-        //   headers: {'Content-Type': 'application/json',
-        //     'username': 'event.target.username.value', 'password': 'event.target.password.value' }
-          
-        //   })
-        //   .then(function (response) {
-        //       //handle success
-        //       console.log(response);
-        //          alert("Login Success");
-        //   })
-        //   .catch(function (response) {
-        //       //handle error
-        //     console.log(response);
-        //   alert("Login Error");
-        //   });
-  
-    }
+      var salt = bcrypt.genSaltSync(10);
+      var hash = bcrypt.hashSync(event.target.password.value, salt);
+
+        axios({
+          method: 'get',
+          url: 'http://localhost:8080/users/verified',
+          headers: {'Content-Type': 'application/json',
+            'username': event.target.username.value, 'password': hash}
+          })
+          .then(function (response) {
+              //handle success
+              console.log(response);
+                 alert("Login Success");
+                 window.location.href = "http://localhost:3000/#/flights";
+          })
+          .catch(function (response) {
+              //handle error
+            console.log(response);
+          alert("Incorrect login credentials!");
+          });
+    };
 
     return (
       <React.Fragment>
@@ -80,10 +61,12 @@ export const SignIn = () => {
 
                   <br></br>
 
-                  <button type="submit" className="btn-primary" className="btnStyle">Sign In</button> 
+                  <button className="btnStyle" type="submit" onClick={handleClose}>Sign In</button>
                 </Form>
             </Modal.Body>
           </Modal>
       </React.Fragment>
     );
 }
+
+
