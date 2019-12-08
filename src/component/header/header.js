@@ -5,8 +5,6 @@ import {Link} from 'react-router-dom';
 import './header.css';
 import {SignIn} from '../account/signin.js';
 import {SignUp} from '../account/signup.js';
-import { NavDropdown } from 'react-bootstrap';
-
 
 export const Header = () => {
     return (
@@ -27,14 +25,9 @@ export const Header = () => {
                 </Nav>
 
                 <Nav className="justify-content-end">
-                    <NavDropdown 
-                        title={
-                            <Link className="navLink">Account</Link>
-                        }
-                        id="nav-dropdown">
-                        <NavDropdown.Item><SignIn/></NavDropdown.Item>
-                        <NavDropdown.Item><SignUp/></NavDropdown.Item>
-                    </NavDropdown>
+                <Link className="navLink" to="/flights">Continue as Guest</Link>
+                    <SignIn/>
+                    <SignUp/>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

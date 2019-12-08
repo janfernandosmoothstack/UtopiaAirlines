@@ -12,6 +12,7 @@ import {Confirmation} from './component/confirmation.js';
 import {CancelReservation} from './component/cancelRes/cancelReservation.js';
 import TicketStore from './store/ticketStore';
 import FlightStore from './store/flightStore';
+import SignInStore from './store/signinStore';
 import './App.css';
 
 //app/js
@@ -53,6 +54,10 @@ class App extends Component {
 
       flight: {
         flightFilter: {}
+      },
+
+      signIn: {
+        signInData: {}
       }
     }
   }
@@ -69,8 +74,6 @@ class App extends Component {
               <Route path='/flights' render={(props) => (<Flights {...props} airport={this.state.airport} flight={this.state.flight}></Flights>)}/>
               <Route path='/confirmation' component={Confirmation}/>
               <Route path='/cancel' component={CancelReservation}/>
-              <Route component={SignIn}/>
-              <Route component={SignUp}/>
           </Switch>
       </div>
     );
@@ -87,14 +90,20 @@ class App extends Component {
     });
   }
 
+  _onSignInChange() {
+    this.setState({signIn: SignInStore.getSignInState()});
+  }
+
   componentDidMount() {
     TicketStore.addChangeListener(this._onTicketChange.bind(this));
     FlightStore.addChangeListener(this._onFlightChange.bind(this));
+    SignInStore.addChangeListener(this._onSignInChange.bind(this));
   }
 
   componentWillUnmount() {
     TicketStore.removeChangeListener(this._onTicketChange.bind(this));
     FlightStore.removeChangeListener(this._onFlightChange.bind(this));
+    SignInStore.removeChangeListener(this._onSignInChange.bind(this));
   }
 }
 

@@ -26,18 +26,6 @@ export class Ticket extends React.Component {
     }
 
     componentDidMount() {
-<<<<<<< HEAD
-        // var flightFilter = {
-        //     departureDate: '2019-12-12',
-        //     departureAirport: 'LAX',
-        //     arrivalAirport: 'IAH'
-        // }
-
-        //console.log(flightFilter)
-        console.log(this.props.flight.flightFilter);
-
-=======
->>>>>>> 28b1daec38e1b5987001a326ad9813d653373298
         TicketActions.readTickets(this.props.flight.flightFilter);
     }
 

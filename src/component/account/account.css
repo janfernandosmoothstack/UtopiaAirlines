@@ -1,5 +1,6 @@
 .accountLink {
-    color: black !important;
+    color: white !important;
+    padding-right: 20px;
 }
 
 .accountLink:hover {
@@ -14,4 +15,4 @@
     background-color: #3C5E83;
     border: none;
     padding: 5px 5px 5px 5px;
-  }
+}

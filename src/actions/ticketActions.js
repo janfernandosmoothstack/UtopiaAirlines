@@ -7,19 +7,11 @@ const TicketActions = {
             actionType: 'read_ticket_started'
         });
 
-<<<<<<< HEAD
-        axios.get(`http://localhost:8000/flights/from/${flightFilter.departureAirport}/to/${flightFilter.arrivalAirport}/on/${flightFilter.departureDate}`)
-        .then(res => {
-            Dispatcher.dispatch({
-                actionType: 'read_ticket_successful',
-                data: res.data
-=======
         axios.get(`http://localhost:8000/flights/from/${flightFilter.departureAirport}/to/${flightFilter.arrivalAirport}/on/${flightFilter.departureDate}`,flightFilter)
         .then(() => {
             Dispatcher.dispatch({
                 actionType: 'read_ticket_successful',
                 data: flightFilter
->>>>>>> 28b1daec38e1b5987001a326ad9813d653373298
             });
         })
         .catch((error) => {
