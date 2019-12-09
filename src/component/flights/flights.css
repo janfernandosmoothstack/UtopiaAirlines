@@ -17,21 +17,13 @@
   background: none;
 }
 
-.formCenter {
-  text-align: center;
-}
+/* .formCenter {
+   text-align: center; 
+} */
 
 .radio {
   text-align: center;
   margin-bottom: 20px;
 }
 
-.parentCenter {
-  text-align: center;
-}
 
-.childCenter {
-  margin: 0 auto;
-  display: block;
-  width: 100px;
-}
