@@ -23,7 +23,7 @@ export const Traveler = () => {
       <React.Fragment>
         <h1 style={header}>Traveler Information</h1>
 
-        <Form>
+        
           <Row>
             <Col md={{ span: 3, offset: 3 }}>
               <Form.Group className="input">
@@ -68,12 +68,12 @@ export const Traveler = () => {
           <Row>
             <Col md={{offset: 2}}>
               <Form.Group>
-                <Payment></Payment>
+                <Payment type="button"></Payment>
               </Form.Group>
             </Col>
           </Row>
 
-        </Form>
+        
       </React.Fragment>
     </section>
   );
