@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const buttonStyle = {
@@ -14,12 +13,12 @@ const buttonStyle = {
 //Functional Component; handle set, close are for showing and cllsing modal
 export const Buy = (props) => {
 
-    travelerPage = () => {
+    function travelerPage() {
         window.location.href = "http://localhost:3000/#/traveler";
     };
 
     const handleSubmit = () => {
-        this.props.ticket.selectedTicketList.push(props.ticket);
+        props.selectedTicketList.push(props.ticket);
     }
 
     return (
@@ -28,5 +27,3 @@ export const Buy = (props) => {
         </React.Fragment>
     );
 }
-
-

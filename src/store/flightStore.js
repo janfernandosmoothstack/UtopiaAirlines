@@ -17,8 +17,10 @@ let _flightStore = {
     },
 
     flight: {
-        flightFilter: {}
-      }
+        flightFilter: {},
+
+        error: ''
+    }
 };
 
 //to listen for events
