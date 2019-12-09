@@ -4,7 +4,6 @@ import './visa.css';
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 
-
 const button = {
   backgroundColor: "#48A1A3",
   border: "none",
@@ -27,10 +26,10 @@ export const Payment = () => {
       amount: 15000,
       token: token
     };
-    axios.post("https://zdt56bh758.execute-api.us-east-2.amazonaws.com/dev/pay", body).then(response => {
-      console.log(response);
-      window.location.href = "http://localhost:3000/#/confirmation";
-      //alert("Payment Success");
+    axios.post("https://6fhjpe7mg2.execute-api.us-east-2.amazonaws.com/dev/pay", body)
+      .then(response => {
+        window.location.href = "http://localhost:3000/#/confirmation";
+             alert("Payment Success");
 
     }).catch(error => {
       
