@@ -2,7 +2,8 @@ import React from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
 import '../payment/payment.css';
 import { Payment } from '../payment/payment.js';
-import './traveler.css'
+import './traveler.css';
+import TravelerActions from '../../actions/travelerActions';
 
 const header = {
   textAlign: "center",
@@ -36,7 +37,7 @@ export class Traveler extends React.Component {
         address: event.target.address.value
       }
 
-      this.props.traveler.travelerList.push(traveler);
+      TravelerActions.createTraveler(traveler);
     }
 
     return (

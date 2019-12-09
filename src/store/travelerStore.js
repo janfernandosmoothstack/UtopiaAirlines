@@ -86,7 +86,7 @@ Dispatcher.register((action) => {
 
         case 'create_traveler_successful':
             TravelerStore.resetCreateState();
-            _travelerStore.traveler.travelerList = action.data;
+            _travelerStore.traveler.travelerList.push(action.data);
             _travelerStore.traveler.createState.success = true;
             TravelerStore.emitChange();
             break;

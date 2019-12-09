@@ -81,14 +81,10 @@ export class Flights extends React.Component {
 
     // if (this.props.airport.readState.success) {
     return (
-
-
       <section class="custom-form-container">
         <React.Fragment>
           <h2 style={header}>Book a Flight</h2>
-          <br></br>
-
-          <div className="formCenter">
+          
             <Form onSubmit={handleSubmit}>
 
               <div class="form-group row" className="radio">
@@ -120,7 +116,6 @@ export class Flights extends React.Component {
                 </Col>
               </Row>
 
-
               <Row>
                 <Col md={{ span: 3, offset: 3 }}>
                   <Form.Group className="input">
@@ -130,11 +125,11 @@ export class Flights extends React.Component {
                       <option defaultValue>Departing from...</option>
                       {this.props.airport.airportList.map(this.createAirportOptions, this)}
                     </select>
-                    </Form.Group>
-              </Col>
+                  </Form.Group>
+                </Col>
 
-                    <Col md={{ span: 3 }}>
-                    <Form.Group>
+                <Col md={{ span: 3 }}>
+                  <Form.Group>
                     <Form.Label htmlFor="toLocation" style={labelStyle}>Flying To</Form.Label>
                     <select id="toLocation" class="form-control" name="arrivalAirport">
                       <option defaultValue>Arriving at...</option>
@@ -145,24 +140,23 @@ export class Flights extends React.Component {
               </Row>
 
               <Row>
-              <Col md={{ span: 3, offset: 3 }}>
-                <Form.Group>
-                <Form.Label htmlFor="totalTravelers" style={labelStyle}>Travelers</Form.Label>
-                <Form.Control type="number" id="totalTravelers" name="totalTravelers" />
-                </Form.Group>
-              </Col>
-            </Row>
+                <Col md={{ span: 2, offset: 3 }}>
+                  <Form.Group>
+                    <Form.Label htmlFor="totalTravelers" style={labelStyle}>Travelers</Form.Label>
+                    <Form.Control type="number" id="totalTravelers" name="totalTravelers" />
+                  </Form.Group>
+                </Col>
+              </Row>
 
-            <Row>
-              <Col md={{ offset: 2 }}>
-                <Form.Group>
-                  <button onClick={ticketPage} type="submit" style={button}>Search</button>
-              </Form.Group>
-              </Col>
-            </Row>
+              <Row>
+                <Col md={{ offset: 3 }}>
+                  <Form.Group>
+                    <button onClick={ticketPage} type="submit" style={button}>Search</button>
+                  </Form.Group>
+                </Col>
+              </Row>
 
             </Form>
-          </div>
         </React.Fragment>
       </section>
     );

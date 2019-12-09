@@ -143,18 +143,20 @@ class App extends Component {
     });
   }
 
-  // _onTravelerChange() {
-  //   this.setState({traveler: TravelerStore.getTravelerState()});
-  // }
+  _onTravelerChange() {
+    this.setState({traveler: TravelerStore.getTravelerState()});
+  }
 
   componentDidMount() {
     TicketStore.addChangeListener(this._onTicketChange.bind(this));
     FlightStore.addChangeListener(this._onFlightChange.bind(this));
+    TravelerStore.addChangeListener(this._onTravelerChange.bind(this));
   }
 
   componentWillUnmount() {
     TicketStore.removeChangeListener(this._onTicketChange.bind(this));
     FlightStore.removeChangeListener(this._onFlightChange.bind(this));
+    TravelerStore.removeChangeListener(this._onTravelerChange.bind(this));
   }
 }
 
