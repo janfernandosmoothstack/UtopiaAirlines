@@ -39,13 +39,6 @@ export const Payment = () => {
     });
   };
 
-  // function checkout() {
-  //   stripe.redirectToCheckout({
-  //     successUrl: "http://localhost:3000/#/confirmation",
-  //     cancelUrl: "http://localhost:3000/#/"
-  //   })
-  // }
-
   return (
     <StripeCheckout
       label="Purchase ticket" //Component button text
@@ -58,10 +51,7 @@ export const Payment = () => {
       image="https://img.icons8.com/bubbles/50/000000/airplane-take-off.png" //Pop-in header image
       billingAddress={false}
     >
-      {/* <Link to="/confirmation"><button style={button}></Link> */}
-      <button id="payment" style={button}>
-        Payment
-      </button>
+      <button id="payment" style={button}>Payment</button>
     </StripeCheckout>
   );
 };
