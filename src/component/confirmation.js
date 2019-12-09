@@ -16,6 +16,7 @@ const button = {
 };
 
 export const Confirmation = () => {
+    console.log(this.PaymentResponse.traveler.travelerList);
 
     return (
         <React.Fragment>

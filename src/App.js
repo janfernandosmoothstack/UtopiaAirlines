@@ -121,7 +121,7 @@ class App extends Component {
           <Route path='/tickets' render={(props) => (<Ticket {...props} airport={this.state.airport} ticket={this.state.ticket} flight={this.state.flight}></Ticket>)} />
           <Route path='/traveler' render={(props) => (<Traveler {...props} ticket={this.state.ticket} traveler={this.state.traveler}></Traveler>)} />
           <Route path='/flights' render={(props) => (<Flights {...props} airport={this.state.airport} flight={this.state.flight}></Flights>)} />
-          <Route path='/confirmation' component={Confirmation} />
+          <Route path='/confirmation' render={(props) => (<Confirmation {...props} traveler={this.state.traveler}></Confirmation>)} />
           <Route path='/cancel' component={CancelReservation} />
         </Switch>
       </div>
