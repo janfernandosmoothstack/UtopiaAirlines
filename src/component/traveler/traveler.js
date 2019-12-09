@@ -25,12 +25,26 @@ export class Traveler extends React.Component {
   }
 
   render() {
+    const handleSubmit = (event) => {
+      event.preventDefault();
+
+      var traveler = {
+        firstName: event.target.firstName.value,
+        lastName: event.target.lastName.value,
+        phoneNumber: event.target.phoneNumber.value,
+        email: event.target.email.value,
+        address: event.target.address.value
+      }
+
+      this.props.traveler.travelerList.push(traveler);
+    }
+
     return (
       <section class="custom-form-container">
         <React.Fragment>
           <h1 style={header}>Traveler Information</h1>
 
-          <Form>
+          <div onSubmit={handleSubmit}>
             <Row>
               <Col md={{ span: 3, offset: 3 }}>
                 <Form.Group className="input">
@@ -80,7 +94,7 @@ export class Traveler extends React.Component {
               </Col>
             </Row>
 
-          </Form>
+          </div>
         </React.Fragment>
       </section>
     );

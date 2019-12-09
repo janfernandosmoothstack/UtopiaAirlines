@@ -99,7 +99,7 @@ Dispatcher.register((action) => {
 
         case 'create_traveler_pending':
             TravelerStore.resetCreateState();
-            _travelerStore.traveler.travelerState.pending = true
+            _travelerStore.traveler.createState.pending = true
             TravelerStore.emitChange();
             break;
         

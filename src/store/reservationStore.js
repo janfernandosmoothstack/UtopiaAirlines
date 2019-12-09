@@ -46,7 +46,7 @@ class ReservationStoreClass extends EventEmitter{
         this.emit(CHANGE_EVENT);
     }
 
-    getTravelerState() {
+    getReservationState() {
         return _reservationStore.reservation;
     }
 
@@ -75,46 +75,64 @@ class ReservationStoreClass extends EventEmitter{
     }
 }
 
-const TravelerStore = new TravelerStoreClass();
+const ReservationStore = new ReservationStoreClass();
 
 Dispatcher.register((action) => {
     switch (action.actionType) {
-        case 'read_traveler_successful':
-            TravelerStore.resetReadState();
-            _travelerStore.traveler.travelerList = action.data;
-            _travelerStore.traveler.readState.success = true;
-            TravelerStore.emitChange();
+        case 'read_reservation_successful':
+            ReservationStore.resetReadState();
+            _reservationStore.reservation.reservationList = action.data;
+            _reservationStore.reservation.readState.success = true;
+            ReservationStore.emitChange();
             break;
         
-        case 'read_traveler_failure':
-            TravelerStore.resetReadState();
-            _travelerStore.traveler.readState.failure = true
-            TravelerStore.emitChange();
+        case 'read_reservation_failure':
+            ReservationStore.resetReadState();
+            _reservationStore.reservation.readState.failure = true
+            ReservationStore.emitChange();
             break;
 
-        case 'read_traveler_pending':
-            TravelerStore.resetReadState();
-            _travelerStore.traveler.readState.pending = true
-            TravelerStore.emitChange();
+        case 'read_reservation_pending':
+            ReservationStore.resetReadState();
+            _reservationStore.reservation.readState.pending = true
+            ReservationStore.emitChange();
             break;
 
-        case 'create_traveler_successful':
-            TravelerStore.resetCreateState();
-            _travelerStore.traveler.travelerList = action.data;
-            _travelerStore.traveler.createState.success = true;
-            TravelerStore.emitChange();
+        case 'create_reservation_successful':
+            ReservationStore.resetCreateState();
+            _reservationStore.reservation.reservationList.push(action.data);
+            _reservationStore.reservation.createState.success = true;
+            ReservationStore.emitChange();
             break;
         
-        case 'create_traveler_failure':
-            TravelerStore.resetCreateState();
-            _travelerStore.traveler.createState.failure = true
-            TravelerStore.emitChange();
+        case 'create_reservation_failure':
+            ReservationStore.resetCreateState();
+            _reservationStore.reservation.createState.failure = true
+            ReservationStore.emitChange();
             break;
 
-        case 'create_traveler_pending':
-            TravelerStore.resetCreateState();
-            _travelerStore.traveler.travelerState.pending = true
-            TravelerStore.emitChange();
+        case 'create_reservation_pending':
+            ReservationStore.resetCreateState();
+            _reservationStore.reservation.createState.pending = true
+            ReservationStore.emitChange();
+            break;
+
+        case 'delete_reservation_successful':
+            ReservationStore.resetDeleteState();
+            _reservationStore.reservation.deleteState.success = true;
+            ReservationStore.emitChange();
+            break;
+        
+        case 'delete_reservation_failure':
+            ReservationStore.resetDeleteState();
+            _reservationStore.reservation.deleteState.failure = true;
+            ReservationStore.emitChange();
+            break;
+
+        case 'delete_reservation_pending':
+            ReservationStore.resetDeleteState();
+            _reservationStore.reservation.deleteState.pending = true;
+            ReservationStore.emitChange();
             break;
         
         default:
@@ -122,4 +140,4 @@ Dispatcher.register((action) => {
     }
 });
 
-export default TravelerStore;
+export default ReservationStore;
