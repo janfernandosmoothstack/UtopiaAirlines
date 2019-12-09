@@ -15,8 +15,8 @@ const button = {
     fontSize: "20px"
 };
 
-export const Confirmation = () => {
-    console.log(this.PaymentResponse.traveler.travelerList);
+export const Confirmation = (props) => {
+    console.log(props.traveler.travelerList);
 
     return (
         <React.Fragment>

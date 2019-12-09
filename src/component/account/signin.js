@@ -20,7 +20,7 @@ export const SignIn = () => {
 
         axios({
           method: 'get',
-          url: 'http://localhost:8080/users/verified',
+          url: 'http://localhost:8090/users/verified',
           headers: {'Content-Type': 'application/json',
             'username': event.target.username.value, 'password': hash}
           })

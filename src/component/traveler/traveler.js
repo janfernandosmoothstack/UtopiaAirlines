@@ -21,7 +21,7 @@ export class Traveler extends React.Component {
 
   componentDidMount() {
     console.log("I am in Traveler");
-    console.log(this.props.ticket.selectedTicketList);
+    console.log(this.props.traveler.travelerList);
   }
 
   render() {
@@ -44,7 +44,7 @@ export class Traveler extends React.Component {
         <React.Fragment>
           <h1 style={header}>Traveler Information</h1>
 
-          <div onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit}>
             <Row>
               <Col md={{ span: 3, offset: 3 }}>
                 <Form.Group className="input">
@@ -94,9 +94,9 @@ export class Traveler extends React.Component {
               </Col>
             </Row>
 
-          </div>
+          </Form>
         </React.Fragment>
-      </section>
+      </section >
     );
   }
 }

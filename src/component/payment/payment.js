@@ -3,6 +3,7 @@ import './payment.css';
 import './visa.css';
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
+import { tsPropertySignature } from '@babel/types';
 
 const button = {
   backgroundColor: "#48A1A3",
@@ -50,7 +51,7 @@ export const Payment = () => {
       image="https://img.icons8.com/bubbles/50/000000/airplane-take-off.png" //Pop-in header image
       billingAddress={false}
     >
-      <button id="payment" style={button}>Payment</button>
+      <button type="submit" id="payment" style={button}>Payment</button>
     </StripeCheckout>
   );
 };
