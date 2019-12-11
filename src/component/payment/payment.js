@@ -2,11 +2,7 @@ import React from 'react';
 import './payment.css';
 import './visa.css';
 import StripeCheckout from "react-stripe-checkout";
-import axios from "axios";
-import { tsPropertySignature } from '@babel/types';
-
-import PaymentAction from './paymentAction.js';
-//import {validatePayment} from './paymentAction.js';
+import PaymentAction from '../../actions/paymentAction.js';
 
 const button = {
   backgroundColor: "#48A1A3",
@@ -25,25 +21,14 @@ const button = {
 export const Payment = () => {
   const publishableKey = "pk_test_FGhq4bMJFOhS8WgOYkCEWM0p00BpHKx8Up";
 
-  const onToken = token => {
+  const onToken = (token) => {
     const body = {
       amount: 15000,
       token: token
     };
 
     PaymentAction.validatePayment(body);
-    
-    // axios.post("https://6fhjpe7mg2.execute-api.us-east-2.amazonaws.com/dev/pay", body)
-    //   .then(response => {
-    //     //window.location.href = "http://localhost:3000/#/confirmation";
-    //     <Redirect to="/confirmation" />
-    //          alert("Payment Success");
 
-    // }).catch(error => {
-      
-    //   console.log("Payment Error: ", error);
-    //   alert("Payment Error")
-    // });
   };
 
   return (
