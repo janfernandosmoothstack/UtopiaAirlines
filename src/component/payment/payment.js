@@ -22,8 +22,10 @@ const button = {
   fontWeight: "bold"
 };
 
-export const Payment = () => {
+export const Payment = (props) => {
   const publishableKey = "pk_test_FGhq4bMJFOhS8WgOYkCEWM0p00BpHKx8Up";
+  console.log("I am in payment");
+  console.log(props);
 
   const onToken = token => {
     const body = {
@@ -31,7 +33,7 @@ export const Payment = () => {
       token: token
     };
 
-    PaymentAction.validatePayment(body);
+    PaymentAction.validatePayment(body, props);
     
     // axios.post("https://6fhjpe7mg2.execute-api.us-east-2.amazonaws.com/dev/pay", body)
     //   .then(response => {

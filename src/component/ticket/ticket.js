@@ -29,7 +29,7 @@ export class Ticket extends React.Component {
                 <td> {ticket.departureAirport} </td>
                 <td> {ticket.arrivalAirport} </td>
                 <td> {ticket.flightPrice} </td>
-                <td> <Buy ticket={ticket} selectedTicketList={this.props.ticket.selectedTicketList}></Buy> </td>
+                <td> <Buy ticket={ticket} selectedTicketList={this.props.ticket.selectedTicketList} history={this.props.history}></Buy> </td>
             </tr>
         );
     }

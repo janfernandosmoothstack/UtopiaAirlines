@@ -15,6 +15,7 @@ import FlightStore from './store/flightStore';
 import SignInStore from './store/signinStore';
 import TravelerStore from './store/travelerStore';
 import ReservationStore from './store/reservationStore'
+import PaymentActions from './component/payment/paymentAction';
 import './App.css';
 
 //app/js

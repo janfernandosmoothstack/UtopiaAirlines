@@ -9,18 +9,20 @@ import { Redirect } from 'react-router-dom';
 //const PaymentAction = (body) => {
 class PaymentAction extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            redirect: false // <-- initialize the signup state as false
-        }
-    };
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         redirect: false // <-- initialize the signup state as false
+    //     }
+    // };
 
-    static validatePayment(body) {
+    static validatePayment(body, props) {
         
         return (
             axios.post("https://6fhjpe7mg2.execute-api.us-east-2.amazonaws.com/dev/pay", body)
                 .then(() => {
+                    props.history.push('/confirmation');
+                    
                     //window.location.href = "http://localhost:3000/#/confirmation";
                     // <Switch>
                     //     <Route path='/confirmation' component={Confirmation} />
