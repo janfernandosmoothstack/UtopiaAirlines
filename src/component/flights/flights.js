@@ -99,27 +99,10 @@ export class Flights extends React.Component {
                 </div>
               </div>
 
-
               <Row>
                 <Col md={{ span: 3, offset: 3 }}>
                   <Form.Group className="input">
-                    <Form.Label htmlFor="departureDate" style={labelStyle}>Departing</Form.Label>
-                    <Form.Control type="date" name="departureDate" />
-                  </Form.Group>
-                </Col>
-
-                <Col md={{ span: 3 }}>
-                  <Form.Group>
-                    <Form.Label htmlFor="returning" style={labelStyle}>Returning</Form.Label>
-                    <Form.Control type="date" name="returnDate" id="returnDate"></Form.Control>
-                  </Form.Group>
-                </Col>
-              </Row>
-
-              <Row>
-                <Col md={{ span: 3, offset: 3 }}>
-                  <Form.Group className="input">
-                    <Form.Label htmlFor="fromLocation" style={labelStyle}>Flying From</Form.Label>
+                    <Form.Label htmlFor="fromLocation" style={labelStyle}>From</Form.Label>
 
                     <select id="fromLocation" class="form-control" name="departureAirport">
                       <option defaultValue>Departing from...</option>
@@ -130,11 +113,27 @@ export class Flights extends React.Component {
 
                 <Col md={{ span: 3 }}>
                   <Form.Group>
-                    <Form.Label htmlFor="toLocation" style={labelStyle}>Flying To</Form.Label>
+                    <Form.Label htmlFor="toLocation" style={labelStyle}>To</Form.Label>
                     <select id="toLocation" class="form-control" name="arrivalAirport">
                       <option defaultValue>Arriving at...</option>
                       {this.props.airport.airportList.map(this.createAirportOptions, this)}
                     </select>
+                  </Form.Group>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col md={{ span: 3, offset: 3 }}>
+                  <Form.Group className="input">
+                    <Form.Label htmlFor="departureDate" style={labelStyle}>Departure Date</Form.Label>
+                    <Form.Control type="date" name="departureDate" />
+                  </Form.Group>
+                </Col>
+
+                <Col md={{ span: 3 }}>
+                  <Form.Group>
+                    <Form.Label htmlFor="returning" style={labelStyle}>Return Date</Form.Label>
+                    <Form.Control type="date" name="returnDate" id="returnDate"></Form.Control>
                   </Form.Group>
                 </Col>
               </Row>

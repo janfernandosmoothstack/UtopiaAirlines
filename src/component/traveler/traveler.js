@@ -3,7 +3,7 @@ import { Form, Row, Col } from 'react-bootstrap';
 import '../payment/payment.css';
 import { Payment } from '../payment/payment.js';
 import './traveler.css';
-import TravelerActions from '../../actions/travelerActions';
+import ReservationActions from '../../actions/reservationActions';
 
 const header = {
   textAlign: "center",
@@ -21,8 +21,8 @@ const labelStyle = {
 export class Traveler extends React.Component {
 
   componentDidMount() {
-    console.log("I am in Traveler");
-    console.log(this.props.traveler.travelerList);
+    // console.log("I am in Traveler");
+    // console.log(this.props.ticket.selectedTicketList);
   }
 
   render() {
@@ -37,7 +37,10 @@ export class Traveler extends React.Component {
         address: event.target.address.value
       }
 
-      TravelerActions.createTraveler(traveler);
+      var ticket = this.props.ticket.selectedTicketList[0];
+      ticket.totalTravelers = this.props.flight.flightFilter.totalTravelers;
+
+      ReservationActions.createReservation(traveler, ticket);
     }
 
     return (

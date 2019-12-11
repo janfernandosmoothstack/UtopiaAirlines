@@ -88,7 +88,7 @@ Dispatcher.register((action) => {
 
         case 'create_ticket_successful':
             TicketStore.resetCreateState();
-            //_ticketStore.ticket.ticketList = action.data;
+            _ticketStore.ticket.selectedTicketList.push(action.data);
             _ticketStore.ticket.createState.success = true;
             TicketStore.emitChange();
             break;

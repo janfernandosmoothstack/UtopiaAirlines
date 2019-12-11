@@ -14,6 +14,7 @@ import TicketStore from './store/ticketStore';
 import FlightStore from './store/flightStore';
 import SignInStore from './store/signinStore';
 import TravelerStore from './store/travelerStore';
+import ReservationStore from './store/reservationStore'
 import './App.css';
 
 //app/js
@@ -119,9 +120,9 @@ class App extends Component {
           <Route exact path='/' component={Home} />
           <Route path='/payment' component={Payment} />
           <Route path='/tickets' render={(props) => (<Ticket {...props} airport={this.state.airport} ticket={this.state.ticket} flight={this.state.flight}></Ticket>)} />
-          <Route path='/traveler' render={(props) => (<Traveler {...props} ticket={this.state.ticket} traveler={this.state.traveler}></Traveler>)} />
+          <Route path='/traveler' render={(props) => (<Traveler {...props} ticket={this.state.ticket} traveler={this.state.traveler} flight={this.state.flight}></Traveler>)} />
           <Route path='/flights' render={(props) => (<Flights {...props} airport={this.state.airport} flight={this.state.flight}></Flights>)} />
-          <Route path='/confirmation' render={(props) => (<Confirmation {...props} traveler={this.state.traveler}></Confirmation>)} />
+          <Route path='/confirmation' render={(props) => (<Confirmation {...props} traveler={this.state.traveler} reservation={this.state.reservation} ticket={this.state.ticket}></Confirmation>)} />
           <Route path='/cancel' component={CancelReservation} />
         </Switch>
       </div>
@@ -147,16 +148,22 @@ class App extends Component {
     this.setState({traveler: TravelerStore.getTravelerState()});
   }
 
+  _onReservationChange() {
+    this.setState({reservation: ReservationStore.getReservationState()});
+  }
+
   componentDidMount() {
     TicketStore.addChangeListener(this._onTicketChange.bind(this));
     FlightStore.addChangeListener(this._onFlightChange.bind(this));
     TravelerStore.addChangeListener(this._onTravelerChange.bind(this));
+    ReservationStore.addChangeListener(this._onReservationChange.bind(this));
   }
 
   componentWillUnmount() {
     TicketStore.removeChangeListener(this._onTicketChange.bind(this));
     FlightStore.removeChangeListener(this._onFlightChange.bind(this));
     TravelerStore.removeChangeListener(this._onTravelerChange.bind(this));
+    ReservationStore.removeChangeListener(this._onReservationChange.bind(this));
   }
 }
 

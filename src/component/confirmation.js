@@ -16,7 +16,13 @@ const button = {
 };
 
 export const Confirmation = (props) => {
+    console.log("I am in confirmation");
+    console.log("This the traveler record");
     console.log(props.traveler.travelerList);
+    console.log("This is the reservation record");
+    console.log(props.reservation.reservationList);
+    console.log("this is the ticket record" );
+    console.log(props.ticket.ticketList);
 
     return (
         <React.Fragment>
