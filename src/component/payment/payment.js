@@ -5,6 +5,9 @@ import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 import { tsPropertySignature } from '@babel/types';
 
+import PaymentAction from './paymentAction.js';
+//import {validatePayment} from './paymentAction.js';
+
 const button = {
   backgroundColor: "#48A1A3",
   border: "none",
@@ -27,16 +30,20 @@ export const Payment = () => {
       amount: 15000,
       token: token
     };
-    axios.post("https://6fhjpe7mg2.execute-api.us-east-2.amazonaws.com/dev/pay", body)
-      .then(response => {
-        window.location.href = "http://localhost:3000/#/confirmation";
-             alert("Payment Success");
 
-    }).catch(error => {
+    PaymentAction.validatePayment(body);
+    
+    // axios.post("https://6fhjpe7mg2.execute-api.us-east-2.amazonaws.com/dev/pay", body)
+    //   .then(response => {
+    //     //window.location.href = "http://localhost:3000/#/confirmation";
+    //     <Redirect to="/confirmation" />
+    //          alert("Payment Success");
+
+    // }).catch(error => {
       
-      console.log("Payment Error: ", error);
-      alert("Payment Error")
-    });
+    //   console.log("Payment Error: ", error);
+    //   alert("Payment Error")
+    // });
   };
 
   return (
