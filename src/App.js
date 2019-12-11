@@ -145,7 +145,7 @@ class App extends Component {
   }
 
   _onTravelerChange() {
-    this.setState({traveler: TravelerStore.getTravelerState()});
+    this.setState({ traveler: TravelerStore.getTravelerState() });
   }
 
   _onReservationChange() {
