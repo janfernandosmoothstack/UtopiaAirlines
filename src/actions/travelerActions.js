@@ -2,26 +2,6 @@ import Dispatcher from '../dispatcher/appDispatcher'; //flux module
 import axios from 'axios'; //make asynch calls
 
 const TravelerActions = {
-    // readTraveler: function(userId) {
-    //     Dispatcher.dispatch({
-    //         actionType: 'read_ticket_started'
-    //     });
-
-    //     axios.get(`http://localhost:8000/flights/from/${flightFilter.departureAirport}/to/${flightFilter.arrivalAirport}/on/${flightFilter.departureDate}`)
-    //     .then(res => {
-    //         Dispatcher.dispatch({
-    //             actionType: 'read_ticket_successful',
-    //             data: res.data
-    //         });
-    //     })
-    //     .catch((error) => {
-    //         console.log(error);
-            
-    //         Dispatcher.dispatch({
-    //             actionType: 'read_ticket_failure'
-    //         });
-    //     });
-    // },
 
     /* Traveler Object
     firstName
@@ -35,7 +15,7 @@ const TravelerActions = {
             actionType: 'create_traveler_started'
         });
 
-        axios.post(`http://localhost:8000/users`, traveler)
+        axios.post(`https://qpyf4i2dz1.execute-api.us-east-2.amazonaws.com/dev/users`, traveler)
         .then(res => {
             Dispatcher.dispatch({
                 actionType: 'create_traveler_successful',
