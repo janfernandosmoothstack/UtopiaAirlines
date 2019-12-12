@@ -127,7 +127,7 @@ class App extends Component {
   _onTicketChange() {
     this.setState({
       ticket: TicketStore.getTicketsState(),
-      airport: FlightStore.getAirportState(),
+      //airport: FlightStore.getAirportState(),
       flight: FlightStore.getFlightState()
     });
   }

@@ -98,8 +98,7 @@ const ReservationActions = {
                                 ticket.reservationId = reservationId;
 
                                 Dispatcher.dispatch({
-                                    actionType: 'create_ticket_successful',
-                                    data: ticket
+                                    actionType: 'create_ticket_successful'
                                 });
                             })
                             .catch((error) => {

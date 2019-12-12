@@ -57,13 +57,35 @@ export const Confirmation = (props) => {
     console.log("This is the reservation record");
     console.log(props.reservation.reservationList);
     console.log("this is the ticket record");
-    console.log(props.ticket.ticketList);
-    //_bookStore.book.bookList = _bookStore.book.bookList.filter(obj => obj.bookId != action.data); 
-
+    console.log(props.ticket.selectedTicketList[0]);
+    console.log("this is the airports");
+    console.log(props.airport.airportList);
+    
     //add method with history push to return to home page
 
-    var arrivalAirport = props.airport.airportList.filter(obj => obj.airportCode == props.ticket.selectedTicket[0].arrivalAirport);
-    var arrivalAirport = props.airport.airportList.filter(obj => obj.airportCode == props.ticket.selectedTicket[0].departureAirport);
+    // Airport Object
+    // airportCode
+    // airportName
+    // city
+    // zipCode
+
+    const arrivalAirport = props.airport.airportList.find(obj => obj.airportCode == props.ticket.selectedTicketList[0].arrivalAirport);
+    const departureAirport = props.airport.airportList.find(obj => obj.airportCode == props.ticket.selectedTicketList[0].departureAirport);
+
+    const arrivalString = arrivalAirport.city + ", " + arrivalAirport.airportCode + " (" + arrivalAirport.airportName + ")";
+    const departureString = departureAirport.city + ", " + departureAirport.airportCode + " (" + departureAirport.airportName + ")";
+
+    console.log(arrivalString);
+    console.log(departureString);
+
+    const price = props.reservation.reservationList[0].totalTravelers * props.ticket.selectedTicketList[0].flightPrice;
+
+    //Houston, IAH (George Bush Intercontinental Airport)
+    //Los Angeles, LAX (Los Angeles International Airport)
+
+    const handleSubmit = () => {
+        this.props.history.push('/');
+    }
 
     return (
         <section className="custom-form-container">
@@ -73,38 +95,38 @@ export const Confirmation = (props) => {
                 <Form>
                     <Form.Group>
                         <Col md={{ span: 2, offset: 5 }}>
-                            <Form.Label style={labelStyle}>Confirmation Number: 1</Form.Label>
+                            <Form.Label style={labelStyle}>Confirmation Number: {props.reservation.reservationList[0].reservationId}</Form.Label>
                         </Col>
                     </Form.Group>
 
                     <Form.Group>
                         <Col md={{ span: 2, offset: 5 }}>
-                            <Form.Label style={labelStyle}>Flight Number: 1110</Form.Label>
+                            <Form.Label style={labelStyle}>Flight Number: {props.ticket.selectedTicketList[0].flightNo}</Form.Label>
                         </Col>
                     </Form.Group>
 
                     <Form.Group>
                         <Col md={{ span: 2, offset: 5 }}>
-                            <Form.Label style={labelStyle}>Price: $150</Form.Label>
+                            <Form.Label style={labelStyle}>Price: ${price}</Form.Label>
                         </Col>
                     </Form.Group>
 
                     <Row>
-                        <Col md={{ span: 3, offset: 3 }}>
+                        <Col md={{ span: 4, offset: 2 }}>
                             <Form.Group>
                                 <Form.Label style={labelStyle}>Departure Information</Form.Label>
-                                <Form.Control style={labelStyle} plaintext readOnly defaultValue="Departure Date" />
-                                <Form.Control style={labelStyle} plaintext readOnly defaultValue="Departure Time" />
-                                <Form.Control style={labelStyle} plaintext readOnly defaultValue="Departure Airport" />
+                                <Form.Control style={labelStyle} plaintext readOnly defaultValue={props.ticket.selectedTicketList[0].departureDate} />
+                                <Form.Control style={labelStyle} plaintext readOnly defaultValue={props.ticket.selectedTicketList[0].departureTime} />
+                                <Form.Control style={labelStyle} plaintext readOnly defaultValue={departureString} />
                             </Form.Group>
                         </Col>
 
-                        <Col md={{ span: 3, offset: 1 }}>
+                        <Col md={{ span: 4, offset: 1 }}>
                             <Form.Group>
                                 <Form.Label style={labelStyle}>Arrival Information</Form.Label>
-                                <Form.Control style={labelStyle} plaintext readOnly defaultValue="Arrival Date" />
-                                <Form.Control style={labelStyle} plaintext readOnly defaultValue="Arrival Time" />
-                                <Form.Control style={labelStyle} plaintext readOnly defaultValue="Arrival Airport" />
+                                <Form.Control style={labelStyle} plaintext readOnly defaultValue={props.ticket.selectedTicketList[0].departureDate} />
+                                <Form.Control style={labelStyle} plaintext readOnly defaultValue={props.ticket.selectedTicketList[0].arrivalTime} />
+                                <Form.Control style={labelStyle} plaintext readOnly defaultValue={arrivalString} />
                             </Form.Group>
                         </Col>
                     </Row>
@@ -112,7 +134,7 @@ export const Confirmation = (props) => {
 
                 <h2 style={subheader}>Personal Information</h2>
 
-                <Form>
+                <Form onSubmit={handleSubmit}>
                     <Row>
                         <Col md={{ span: 1, offset: 3 }}>
                             <Form.Group>
@@ -122,7 +144,7 @@ export const Confirmation = (props) => {
 
                         <Col md={{ span: 1 }}>
                             <Form.Group>
-                                <Form.Label style={labelStyle}>Janet</Form.Label>
+                                <Form.Label style={labelStyle}>{props.traveler.travelerList[0].firstName}</Form.Label>
                             </Form.Group>
                         </Col>
 
@@ -134,7 +156,7 @@ export const Confirmation = (props) => {
 
                         <Col md={{ span: 1 }}>
                             <Form.Group>
-                                <Form.Label style={labelStyle}>903333333</Form.Label>
+                                <Form.Label style={labelStyle}>{props.traveler.travelerList[0].phoneNumber}</Form.Label>
                             </Form.Group>
                         </Col>
                     </Row>
@@ -148,7 +170,7 @@ export const Confirmation = (props) => {
 
                         <Col md={{ span: 1 }}>
                             <Form.Group>
-                                <Form.Label style={labelStyle}>Fernando</Form.Label>
+                                <Form.Label style={labelStyle}>{props.traveler.travelerList[0].lastName}</Form.Label>
                             </Form.Group>
                         </Col>
 
@@ -160,7 +182,7 @@ export const Confirmation = (props) => {
 
                         <Col md={{ span: 1 }}>
                             <Form.Group>
-                                <Form.Label style={labelStyle}>janfernando@gmail.com</Form.Label>
+                                <Form.Label style={labelStyle}>{props.traveler.travelerList[0].email}</Form.Label>
                             </Form.Group>
                         </Col>
                     </Row>
@@ -174,7 +196,7 @@ export const Confirmation = (props) => {
 
                         <Col md={{ span: 1 }}>
                             <Form.Group>
-                                <Form.Label style={labelStyle}>1</Form.Label>
+                                <Form.Label style={labelStyle}>{props.reservation.reservationList[0].totalTravelers}</Form.Label>
                             </Form.Group>
                         </Col>
 
@@ -186,7 +208,7 @@ export const Confirmation = (props) => {
 
                         <Col md={{ span: 3 }}>
                             <Form.Group>
-                                <Form.Label style={labelStyle}>4400 Oak Creek Ct, Fairfax, VA 22033</Form.Label>
+                                <Form.Label style={labelStyle}>{props.traveler.travelerList[0].address}</Form.Label>
                             </Form.Group>
                         </Col>
                     </Row>
@@ -194,7 +216,7 @@ export const Confirmation = (props) => {
                     <Row>
                         <Col md={{ offset: 2 }}>
                             <Form.Group>
-                                <button type="button" style={button}>Return to Home Page</button>
+                                <button type="submit" style={button}>Return to Home Page</button>
                             </Form.Group>
                         </Col>
                     </Row>
@@ -203,13 +225,3 @@ export const Confirmation = (props) => {
         </section >
     );
 }
-
-{/* <Form>
-  <Form.Group as={Row} controlId="formPlaintextEmail">
-    <Form.Label column sm="2">
-      Email
-    </Form.Label>
-    <Col sm="10">
-      <Form.Control plaintext readOnly defaultValue="email@example.com" />
-    </Col>
-  </Form.Group> */}
