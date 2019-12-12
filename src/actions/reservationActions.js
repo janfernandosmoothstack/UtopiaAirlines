@@ -8,7 +8,7 @@ const ReservationActions = {
             actionType: 'read_reservation_started' //action for spinner
         });
 
-        axios.get(`http://localhost:8000/reservations/${reservationId}/tickets`) //returns a promise
+        axios.get(`https://qpyf4i2dz1.execute-api.us-east-2.amazonaws.com/dev/reservations/${reservationId}/tickets`) //returns a promise
             .then(res => { //if successful
                 Dispatcher.dispatch({
                     actionType: 'read_reservation_successful', //action for displaying data
@@ -55,7 +55,7 @@ const ReservationActions = {
             actionType: 'create_reservation_started'
         });
 
-        axios.post(`http://localhost:8000/users`, traveler)
+        axios.post(`https://qpyf4i2dz1.execute-api.us-east-2.amazonaws.com/dev/users`, traveler)
             .then(res => {
 
                 Dispatcher.dispatch({
@@ -78,7 +78,7 @@ const ReservationActions = {
                     itineraryId: ticket.itineraryId
                 }
 
-                axios.post(`http://localhost:8000/reservations`, reservation)
+                axios.post(`https://qpyf4i2dz1.execute-api.us-east-2.amazonaws.com/dev/reservations`, reservation)
                     .then(res => {
                         Dispatcher.dispatch({
                             actionType: 'create_reservation_successful',
@@ -93,13 +93,12 @@ const ReservationActions = {
 
                         var reservationId = res.data.insertId;
 
-                        axios.post(`http://localhost:8000/reservations/${reservationId}/tickets`, ticket)
+                        axios.post(`https://qpyf4i2dz1.execute-api.us-east-2.amazonaws.com/dev/${reservationId}/tickets`, ticket)
                             .then(() => {
                                 ticket.reservationId = reservationId;
 
                                 Dispatcher.dispatch({
-                                    actionType: 'create_ticket_successful',
-                                    data: ticket
+                                    actionType: 'create_ticket_successful'
                                 });
                             })
                             .catch((error) => {
@@ -132,7 +131,7 @@ const ReservationActions = {
             actionType: 'delete_reservation_started'
         });
 
-        axios.delete(`http://localhost:3000//reservations/${reservationId}`)
+        axios.delete(`https://qpyf4i2dz1.execute-api.us-east-2.amazonaws.com/dev/reservations/${reservationId}`)
             .then(() => {
                 Dispatcher.dispatch({
                     actionType: 'delete_reservation_successful',
