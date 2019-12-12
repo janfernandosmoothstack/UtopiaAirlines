@@ -92,11 +92,11 @@ const ReservationActions = {
                         });
 
                         var reservationId = res.data.insertId;
+                        console.log("I am in reservation actions this is reservationId");
+                        console.log(reservationId);
 
-                        axios.post(`https://qpyf4i2dz1.execute-api.us-east-2.amazonaws.com/dev/${reservationId}/tickets`, ticket)
+                        axios.post(`https://qpyf4i2dz1.execute-api.us-east-2.amazonaws.com/dev/reservations/${reservationId}/tickets`, ticket)
                             .then(() => {
-                                ticket.reservationId = reservationId;
-
                                 Dispatcher.dispatch({
                                     actionType: 'create_ticket_successful'
                                 });
