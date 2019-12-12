@@ -1,7 +1,7 @@
 
 import React from 'react';
 import axios from "axios";
-import { Confirmation } from '../../component/confirmation.js';
+//import { Confirmation } from '../confirmation/confirmation.js/index.js';
 import { Route, Switch, Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 

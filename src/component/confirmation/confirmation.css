@@ -6,13 +6,9 @@
     margin-top: 50px;
     margin: auto;
     vertical-align: middle;
-    height:auto;
+    height: auto;
 }
 
 .custom-form-container {
     padding: 30px 60px;
-}
-
-.input {
-    margin-right: 30px;
 }

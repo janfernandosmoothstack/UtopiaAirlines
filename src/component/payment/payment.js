@@ -24,8 +24,6 @@ const button = {
 
 export const Payment = (props) => {
   const publishableKey = "pk_test_FGhq4bMJFOhS8WgOYkCEWM0p00BpHKx8Up";
-  console.log("I am in payment");
-  console.log(props);
 
   const onToken = token => {
     const body = {

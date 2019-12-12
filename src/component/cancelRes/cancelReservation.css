@@ -9,13 +9,17 @@
     
   };
 
-  .headerContainer{
-    text-align:center;
-    
-  }
+  .custom-form-container {
+    /* The Magic */
+    background-size: cover;
+  
+    background-color: rgba(0,0,0, 0.4);
+    margin-top: 50px;
+    margin: auto;
+    vertical-align: middle;
+    height: auto;
+}
 
-  .headertext {
-    margin-left: 18px;
-    font-size:40px;
-    color: white;
-  }
+.custom-form-container {
+    padding: 30px 60px;
+}

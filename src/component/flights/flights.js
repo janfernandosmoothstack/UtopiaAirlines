@@ -79,7 +79,7 @@ export class Flights extends React.Component {
 
     // if (this.props.airport.readState.success) {
     return (
-      <section class="custom-form-container">
+      <section className="custom-form-container">
         <React.Fragment>
           <h2 style={header}>Book a Flight</h2>
           
