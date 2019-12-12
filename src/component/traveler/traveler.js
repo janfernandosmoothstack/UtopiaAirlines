@@ -20,10 +20,10 @@ const labelStyle = {
 
 export class Traveler extends React.Component {
 
-  componentDidMount() {
-    console.log("I am in Traveler");
-    console.log(this.props.ticket.selectedTicketList);
-  }
+  // componentDidMount() {
+  //   console.log("I am in Traveler");
+  //   console.log(this.props.ticket.selectedTicketList);
+  // }
 
   render() {
     const handleSubmit = (event) => {
@@ -44,7 +44,7 @@ export class Traveler extends React.Component {
     }
 
     return (
-      <section class="custom-form-container">
+      <section className="custom-form-container">
         <React.Fragment>
           <h1 style={header}>Traveler Information</h1>
 

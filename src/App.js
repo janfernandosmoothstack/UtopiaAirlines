@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Home } from './component/home/home.js';
-import { SignIn } from './component/account/signin.js';
-import { SignUp } from './component/account/signup.js';
 import { Header } from './component/header/header.js';
 import { Ticket } from './component/ticket/ticket.js';
 import { Traveler } from './component/traveler/traveler.js';
-import { Payment } from './component/payment/payment.js';
 import { Flights } from './component/flights/flights.js';
-import { Confirmation } from './component/confirmation.js';
+import { Confirmation } from './component/confirmation/confirmation.js';
 import { CancelReservation } from './component/cancelRes/cancelReservation.js';
 import TicketStore from './store/ticketStore';
 import FlightStore from './store/flightStore';
-import SignInStore from './store/signinStore';
 import TravelerStore from './store/travelerStore';
 import ReservationStore from './store/reservationStore'
 import './App.css';
@@ -118,11 +114,10 @@ class App extends Component {
         <Header />
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route path='/payment' component={Payment} />
           <Route path='/tickets' render={(props) => (<Ticket {...props} airport={this.state.airport} ticket={this.state.ticket} flight={this.state.flight}></Ticket>)} />
           <Route path='/traveler' render={(props) => (<Traveler {...props} ticket={this.state.ticket} traveler={this.state.traveler} flight={this.state.flight}></Traveler>)} />
           <Route path='/flights' render={(props) => (<Flights {...props} airport={this.state.airport} flight={this.state.flight}></Flights>)} />
-          <Route path='/confirmation' render={(props) => (<Confirmation {...props} traveler={this.state.traveler} reservation={this.state.reservation} ticket={this.state.ticket}></Confirmation>)} />
+          <Route path='/confirmation' render={(props) => (<Confirmation {...props} traveler={this.state.traveler} reservation={this.state.reservation} ticket={this.state.ticket} flight={this.state.flight} airport={this.state.airport}></Confirmation>)} />
           <Route path='/cancel' component={CancelReservation} />
         </Switch>
       </div>
