@@ -23,8 +23,6 @@ const ReservationActions = {
             });
     },
 
-    //send traveler and ticket objects
-
     /* Reservation Object
         reservationId
         userId
@@ -53,10 +51,6 @@ const ReservationActions = {
     */
 
     createReservation: function (traveler, ticket) {
-        console.log("I am in reservation actions");
-        console.log(traveler);
-        console.log(ticket);
-
         Dispatcher.dispatch({
             actionType: 'create_reservation_started'
         });
@@ -84,10 +78,6 @@ const ReservationActions = {
                     itineraryId: ticket.itineraryId
                 }
 
-                console.log("This is the new reservation record");
-                console.log(reservation);
-
-
                 axios.post(`http://localhost:8000/reservations`, reservation)
                     .then(res => {
                         Dispatcher.dispatch({
@@ -102,11 +92,6 @@ const ReservationActions = {
                         });
 
                         var reservationId = res.data.insertId;
-                        console.log("This is the reservationId");
-                        console.log(reservationId);
-
-                        console.log("This is the new ticket record");
-                        console.log(ticket);
 
                         axios.post(`http://localhost:8000/reservations/${reservationId}/tickets`, ticket)
                             .then(() => {

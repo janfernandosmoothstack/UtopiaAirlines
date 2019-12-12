@@ -30,9 +30,9 @@ const button = {
 
 const header = {
   textAlign: "center",
-  marginLeft: "18px",
   fontSize: "40px",
-  color: "white"
+  color: "white",
+  marginBottom: "18px"
 };
 
 export class Flights extends React.Component {
@@ -62,10 +62,6 @@ export class Flights extends React.Component {
       }
     }
 
-    function ticketPage() {
-      window.location.href = "http://localhost:3000/#/tickets";
-    };
-
     const handleSubmit = (event) => {
       event.preventDefault();
 
@@ -77,6 +73,8 @@ export class Flights extends React.Component {
         arrivalAirport: event.target.arrivalAirport.value,
         totalTravelers: event.target.totalTravelers.value
       }
+
+      this.props.history.push('/tickets');
     }
 
     // if (this.props.airport.readState.success) {
@@ -150,7 +148,7 @@ export class Flights extends React.Component {
               <Row>
                 <Col md={{ offset: 3 }}>
                   <Form.Group>
-                    <button onClick={ticketPage} type="submit" style={button}>Search</button>
+                    <button type="submit" style={button}>Search</button>
                   </Form.Group>
                 </Col>
               </Row>

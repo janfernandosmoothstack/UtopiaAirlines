@@ -21,8 +21,8 @@ const labelStyle = {
 export class Traveler extends React.Component {
 
   componentDidMount() {
-    // console.log("I am in Traveler");
-    // console.log(this.props.ticket.selectedTicketList);
+    console.log("I am in Traveler");
+    console.log(this.props.ticket.selectedTicketList);
   }
 
   render() {
@@ -93,7 +93,7 @@ export class Traveler extends React.Component {
             <Row>
               <Col md={{ offset: 2 }}>
                 <Form.Group>
-                  <Payment></Payment>
+                  <Payment history={this.props.history}></Payment>
                 </Form.Group>
               </Col>
             </Row>
