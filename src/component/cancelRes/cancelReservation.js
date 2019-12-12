@@ -28,25 +28,22 @@ const labelStyle = {
   color: "white",
   fontWeight: "bold",
   fontSize: "120%",
+  whiteSpace: "nowrap"
 }
 
-const text = {
-  //textAlign: "center",
-  marginLeft: "450px",
-  color: "white",
-  fontSize: "20px"
-}
 
 const button1 = {
-  backgroundColor: "#3C5E83",
+  backgroundColor: "#48A1A3",
   border: "none",
   color: "white",
-  padding: "6px 10px",
+  padding: "6px 20px 8px 20px",
   textAlign: "center",
   display: "inline-block",
-  marginLeft: "550px",
   borderRadius: "5px",
-  fontSize: "20px"
+  whiteSpace: "nowrap",
+  fontWeight: "bold",
+  marginTop: "35px",
+  fontSize: "18px"
 };
 
 export const CancelReservation = () => {
@@ -58,16 +55,16 @@ export const CancelReservation = () => {
 
         <Form>
           <Row>
-            <Col md={{ span: 3, offset: 2 }}>
+            <Col md={{ span: 3, offset: 4 }}>
               <Form.Group className="input">
                 <Form.Label style={labelStyle}>Confirmation Number</Form.Label>
-                <Form.Control name="reservationId" type="number"></Form.Control>
+                <Form.Control name="reservationId" type="number" ></Form.Control>
               </Form.Group>
             </Col>
 
-            <Col md={{ span: 2 }}>
+            <Col md={{ span: 1 }}>
               <Form.Group>
-              <button type="submit" style={button}>View Booking</button>
+              <button type="submit" style={button1}>View Booking</button>
               </Form.Group>
             </Col>
           </Row>
