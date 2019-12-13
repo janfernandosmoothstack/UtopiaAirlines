@@ -5,7 +5,9 @@ const CHANGE_EVENT = 'change';
 
 let _signInStore = {
     signIn: {
-        signInData: {}
+        signInData: {},
+
+        error: ''
     }
 };
 

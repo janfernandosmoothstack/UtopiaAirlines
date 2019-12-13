@@ -2,8 +2,7 @@ import React from 'react';
 import './payment.css';
 import './visa.css';
 import StripeCheckout from "react-stripe-checkout";
-import axios from "axios";
-
+import PaymentAction from '../../actions/paymentAction.js';
 
 const button = {
   backgroundColor: "#48A1A3",
@@ -19,32 +18,18 @@ const button = {
   fontWeight: "bold"
 };
 
-export const Payment = () => {
+export const Payment = (props) => {
   const publishableKey = "pk_test_FGhq4bMJFOhS8WgOYkCEWM0p00BpHKx8Up";
 
-  const onToken = token => {
+  const onToken = (token) => {
     const body = {
       amount: 15000,
       token: token
     };
-    axios.post("https://zdt56bh758.execute-api.us-east-2.amazonaws.com/dev/pay", body).then(response => {
-      console.log(response);
-      window.location.href = "http://localhost:3000/#/confirmation";
-      //alert("Payment Success");
 
-    }).catch(error => {
-      
-      console.log("Payment Error: ", error);
-      alert("Payment Error")
-    });
+    PaymentAction.validatePayment(body, props);
+
   };
-
-  // function checkout() {
-  //   stripe.redirectToCheckout({
-  //     successUrl: "http://localhost:3000/#/confirmation",
-  //     cancelUrl: "http://localhost:3000/#/"
-  //   })
-  // }
 
   return (
     <StripeCheckout
@@ -58,10 +43,7 @@ export const Payment = () => {
       image="https://img.icons8.com/bubbles/50/000000/airplane-take-off.png" //Pop-in header image
       billingAddress={false}
     >
-      {/* <Link to="/confirmation"><button style={button}></Link> */}
-      <button id="payment" style={button}>
-        Payment
-      </button>
+      <button type="submit" id="payment" style={button}>Payment</button>
     </StripeCheckout>
   );
 };

@@ -7,7 +7,7 @@ const FlightActions = {
             actionType: 'read_airport_started' //action for spinner
         });
         
-        axios.get(`http://localhost:8000/airports`) //returns a promise
+        axios.get(`https://qpyf4i2dz1.execute-api.us-east-2.amazonaws.com/dev/airports`) //returns a promise
         .then(res => { //if successful
             Dispatcher.dispatch({
                 actionType: 'read_airport_successful', //action for displaying data

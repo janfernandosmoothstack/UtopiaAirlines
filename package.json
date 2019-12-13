@@ -33,6 +33,7 @@
   "scripts": {
     "start": "webpack-dev-server --open --hot --mode development",
     "build": "webpack --mode production",
+    "deploy": "aws s3 sync build/ s3://utopia-airlines",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

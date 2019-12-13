@@ -2,7 +2,8 @@ import React from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
 import '../payment/payment.css';
 import { Payment } from '../payment/payment.js';
-import './traveler.css'
+import './traveler.css';
+import ReservationActions from '../../actions/reservationActions';
 
 const header = {
   textAlign: "center",
@@ -17,64 +18,89 @@ const labelStyle = {
   fontSize: "120%"
 }
 
-export const Traveler = () => {
-  return (
-    <section class="custom-form-container">
-      <React.Fragment>
-        <h1 style={header}>Traveler Information</h1>
+export class Traveler extends React.Component {
 
-        <Form>
-          <Row>
-            <Col md={{ span: 3, offset: 3 }}>
-              <Form.Group className="input">
-                <Form.Label style={labelStyle}>First Name</Form.Label>
-                <Form.Control name="firstName" type="text"></Form.Control>
-              </Form.Group>
-            </Col>
+  // componentDidMount() {
+  //   console.log("I am in Traveler");
+  //   console.log(this.props.ticket.selectedTicketList);
+  // }
 
-            <Col md={{ span: 3 }}>
-              <Form.Group>
-                <Form.Label style={labelStyle}>Last Name</Form.Label>
-                <Form.Control name="lastName" type="text"></Form.Control>
-              </Form.Group>
-            </Col>
-          </Row>
+  render() {
+    const handleSubmit = (event) => {
+      event.preventDefault();
 
-          <Row>
-            <Col md={{ span: 3, offset: 3 }}>
-              <Form.Group className="input">
-                <Form.Label style={labelStyle}>Phone Number</Form.Label>
-                <Form.Control name="phoneNumber" type="text"></Form.Control>
-              </Form.Group>
-            </Col>
+      var traveler = {
+        firstName: event.target.firstName.value,
+        lastName: event.target.lastName.value,
+        phoneNumber: event.target.phoneNumber.value,
+        email: event.target.email.value,
+        address: event.target.address.value
+      }
 
-            <Col md={{ span: 2 }}>
-              <Form.Group>
-                <Form.Label style={labelStyle}>Date of Birth</Form.Label>
-                <Form.Control name="dateOfBirth" type="date"></Form.Control>
-              </Form.Group>
-            </Col>
-          </Row>
-          
-          <Row>
-            <Col md={{ span: 3, offset: 3 }}>
-              <Form.Group>
-                <Form.Label style={labelStyle}>E-Mail</Form.Label>
-                <Form.Control name="email" type="email"></Form.Control>
-              </Form.Group>
-            </Col>
-          </Row>
+      var ticket = this.props.ticket.selectedTicketList[0];
+      ticket.totalTravelers = this.props.flight.flightFilter.totalTravelers;
 
-          <Row>
-            <Col md={{offset: 2}}>
-              <Form.Group>
-                <Payment></Payment>
-              </Form.Group>
-            </Col>
-          </Row>
+      ReservationActions.createReservation(traveler, ticket);
+    }
 
-        </Form>
-      </React.Fragment>
-    </section>
-  );
+    return (
+      <section className="custom-form-container">
+        <React.Fragment>
+          <h1 style={header}>Traveler Information</h1>
+
+          <Form onSubmit={handleSubmit}>
+            <Row>
+              <Col md={{ span: 3, offset: 3 }}>
+                <Form.Group className="input">
+                  <Form.Label style={labelStyle}>First Name</Form.Label>
+                  <Form.Control name="firstName" type="text"></Form.Control>
+                </Form.Group>
+              </Col>
+
+              <Col md={{ span: 3 }}>
+                <Form.Group>
+                  <Form.Label style={labelStyle}>Last Name</Form.Label>
+                  <Form.Control name="lastName" type="text"></Form.Control>
+                </Form.Group>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col md={{ span: 3, offset: 3 }}>
+                <Form.Group className="input">
+                  <Form.Label style={labelStyle}>Phone Number</Form.Label>
+                  <Form.Control name="phoneNumber" type="text"></Form.Control>
+                </Form.Group>
+              </Col>
+
+              <Col md={{ span: 3 }}>
+                <Form.Group>
+                  <Form.Label style={labelStyle}>E-Mail</Form.Label>
+                  <Form.Control name="email" type="email"></Form.Control>
+                </Form.Group>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col md={{ span: 6, offset: 3 }}>
+                <Form.Group>
+                  <Form.Label style={labelStyle}>Address</Form.Label>
+                  <Form.Control name="address" type="text"></Form.Control>
+                </Form.Group>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col md={{ offset: 2 }}>
+                <Form.Group>
+                  <Payment history={this.props.history}></Payment>
+                </Form.Group>
+              </Col>
+            </Row>
+
+          </Form>
+        </React.Fragment>
+      </section >
+    );
+  }
 }
