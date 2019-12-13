@@ -75,17 +75,7 @@ export const Confirmation = (props) => {
     const arrivalString = arrivalAirport.city + ", " + arrivalAirport.airportCode + " (" + arrivalAirport.airportName + ")";
     const departureString = departureAirport.city + ", " + departureAirport.airportCode + " (" + departureAirport.airportName + ")";
 
-    console.log(arrivalString);
-    console.log(departureString);
-
     const price = props.reservation.reservationList[0].totalTravelers * props.ticket.selectedTicketList[0].flightPrice;
-
-    //Houston, IAH (George Bush Intercontinental Airport)
-    //Los Angeles, LAX (Los Angeles International Airport)
-
-    const handleSubmit = () => {
-        this.props.history.push('/');
-    }
 
     return (
         <section className="custom-form-container">
@@ -134,7 +124,7 @@ export const Confirmation = (props) => {
 
                 <h2 style={subheader}>Personal Information</h2>
 
-                <Form onSubmit={handleSubmit}>
+                <Form>
                     <Row>
                         <Col md={{ span: 1, offset: 3 }}>
                             <Form.Group>
@@ -216,7 +206,7 @@ export const Confirmation = (props) => {
                     <Row>
                         <Col md={{ offset: 2 }}>
                             <Form.Group>
-                                <button type="submit" style={button}>Return to Home Page</button>
+                                <Link to='/'><button type="submit" style={button}>Return to Home Page</button></Link>
                             </Form.Group>
                         </Col>
                     </Row>
