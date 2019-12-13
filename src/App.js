@@ -100,12 +100,6 @@ class App extends Component {
         },
 
         error: ''
-      },
-
-      signIn: {
-        signInData: {},
-
-        error: ''
       }
     }
   }
@@ -113,7 +107,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Header history={this.props}/>
+        <Route render= {(props) => (<Header {...props}/>)}/>
+       
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/tickets' render={(props) => (<Ticket {...props} airport={this.state.airport} ticket={this.state.ticket} flight={this.state.flight}></Ticket>)} />
@@ -121,8 +116,6 @@ class App extends Component {
           <Route path='/flights' render={(props) => (<Flights {...props} airport={this.state.airport} flight={this.state.flight}></Flights>)} />
           <Route path='/confirmation' render={(props) => (<Confirmation {...props} traveler={this.state.traveler} reservation={this.state.reservation} ticket={this.state.ticket} flight={this.state.flight} airport={this.state.airport}></Confirmation>)} />
           <Route path='/cancel' component={CancelReservation} />
-          {/* <Route path='/signin' render={(props) => (<SignIn {...props} history={this.props.history}></SignIn>)}/> */}
-          {/* <Route path='/signup' render={(props) => (<SignUp {...props} history={this.props.history}></SignUp>)}/> */}
         </Switch>
       </div>
     );
@@ -131,7 +124,7 @@ class App extends Component {
   _onTicketChange() {
     this.setState({
       ticket: TicketStore.getTicketsState(),
-      //airport: FlightStore.getAirportState(),
+      airport: FlightStore.getAirportState(),
       flight: FlightStore.getFlightState()
     });
   }

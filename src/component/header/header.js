@@ -8,7 +8,8 @@ import {SignUp} from '../account/signup.js';
 
 export const Header = (props) => {
     console.log("I am in header");
-    console.log(props);
+    console.log(props)
+
     return (
         <Navbar className="navBar">
             <Navbar.Brand href="/">
@@ -28,8 +29,8 @@ export const Header = (props) => {
 
                 <Nav className="justify-content-end">
                 <Link className="navLink" to="/flights">Continue as Guest</Link>
-                    <SignIn history={props}/>
-                    <SignUp/>
+                    <SignIn history={props.history}/>
+                    <SignUp history={props.history}/>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

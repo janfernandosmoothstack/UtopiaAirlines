@@ -4,8 +4,9 @@ import axios from "axios";
 class AccountAction extends React.Component {
 
     static getUser(hash, props) {
-        console.log("I am in actions of account");
+        console.log("I am in account actions");
         console.log(props);
+        
         return (
         
             axios({
@@ -18,7 +19,7 @@ class AccountAction extends React.Component {
                     //handle success
                     console.log(response);
                        alert("Login Success");
-                       //props.history2.history.push('/flights');
+                       props.history.push('/flights');
                 })
                 .catch(function (response) {
                     //handle error

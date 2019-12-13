@@ -10,11 +10,13 @@ import AccountAction from '../../actions/accountActions';
 var bcrypt = require('bcryptjs');
 
 export const SignIn = (props) => {
-  console.log("I am in sign in component");
-  console.log(props);
+    console.log("I am in signin component");
+    console.log(props);
+
     const [show, setShow] = React.useState(false);
     const handleClose = () => {setShow(false);}
     const handleShow = () => {setShow(true);}
+    
     const handleSubmit = (event) => {
       event.preventDefault();
 
