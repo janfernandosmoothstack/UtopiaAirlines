@@ -5,10 +5,11 @@ import {Modal, Form} from 'react-bootstrap';
 import './account.css';
 import {Link} from 'react-router-dom';
 import axios from "axios";
+import AccountAction from '../../actions/accountActions';
 
 var bcrypt = require('bcryptjs');
 
-export const SignUp = () => {
+export const SignUp = (props) => {
 
     const [show, setShow] = React.useState(false);
     const handleClose = () => setShow(false);
@@ -30,23 +31,7 @@ export const SignUp = () => {
       phoneNumber: event.target.phoneNumber.value,
       username: event.target.username.value
     }
-
-    axios({
-      method: 'post',
-      url: 'http://utopiaairlinelb-1335414957.us-east-2.elb.amazonaws.com/users/create',
-      headers: {'Content-Type': 'application/json',
-      'Accept': 'application/json'},
-      data: user 
-      })
-      .then(function (response) {
-          console.log(response);
-             alert("SignedUp Successfully!");
-             window.location.href = "http://localhost:3000/#/flights";
-      })
-      .catch(function (response) {
-        console.log(response);
-      alert("Please use different Username");
-      });
+    AccountAction.createUser(user,hash, props); 
     }
     return (
       <React.Fragment>

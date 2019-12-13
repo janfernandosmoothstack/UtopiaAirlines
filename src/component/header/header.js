@@ -6,7 +6,9 @@ import './header.css';
 import {SignIn} from '../account/signin.js';
 import {SignUp} from '../account/signup.js';
 
-export const Header = () => {
+export const Header = (props) => {
+    console.log("I am in header");
+    console.log(props);
     return (
         <Navbar className="navBar">
             <Navbar.Brand href="/">
@@ -26,7 +28,7 @@ export const Header = () => {
 
                 <Nav className="justify-content-end">
                 <Link className="navLink" to="/flights">Continue as Guest</Link>
-                    <SignIn/>
+                    <SignIn history={props}/>
                     <SignUp/>
                 </Nav>
             </Navbar.Collapse>
