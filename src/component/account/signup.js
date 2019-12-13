@@ -33,7 +33,7 @@ export const SignUp = () => {
 
     axios({
       method: 'post',
-      url: 'http://localhost:8080/users/create',
+      url: 'http://utopiaairlinelb-1335414957.us-east-2.elb.amazonaws.com/users/create',
       headers: {'Content-Type': 'application/json',
       'Accept': 'application/json'},
       data: user 
