@@ -10,19 +10,17 @@ import AccountAction from '../../actions/accountActions';
 var bcrypt = require('bcryptjs');
 
 export const SignIn = (props) => {
-    console.log("I am in signin component");
-    console.log(props);
-
+    
     const [show, setShow] = React.useState(false);
     const handleClose = () => {setShow(false);}
     const handleShow = () => {setShow(true);}
     
     const handleSubmit = (event) => {
       event.preventDefault();
-
       var salt = bcrypt.genSaltSync(10);
       var hash = bcrypt.hashSync(event.target.password.value, salt);
-       AccountAction.getUser(hash, props); 
+     
+      AccountAction.getUser(hash, props); 
     };
 
     return (
