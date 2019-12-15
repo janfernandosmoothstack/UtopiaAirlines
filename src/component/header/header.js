@@ -5,11 +5,13 @@ import {Link} from 'react-router-dom';
 import './header.css';
 import {SignIn} from '../account/signin.js';
 import {SignUp} from '../account/signup.js';
-import { NavDropdown } from 'react-bootstrap';
 
-export const Header = () => {
+export const Header = (props) => {
+    console.log("I am in header");
+    console.log(props)
+
     return (
-        <Navbar>
+        <Navbar className="navBar">
             <Navbar.Brand href="/">
                 <img width="80px" height="60px" src="https://imgur.com/WLQWpIv.png" alt="logo" />
             </Navbar.Brand>
@@ -22,19 +24,13 @@ export const Header = () => {
                     <Link className="navLink" to="/flights">Flights</Link>
                     <Link className="navLink" to="/tickets">Tickets</Link>
                     <Link className="navLink" to="/traveler">Traveler Information</Link>
-                    <Link className="navLink" to="/payment">Payment</Link>
                     <Link className="navLink" to="/cancel">Cancel Reservation</Link>
                 </Nav>
 
                 <Nav className="justify-content-end">
-                    <NavDropdown 
-                        title={
-                            <Link className="navLink">Account</Link>
-                        }
-                        id="nav-dropdown">
-                        <NavDropdown.Item><SignIn/></NavDropdown.Item>
-                        <NavDropdown.Item><SignUp/></NavDropdown.Item>
-                    </NavDropdown>
+                <Link className="navLink" to="/flights">Continue as Guest</Link>
+                    <SignIn history={props.history}/>
+                    <SignUp history={props.history}/>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

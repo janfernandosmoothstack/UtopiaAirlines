@@ -1,128 +1,167 @@
 import React from 'react';
-import './flights.css'
-import { Link } from 'react-router-dom';
+import { Form, Row, Col } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import './flights.css';
+import FlightActions from '../../actions/flightActions';
 
 const style = {
-  marginLeft: "18px",
   fontSize: "20px",
   color: "white",
   fontWeight: "bold"
 };
-const rightstyle = {
-  marginLeft: "18px",
-  fontSize: "20px",
+
+const labelStyle = {
   color: "white",
-  textAlign: "right"
-};
+  fontWeight: "bold",
+  fontSize: "120%"
+}
 
 const button = {
-  backgroundColor: "#3C5E83",
+  backgroundColor: "#48A1A3",
   border: "none",
   color: "white",
   padding: "6px 25px",
-  textAlign: "center",
   display: "inline-block",
   marginLeft: "390px",
   borderRadius: "5px",
-  fontSize: "20px"
+  fontSize: "20px",
+  justifyContent: "center"
 };
 
 const header = {
   textAlign: "center",
-  marginLeft: "18px",
   fontSize: "40px",
-  color: "white"
+  color: "white",
+  marginBottom: "18px"
 };
 
-export const Flights = () => {
+export class Flights extends React.Component {
 
-  return (
-    <React.Fragment>
-      <section class="custom-form-container">
+  createAirportOptions(airport) {
+    const airportOpt = airport.city + ", " + airport.airportCode + " (" + airport.airportName + ")";
 
-        <h2 style={header}>Book a Flight</h2>
-        <br></br>
-        <form>
+    return (
+      <option key={airport.airportCode} value={airport.airportCode}>{airportOpt}</option>
+    );
+  }
 
-          <div class="form-group row">
-            <label for="cardType" class="col-sm-2 col-form-label" style={style}>Flight Type :</label>
-            <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" />
-              <label class="custom-control-label" for="customRadioInline1" style={style}>
-                <img width="60px" height="60px" src="https://img.icons8.com/dusk/64/000000/circular-arrows.png" />
-              </label>
-            </div>
-            <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input" />
-              <label class="custom-control-label" for="customRadioInline2"></label>
-              <img width="60px" height="60px" src="https://img.icons8.com/doodle/48/000000/one-way-road-sign.png"></img>
-            </div>
-          </div>
+  componentDidMount() {
+    FlightActions.readAirports();
+  }
 
-          <br></br>
-          <div class="form-group row">
-            <label for="example-date-local-input" class="col-2 col-form-label" style={style}>Depart Date</label>
-            <div class="col-3">
-              <input class="form-control" type="date" value="2011-08-19" id="example-date-local-input" />
-            </div>
-            <label for="depart" class="col-2 col-form-label" style={rightstyle}>Return Date</label>
-            <div class="col-3">
-              <input class="form-control" type="date" value="2011-08-19" id="depart" />
-            </div>
-          </div>
+  render() {
+    let content = '';
 
-          <br></br>
-          <div class="form-group row">
-            <label for="fromLocation" class="col-2 col-form-label" style={style}>Flying From</label>
-            <div class="col-3">
-              <select id="fromLocation" class="form-control">
-                <option selected>Departing from...</option>
-                <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
-                <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
-                <option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option>
-                <option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option>
-                <option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option>
-                <option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>MontanaNebraska</option>
-                <option>Nevada</option><option>New Hampshire</option><option>New York</option><option>South Carolina</option><option>Texas</option>
-                <option>Virginia</option><option>Washington</option>
-              </select>
-            </div>
-            <label for="toLocation" class="col-2 col-form-label" style={rightstyle}>Flying To</label>
-            <div class="col-3">
-              <select id="toLocation" class="form-control">
-                <option selected>Arriving at...</option>
-                <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
-                <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
-                <option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option>
-                <option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option>
-                <option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option>
-                <option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>MontanaNebraska</option>
-                <option>Nevada</option><option>New Hampshire</option><option>New York</option><option>South Carolina</option><option>Texas</option>
-                <option>Virginia</option><option>Washington</option>
-              </select>
-            </div>
-          </div>
+    function disableTextBox() {
+      var flightType = document.getElementById("oneWay");
 
-          <br></br>
-          <div class="form-group row">
-            <label for="numberTravelers" class="col-2 col-form-label" style={style}>Travelers</label>
-            <div class="col-2">
-              <select id="fromLocation" class="form-control">
-                <option selected>No. of Travelers</option>
-                <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
-              </select>
-            </div>
-          </div>
+      if (flightType.checked) {
+        document.getElementById("returnDate").disabled = true;
+      } else {
+        document.getElementById("returnDate").disabled = false;
+      }
+    }
 
-          <br></br>
-          <Link to="/tickets"><button type="button" style={button}>Search</button></Link>
-          <br></br><br></br><br></br>
+    const handleSubmit = (event) => {
+      event.preventDefault();
 
-        </form>
+      this.props.flight.flightFilter = {
+        flightType: event.target.flightType.value,
+        departureDate: event.target.departureDate.value,
+        returnDate: event.target.returnDate.value,
+        departureAirport: event.target.departureAirport.value,
+        arrivalAirport: event.target.arrivalAirport.value,
+        totalTravelers: event.target.totalTravelers.value
+      }
 
+      this.props.history.push('/tickets');
+    }
+
+    // if (this.props.airport.readState.success) {
+    return (
+      <section className="custom-form-container">
+        <React.Fragment>
+          <h2 style={header}>Book a Flight</h2>
+          
+            <Form onSubmit={handleSubmit}>
+
+              <div class="form-group row" className="radio">
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" name="flightType" class="custom-control-input" value="roundTrip" id="roundTrip" onClick={disableTextBox} />
+                  <label class="custom-control-label" htmlFor="roundTrip" style={style}>Round Trip</label>
+                </div>
+
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" name="flightType" class="custom-control-input" value="oneWay" id="oneWay" onClick={disableTextBox} />
+                  <label class="custom-control-label" htmlFor="oneWay" style={style}>One-way</label>
+                </div>
+              </div>
+
+              <Row>
+                <Col md={{ span: 3, offset: 3 }}>
+                  <Form.Group className="input">
+                    <Form.Label htmlFor="fromLocation" style={labelStyle}>From</Form.Label>
+
+                    <select id="fromLocation" class="form-control" name="departureAirport">
+                      <option defaultValue>Departing from...</option>
+                      {this.props.airport.airportList.map(this.createAirportOptions, this)}
+                    </select>
+                  </Form.Group>
+                </Col>
+
+                <Col md={{ span: 3 }}>
+                  <Form.Group>
+                    <Form.Label htmlFor="toLocation" style={labelStyle}>To</Form.Label>
+                    <select id="toLocation" class="form-control" name="arrivalAirport">
+                      <option defaultValue>Arriving at...</option>
+                      {this.props.airport.airportList.map(this.createAirportOptions, this)}
+                    </select>
+                  </Form.Group>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col md={{ span: 3, offset: 3 }}>
+                  <Form.Group className="input">
+                    <Form.Label htmlFor="departureDate" style={labelStyle}>Departure Date</Form.Label>
+                    <Form.Control type="date" name="departureDate" />
+                  </Form.Group>
+                </Col>
+
+                <Col md={{ span: 3 }}>
+                  <Form.Group>
+                    <Form.Label htmlFor="returning" style={labelStyle}>Return Date</Form.Label>
+                    <Form.Control type="date" name="returnDate" id="returnDate"></Form.Control>
+                  </Form.Group>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col md={{ span: 2, offset: 3 }}>
+                  <Form.Group>
+                    <Form.Label htmlFor="totalTravelers" style={labelStyle}>Travelers</Form.Label>
+                    <Form.Control type="number" id="totalTravelers" name="totalTravelers" />
+                  </Form.Group>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col md={{ offset: 3 }}>
+                  <Form.Group>
+                    <button type="submit" style={button}>Search</button>
+                  </Form.Group>
+                </Col>
+              </Row>
+
+            </Form>
+        </React.Fragment>
       </section>
-
-    </React.Fragment>
-  );
+    );
+  }
 }
+
+Flights.propTypes = {
+  airport: PropTypes.object.isRequired,
+  flight: PropTypes.object.isRequired
+};
 

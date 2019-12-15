@@ -4,16 +4,35 @@ import React from 'react';
 import {Modal, Form} from 'react-bootstrap';
 import './account.css';
 import {Link} from 'react-router-dom';
+import axios from "axios";
+import AccountAction from '../../actions/accountActions';
 
-export const SignUp = () => {
+var bcrypt = require('bcryptjs');
+
+export const SignUp = (props) => {
+
     const [show, setShow] = React.useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     const handleSubmit = (event) => {
-      event.preventDefault();
-    }
+    event.preventDefault();
+      
+      var salt = bcrypt.genSaltSync(10);
+      var hash = bcrypt.hashSync(event.target.password.value, salt);
 
+    const user = {
+      active: 1,
+      address: event.target.address.value,
+      email: event.target.email.value,
+      firstName: event.target.firstName.value,
+      lastName: event.target.lastName.value,
+      password: hash,
+      phoneNumber: event.target.phoneNumber.value,
+      username: event.target.username.value
+    }
+    AccountAction.createUser(user,hash, props); 
+    }
     return (
       <React.Fragment>
         <Link className="accountLink" onClick={handleShow}>Sign Up</Link>
@@ -37,8 +56,8 @@ export const SignUp = () => {
               </div>  
 
               <div className="form-group">
-                  <label htmlFor="phone">Phone Number:</label>
-                  <input name="phone" type="text" className="form-control"></input>
+                  <label htmlFor="phoneNumber">Phone Number:</label>
+                  <input name="phoneNumber" type="number" className="form-control"></input>
               </div> 
                         
               <div className="form-group">
@@ -59,6 +78,11 @@ export const SignUp = () => {
               <div>
                   <label htmlFor="password">Password:</label>
                   <input name="password" type="password" className="form-control"></input>
+              </div> 
+                                 
+              <div>
+                  <label htmlFor="active">Active</label>
+                  <input name="active" type="number" className="form-control" value ='1'></input>
               </div> 
 
               <br></br>         

@@ -1,0 +1,20 @@
+.input {
+    margin-right: 30px;
+}
+
+.radioStyle {
+    margin-top: 20px;
+}
+
+.buttonStyle {
+    background-color: #48A1A3;
+    border: none;
+    color: white;
+    padding: 6px 25px;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 35px;
+};
+

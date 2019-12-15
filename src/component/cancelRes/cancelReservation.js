@@ -1,26 +1,10 @@
 import React from 'react';
 import './cancelReservation.css';
 import { Link } from 'react-router-dom';
+import { Form, Row, Col } from 'react-bootstrap';
 
 const button = {
-  backgroundColor: "#3C5E83",
-  border: "none",
-  color: "white",
-  padding: "6px 10px",
-  textAlign: "center",
-  display: "inline-block",
-  //marginLeft: "550px",
-  borderRadius: "5px",
-  fontSize: "20px"
-};
-const text = {
-  //textAlign: "center",
-  marginLeft: "450px",
-  color: "white",
-  fontSize: "20px"
-}
-const button1 = {
-  backgroundColor: "#3C5E83",
+  backgroundColor: "#48A1A3",
   border: "none",
   color: "white",
   padding: "6px 10px",
@@ -28,45 +12,70 @@ const button1 = {
   display: "inline-block",
   marginLeft: "550px",
   borderRadius: "5px",
-  fontSize: "20px"
+  fontSize: "20px",
+  marginTop: "30px",
+  fontWeight: "bold"
+};
+
+const header = {
+  textAlign: "center",
+  fontSize: "40px",
+  color: "white",
+  marginBottom: "40px"
+};
+
+const labelStyle = {
+  color: "white",
+  fontWeight: "bold",
+  fontSize: "120%",
+  whiteSpace: "nowrap"
+}
+
+
+const button1 = {
+  backgroundColor: "#48A1A3",
+  border: "none",
+  color: "white",
+  padding: "6px 20px 8px 20px",
+  textAlign: "center",
+  display: "inline-block",
+  borderRadius: "5px",
+  whiteSpace: "nowrap",
+  fontWeight: "bold",
+  marginTop: "35px",
+  fontSize: "18px"
 };
 
 export const CancelReservation = () => {
 
   return (
-    <React.Fragment>
+    <section className="custom-form-container">
+      <React.Fragment>
+        <h2 style={header}>Cancel Booking</h2>
 
-      <div className="headerContainer">
-        <div className="headertext">
-          <h2>Cancel Reservation</h2>
-        </div>
-      </div>
+        <Form>
+          <Row>
+            <Col md={{ span: 3, offset: 4 }}>
+              <Form.Group className="input">
+                <Form.Label style={labelStyle}>Confirmation Number</Form.Label>
+                <Form.Control name="reservationId" type="number" ></Form.Control>
+              </Form.Group>
+            </Col>
 
-      <br></br>
-      <form >
-        <div class="form-inline">
-          <div class="form-group mb-2">
-            <label for="reservationId" class="col-2 col-form-label" className="labelStyle">Confirmation Number</label>
-            <input class="form-control" type="text" placeholder="Confirmation Number" id="reservationId" />
-          </div>
-          <div class="form-group mx-sm-1 mb-1">
-          </div>
-          <button type="submit" class="btn btn-primary mb-2" style={button}>View Booking</button>
-         
-       
-        </div>
-        <br></br>
-        <br></br><br></br><br></br>
-        <p style={text}> Ticket information appears here</p>
-
-        <br></br>
-        <br></br><br></br><br></br>
-
-        <Link to="/"><button type="submit" style={button1}>Delete</button></Link>
+            <Col md={{ span: 1 }}>
+              <Form.Group>
+              <button type="submit" style={button1}>View Booking</button>
+              </Form.Group>
+            </Col>
+          </Row>
+        </Form>
 
 
-      </form>
+          <Link to="/"><button type="submit" style={button}>Delete</button></Link>
 
-    </React.Fragment>
+
+
+      </React.Fragment>
+    </section>
   );
 }
