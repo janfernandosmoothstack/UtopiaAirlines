@@ -7,7 +7,7 @@ class AccountAction extends React.Component {
         return (
             axios({
                 method: 'get',
-                url: 'http://utopiaairlinelb-1335414957.us-east-2.elb.amazonaws.com/users/verified',
+                url: 'http://localhost:8090/users/verified',
                 headers: {'Content-Type': 'application/json',
                   'username': event.target.username.value, 'password': hash}
                 })
