@@ -9,7 +9,7 @@ class AccountAction extends React.Component {
                 method: 'get',
                 url: 'http://utopiaairlinelb-1335414957.us-east-2.elb.amazonaws.com/users/verified',
                 headers: {'Content-Type': 'application/json',
-                  'username': event.target.username.value, 'password': event.target.password.value}
+                  'username': event.target.username.value, 'password': hash}
                 })
                 .then(function (response) {
                     //handle success
