@@ -19,8 +19,8 @@ export const SignIn = (props) => {
       event.preventDefault();
       var salt = bcrypt.genSaltSync(10);
       var hash = bcrypt.hashSync(event.target.password.value, salt);
-     
-      AccountAction.getUser(hash, props); 
+    console.log(hash);
+    AccountAction.getUser(hash, props); 
     };
 
     return (
