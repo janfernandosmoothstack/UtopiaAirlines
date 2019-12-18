@@ -1,7 +1,7 @@
 import Dispatcher from '../dispatcher/appDispatcher'; //flux module
 import axios from 'axios'; //make asynch calls
 
-const FlightActions = {
+const AirportActions = {
     readAirports: function(){
         Dispatcher.dispatch({
             actionType: 'read_airport_started' //action for spinner
@@ -23,4 +23,4 @@ const FlightActions = {
     }
 }
 
-export default FlightActions;
+export default AirportActions;

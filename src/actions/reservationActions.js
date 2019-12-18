@@ -11,14 +11,73 @@ const ReservationActions = {
         axios.get(`https://qpyf4i2dz1.execute-api.us-east-2.amazonaws.com/dev/reservations/${reservationId}/tickets`) //returns a promise
             .then(res => { //if successful
                 Dispatcher.dispatch({
-                    actionType: 'read_reservation_successful', //action for displaying data
+                    actionType: 'read_ticket_successful', //action for displaying data
                     data: res.data
                 });
+                console.log("I am in res actions ticket get call")
+                console.log(res.data);
+
+                const itineraryId = res.data[0].itineraryId;
+
+                axios.get(`https://qpyf4i2dz1.execute-api.us-east-2.amazonaws.com/dev/itineraries/${itineraryId}`) //returns a promise
+                    .then(res => { //if successful
+                        Dispatcher.dispatch({
+                            actionType: 'read_itinerary_successful', //action for displaying data
+                            data: res.data
+                        });
+                        console.log("I am in res actions itinerary get call")
+                        console.log(res.data);
+
+                        const flightNo = res.data[0].flightNo;
+
+                        axios.get(`https://qpyf4i2dz1.execute-api.us-east-2.amazonaws.com/dev/flights/${flightNo}`) //returns a promise
+                            .then(res => { //if successful
+                                Dispatcher.dispatch({
+                                    actionType: 'read_flight_successful', //action for displaying data
+                                    data: res.data
+                                });
+                                console.log("I am in res actions flight get call")
+                                console.log(res.data);
+
+                                const departureAirport = res.data[0].departureAirport;
+                                const arrivalAirport = res.data[0].arrivalAirport;
+
+                                axios.get(`https://qpyf4i2dz1.execute-api.us-east-2.amazonaws.com/dev/airports/departureAirport/${departureAirport}/arrivalAirport/${arrivalAirport}`) //returns a promise
+                                    .then(res => { //if successful
+                                        Dispatcher.dispatch({
+                                            actionType: 'read_airport_successful', //action for displaying data
+                                            data: res.data
+                                        });
+                                        console.log("I am in res actions airport get call")
+                                        console.log(res.data);
+
+                                    })
+                                    .catch((error) => { //if failure
+                                        console.log(error);
+                                        Dispatcher.dispatch({
+                                            actionType: 'read_airport_failure' //action to display error message
+                                        });
+                                    });
+
+                            })
+                            .catch((error) => { //if failure
+                                console.log(error);
+                                Dispatcher.dispatch({
+                                    actionType: 'read_flight_failure' //action to display error message
+                                });
+                            });
+                    })
+                    .catch((error) => { //if failure
+                        console.log(error);
+                        Dispatcher.dispatch({
+                            actionType: 'read_itinerary_failure' //action to display error message
+                        });
+                    });
             })
             .catch((error) => { //if failure
                 console.log(error);
                 Dispatcher.dispatch({
-                    actionType: 'read_reservation_failure' //action to display error message
+                    actionType: 'read_ticket_failure' //action to display error message
                 });
             });
     },
@@ -92,8 +151,6 @@ const ReservationActions = {
                         });
 
                         var reservationId = res.data.insertId;
-                        console.log("I am in reservation actions this is reservationId");
-                        console.log(reservationId);
 
                         axios.post(`https://qpyf4i2dz1.execute-api.us-east-2.amazonaws.com/dev/reservations/${reservationId}/tickets`, ticket)
                             .then(() => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Col } from 'react-bootstrap';
 import { Buy } from './buy';
 import TicketActions from '../../actions/ticketActions';
-import FlightActions from '../../actions/flightActions';
+import AirportActions from '../../actions/airportActions';
 import PropTypes from 'prop-types';
 import './ticket.css';
 
@@ -20,6 +20,8 @@ const labelStyle = {
 export class Ticket extends React.Component {
 
     createTicketRow(ticket) {
+        ticket.departureDate = ticket.departureDate.substring(0, ticket.departureDate.length-14) + " (YYYY-MM-DD)";
+        
         return (
             <tr key={ticket.flightNo}>
                 <td> {ticket.flightNo} </td>
@@ -44,7 +46,7 @@ export class Ticket extends React.Component {
 
     componentDidMount() {
         TicketActions.readTickets(this.props.flight.flightFilter);
-        FlightActions.readAirports();
+        AirportActions.readAirports();
     }
 
     render() {

@@ -3,11 +3,9 @@ import {EventEmitter} from 'events';
 
 const CHANGE_EVENT = 'change';
 
-let _flightStore = {
-    flight: {
-        flightList: [],
-
-        flightFilter: {},
+let _airportStore = {
+    airport: {
+        airportList: [],
 
         readState: {
             pending:false,
@@ -20,7 +18,7 @@ let _flightStore = {
 };
 
 //to listen for events
-class FlightStoreClass extends EventEmitter{
+class AirportStoreClass extends EventEmitter{
     
     //listens for changes
     addChangeListener(callback) {
@@ -36,12 +34,12 @@ class FlightStoreClass extends EventEmitter{
         this.emit(CHANGE_EVENT);
     }
 
-    getFlightState() {
-        return _flightStore.flight;
+    getAirportState() {
+        return _airportStore.airport;
     }
 
     resetReadState() {
-        _flightStore.flight.readState = {
+        _airportStore.airport.readState = {
             pending:false,
             success:false,
             failure:false
@@ -49,27 +47,27 @@ class FlightStoreClass extends EventEmitter{
     }
 }
 
-const FlightStore = new FlightStoreClass();
+const AirportStore = new AirportStoreClass();
 
 Dispatcher.register((action) => {
     switch (action.actionType) {
-        case 'read_flight_successful':
-            FlightStore.resetReadState();
-            _flightStore.flight.flightList = action.data;
-            _flightStore.flight.readState.success = true;
-            FlightStore.emitChange();
+        case 'read_airport_successful':
+            AirportStore.resetReadState();
+            _airportStore.airport.airportList = action.data;
+            _airportStore.airport.readState.success = true;
+            AirportStore.emitChange();
             break;
         
-        case 'read_flight_failure':
-            FlightStore.resetReadState();
-            _flightStore.flight.readState.failure = true
-            FlightStore.emitChange();
+        case 'read_airport_failure':
+            AirportStore.resetReadState();
+            _airportStore.airport.readState.failure = true
+            AirportStore.emitChange();
             break;
 
-        case 'read_flight_pending':
-            FlightStore.resetReadState();
-            _flightStore.flight.readState.pending = true
-            FlightStore.emitChange();
+        case 'read_airport_pending':
+            AirportStore.resetReadState();
+            _airportStore.airport.readState.pending = true
+            AirportStore.emitChange();
             break;
         
         default:
@@ -77,4 +75,4 @@ Dispatcher.register((action) => {
     }
 });
 
-export default FlightStore;
+export default AirportStore;
