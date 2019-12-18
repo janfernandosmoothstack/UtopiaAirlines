@@ -1,14 +1,10 @@
 import React from 'react';
 import axios from "axios";
-
 class AccountAction extends React.Component {
-
+   
     static getUser(hash, props) {
-        console.log("I am in account actions");
-        console.log(props);
         
         return (
-        
             axios({
                 method: 'get',
                 url: 'http://utopiaairlinelb-1335414957.us-east-2.elb.amazonaws.com/users/verified',
@@ -28,7 +24,7 @@ class AccountAction extends React.Component {
                 })
         )
     };
-
+  
     static createUser(user, hash, props) {
         return (
             axios({
