@@ -10,8 +10,10 @@ import { CancelReservation } from './component/cancelRes/cancelReservation.js';
 import TicketStore from './store/ticketStore';
 import FlightStore from './store/flightStore';
 import TravelerStore from './store/travelerStore';
-import ReservationStore from './store/reservationStore'
-import { SignIn} from './component/account/signin.js';
+import ReservationStore from './store/reservationStore';
+import AirportStore from './store/airportStore';
+import ItineraryStore from './store/itineraryStore';
+import { SignIn } from './component/account/signin.js';
 import { SignUp } from './component/account/signup.js';
 import './App.css';
 
@@ -55,6 +57,8 @@ class App extends Component {
       },
 
       flight: {
+        flightList: [],
+
         flightFilter: {},
 
         error: ''
@@ -100,6 +104,18 @@ class App extends Component {
         },
 
         error: ''
+      },
+
+      itinerary: {
+        itineraryList: [],
+
+        readState: {
+          pending: false,
+          success: false,
+          failure: false
+        },
+
+        error: ''
       }
     }
   }
@@ -107,15 +123,57 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Route render= {(props) => (<Header {...props}/>)}/>
-       
+        <Route render={(props) => (<Header {...props} />)} />
+
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route path='/tickets' render={(props) => (<Ticket {...props} airport={this.state.airport} ticket={this.state.ticket} flight={this.state.flight}></Ticket>)} />
-          <Route path='/traveler' render={(props) => (<Traveler {...props} ticket={this.state.ticket} traveler={this.state.traveler} flight={this.state.flight}></Traveler>)} />
-          <Route path='/flights' render={(props) => (<Flights {...props} airport={this.state.airport} flight={this.state.flight}></Flights>)} />
-          <Route path='/confirmation' render={(props) => (<Confirmation {...props} traveler={this.state.traveler} reservation={this.state.reservation} ticket={this.state.ticket} flight={this.state.flight} airport={this.state.airport}></Confirmation>)} />
-          <Route path='/cancel' component={CancelReservation} />
+          
+          <Route path='/tickets' render={(props) => (
+            <Ticket 
+              {...props} 
+              airport={this.state.airport} 
+              ticket={this.state.ticket} 
+              flight={this.state.flight}>
+            </Ticket>
+          )} />
+
+          <Route path='/traveler' render={(props) => (
+            <Traveler 
+              {...props} 
+              ticket={this.state.ticket} 
+              traveler={this.state.traveler} 
+              flight={this.state.flight}>
+            </Traveler>
+          )} />
+
+          <Route path='/flights' render={(props) => (
+            <Flights 
+              {...props} 
+              airport={this.state.airport} 
+              flight={this.state.flight}>
+            </Flights>
+          )} />
+          
+          <Route path='/confirmation' render={(props) => (
+            <Confirmation 
+              {...props} 
+              traveler={this.state.traveler} 
+              reservation={this.state.reservation} 
+              ticket={this.state.ticket} 
+              flight={this.state.flight} 
+              airport={this.state.airport}>
+            </Confirmation>
+          )} />
+          
+          <Route path='/cancel' render={(props) => (
+            <CancelReservation 
+              {...props} 
+              reservation={this.state.reservation} 
+              ticket={this.state.ticket}
+              itinerary={this.state.itinerary} 
+              flight={this.state.flight}>
+            </CancelReservation>
+          )} />
         </Switch>
       </div>
     );
@@ -124,14 +182,14 @@ class App extends Component {
   _onTicketChange() {
     this.setState({
       ticket: TicketStore.getTicketsState(),
-      airport: FlightStore.getAirportState(),
+      airport: AirportStore.getAirportState(),
       flight: FlightStore.getFlightState()
     });
   }
 
   _onFlightChange() {
     this.setState({
-      airport: FlightStore.getAirportState(),
+      airport: AirportStore.getAirportState(),
       flight: FlightStore.getFlightState()
     });
   }
@@ -141,7 +199,11 @@ class App extends Component {
   }
 
   _onReservationChange() {
-    this.setState({reservation: ReservationStore.getReservationState()});
+    this.setState({ reservation: ReservationStore.getReservationState() });
+  }
+
+  _OnItineraryChange() {
+    this.setState({ itinerary: ItineraryStore.getItineraryState() })
   }
 
   componentDidMount() {
@@ -149,6 +211,7 @@ class App extends Component {
     FlightStore.addChangeListener(this._onFlightChange.bind(this));
     TravelerStore.addChangeListener(this._onTravelerChange.bind(this));
     ReservationStore.addChangeListener(this._onReservationChange.bind(this));
+    ItineraryStore.addChangeListener(this._OnItineraryChange.bind(this));
   }
 
   componentWillUnmount() {
@@ -156,6 +219,7 @@ class App extends Component {
     FlightStore.removeChangeListener(this._onFlightChange.bind(this));
     TravelerStore.removeChangeListener(this._onTravelerChange.bind(this));
     ReservationStore.removeChangeListener(this._onReservationChange.bind(this));
+    ItineraryStore.removeChangeListener(this._OnItineraryChange.bind(this));
   }
 }
 

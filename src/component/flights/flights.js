@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import './flights.css';
-import FlightActions from '../../actions/flightActions';
+import AirportActions from '../../actions/airportActions';
 
 const style = {
   fontSize: "20px",
@@ -46,7 +46,7 @@ export class Flights extends React.Component {
   }
 
   componentDidMount() {
-    FlightActions.readAirports();
+    AirportActions.readAirports();
   }
 
   render() {

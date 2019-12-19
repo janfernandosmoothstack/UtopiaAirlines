@@ -7,6 +7,8 @@ let _reservationStore = {
     reservation: {
         reservationList: [],
 
+        reservationId: 0,
+
         readState: {
             pending:false,
             success:false,
