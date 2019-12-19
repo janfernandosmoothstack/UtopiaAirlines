@@ -94,4 +94,3 @@ export const SignUp = (props) => {
       </React.Fragment>
     );
 }
-        
