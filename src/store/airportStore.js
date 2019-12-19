@@ -64,7 +64,7 @@ Dispatcher.register((action) => {
             AirportStore.emitChange();
             break;
 
-        case 'read_airport_pending':
+        case 'read_airport_started':
             AirportStore.resetReadState();
             _airportStore.airport.readState.pending = true
             AirportStore.emitChange();

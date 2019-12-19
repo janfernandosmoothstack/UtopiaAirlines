@@ -94,7 +94,7 @@ Dispatcher.register((action) => {
             ReservationStore.emitChange();
             break;
 
-        case 'read_reservation_pending':
+        case 'read_reservation_started':
             ReservationStore.resetReadState();
             _reservationStore.reservation.readState.pending = true
             ReservationStore.emitChange();
@@ -113,7 +113,7 @@ Dispatcher.register((action) => {
             ReservationStore.emitChange();
             break;
 
-        case 'create_reservation_pending':
+        case 'create_reservation_started':
             ReservationStore.resetCreateState();
             _reservationStore.reservation.createState.pending = true
             ReservationStore.emitChange();
@@ -131,7 +131,7 @@ Dispatcher.register((action) => {
             ReservationStore.emitChange();
             break;
 
-        case 'delete_reservation_pending':
+        case 'delete_reservation_started':
             ReservationStore.resetDeleteState();
             _reservationStore.reservation.deleteState.pending = true;
             ReservationStore.emitChange();

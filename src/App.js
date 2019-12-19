@@ -61,6 +61,12 @@ class App extends Component {
 
         flightFilter: {},
 
+        readState: {
+          pending: false,
+          success: false,
+          failure: false
+        },
+
         error: ''
       },
 
@@ -127,51 +133,53 @@ class App extends Component {
 
         <Switch>
           <Route exact path='/' component={Home} />
-          
+
           <Route path='/tickets' render={(props) => (
-            <Ticket 
-              {...props} 
-              airport={this.state.airport} 
-              ticket={this.state.ticket} 
+            <Ticket
+              {...props}
+              airport={this.state.airport}
+              ticket={this.state.ticket}
               flight={this.state.flight}>
             </Ticket>
           )} />
 
           <Route path='/traveler' render={(props) => (
-            <Traveler 
-              {...props} 
-              ticket={this.state.ticket} 
-              traveler={this.state.traveler} 
-              flight={this.state.flight}>
+            <Traveler
+              {...props}
+              ticket={this.state.ticket}
+              traveler={this.state.traveler}
+              flight={this.state.flight}
+              reservation={this.state.reservation}>
             </Traveler>
           )} />
 
           <Route path='/flights' render={(props) => (
-            <Flights 
-              {...props} 
-              airport={this.state.airport} 
+            <Flights
+              {...props}
+              airport={this.state.airport}
               flight={this.state.flight}>
             </Flights>
           )} />
-          
+
           <Route path='/confirmation' render={(props) => (
-            <Confirmation 
-              {...props} 
-              traveler={this.state.traveler} 
-              reservation={this.state.reservation} 
-              ticket={this.state.ticket} 
-              flight={this.state.flight} 
+            <Confirmation
+              {...props}
+              traveler={this.state.traveler}
+              reservation={this.state.reservation}
+              ticket={this.state.ticket}
+              flight={this.state.flight}
               airport={this.state.airport}>
             </Confirmation>
           )} />
-          
+
           <Route path='/cancel' render={(props) => (
-            <CancelReservation 
-              {...props} 
-              reservation={this.state.reservation} 
+            <CancelReservation
+              {...props}
+              reservation={this.state.reservation}
               ticket={this.state.ticket}
-              itinerary={this.state.itinerary} 
-              flight={this.state.flight}>
+              itinerary={this.state.itinerary}
+              flight={this.state.flight}
+              airport={this.state.airport}>
             </CancelReservation>
           )} />
         </Switch>
@@ -180,18 +188,15 @@ class App extends Component {
   }
 
   _onTicketChange() {
-    this.setState({
-      ticket: TicketStore.getTicketsState(),
-      airport: AirportStore.getAirportState(),
-      flight: FlightStore.getFlightState()
-    });
+    this.setState({ ticket: TicketStore.getTicketsState() });
   }
 
   _onFlightChange() {
-    this.setState({
-      airport: AirportStore.getAirportState(),
-      flight: FlightStore.getFlightState()
-    });
+    this.setState({ flight: FlightStore.getFlightState() });
+  }
+
+  _onAirportChange() {
+    this.setState({ airport: AirportStore.getAirportState() });
   }
 
   _onTravelerChange() {
@@ -212,6 +217,7 @@ class App extends Component {
     TravelerStore.addChangeListener(this._onTravelerChange.bind(this));
     ReservationStore.addChangeListener(this._onReservationChange.bind(this));
     ItineraryStore.addChangeListener(this._OnItineraryChange.bind(this));
+    AirportStore.addChangeListener(this._onAirportChange.bind(this));
   }
 
   componentWillUnmount() {
@@ -220,6 +226,7 @@ class App extends Component {
     TravelerStore.removeChangeListener(this._onTravelerChange.bind(this));
     ReservationStore.removeChangeListener(this._onReservationChange.bind(this));
     ItineraryStore.removeChangeListener(this._OnItineraryChange.bind(this));
+    AirportStore.removeChangeListener(this._onAirportChange.bind(this));
   }
 }
 

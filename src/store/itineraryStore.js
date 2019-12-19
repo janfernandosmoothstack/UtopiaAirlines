@@ -47,27 +47,27 @@ class ItineraryStoreClass extends EventEmitter{
     }
 }
 
-const itineraryStore = new ItineraryStoreClass();
+const ItineraryStore = new ItineraryStoreClass();
 
 Dispatcher.register((action) => {
     switch (action.actionType) {
         case 'read_itinerary_successful':
-            itineraryStore.resetReadState();
+            ItineraryStore.resetReadState();
             _itineraryStore.itinerary.itineraryList = action.data;
             _itineraryStore.itinerary.readState.success = true;
-            itineraryStore.emitChange();
+            ItineraryStore.emitChange();
             break;
         
         case 'read_itinerary_failure':
-            itineraryStore.resetReadState();
+            ItineraryStore.resetReadState();
             _itineraryStore.itinerary.readState.failure = true
             itineraryStore.emitChange();
             break;
 
-        case 'read_itinerary_pending':
-            itineraryStore.resetReadState();
+        case 'read_itinerary_started':
+            ItineraryStore.resetReadState();
             _itineraryStore.itinerary.readState.pending = true
-            itineraryStore.emitChange();
+            ItineraryStore.emitChange();
             break;
         
         default:
@@ -75,4 +75,4 @@ Dispatcher.register((action) => {
     }
 });
 
-export default itineraryStore;
+export default ItineraryStore;

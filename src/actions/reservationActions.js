@@ -17,7 +17,7 @@ const ReservationActions = {
                 console.log("I am in res actions ticket get call")
                 console.log(res.data);
 
-                const itineraryId = res.data[0].itineraryId;
+                let itineraryId = res.data[0].itineraryId;
 
                 axios.get(`https://qpyf4i2dz1.execute-api.us-east-2.amazonaws.com/dev/itineraries/${itineraryId}`) //returns a promise
                     .then(res => { //if successful
@@ -28,7 +28,7 @@ const ReservationActions = {
                         console.log("I am in res actions itinerary get call")
                         console.log(res.data);
 
-                        const flightNo = res.data[0].flightNo;
+                        let flightNo = res.data[0].flightNo;
 
                         axios.get(`https://qpyf4i2dz1.execute-api.us-east-2.amazonaws.com/dev/flights/${flightNo}`) //returns a promise
                             .then(res => { //if successful
@@ -39,9 +39,9 @@ const ReservationActions = {
                                 console.log("I am in res actions flight get call")
                                 console.log(res.data);
 
-                                const departureAirport = res.data[0].departureAirport;
-                                const arrivalAirport = res.data[0].arrivalAirport;
-
+                                let departureAirport = res.data[0].departureAirport;
+                                let arrivalAirport = res.data[0].arrivalAirport;
+                                
                                 axios.get(`https://qpyf4i2dz1.execute-api.us-east-2.amazonaws.com/dev/airports/departureAirport/${departureAirport}/arrivalAirport/${arrivalAirport}`) //returns a promise
                                     .then(res => { //if successful
                                         Dispatcher.dispatch({

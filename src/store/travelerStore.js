@@ -78,7 +78,7 @@ Dispatcher.register((action) => {
             TravelerStore.emitChange();
             break;
 
-        case 'read_traveler_pending':
+        case 'read_traveler_started':
             TravelerStore.resetReadState();
             _travelerStore.traveler.readState.pending = true
             TravelerStore.emitChange();
@@ -97,7 +97,7 @@ Dispatcher.register((action) => {
             TravelerStore.emitChange();
             break;
 
-        case 'create_traveler_pending':
+        case 'create_traveler_started':
             TravelerStore.resetCreateState();
             _travelerStore.traveler.createState.pending = true
             TravelerStore.emitChange();

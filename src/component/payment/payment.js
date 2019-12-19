@@ -3,6 +3,7 @@ import './payment.css';
 import './visa.css';
 import StripeCheckout from "react-stripe-checkout";
 import PaymentAction from '../../actions/paymentAction.js';
+import { Spinner } from 'react-bootstrap';
 
 const button = {
   backgroundColor: "#48A1A3",
@@ -31,19 +32,49 @@ export const Payment = (props) => {
 
   };
 
-  return (
-    <StripeCheckout
-      label="Purchase ticket" //Component button text
-      name="Purchase Flight Ticket" //Modal Header
-      description="Confirm payment for ticket"
-      panelLabel="Confirm" //Submit button in modal
-      amount={15000} //Amount in cents 
-      token={onToken}
-      stripeKey={publishableKey}
-      image="https://img.icons8.com/bubbles/50/000000/airplane-take-off.png" //Pop-in header image
-      billingAddress={false}
-    >
-      <button type="submit" id="payment" style={button}>Payment</button>
-    </StripeCheckout>
-  );
+  if (props.traveler.createState.success && props.reservation.createState.success
+    && props.ticket.createState.success) {
+
+    return (
+      <StripeCheckout
+        label="Purchase ticket" //Component button text
+        name="Purchase Flight Ticket" //Modal Header
+        description="Confirm payment for ticket"
+        panelLabel="Confirm" //Submit button in modal
+        amount={15000} //Amount in cents 
+        token={onToken}
+        stripeKey={publishableKey}
+        image="https://img.icons8.com/bubbles/50/000000/airplane-take-off.png" //Pop-in header image
+        billingAddress={false}
+      >
+        <button type="submit" id="payment" style={button}>Payment</button>
+      </StripeCheckout>
+    );
+
+  } else if (props.reservation.createState.pending) {
+
+    return (
+      <div className="d-flex justify-content-center">
+        <Spinner animation="border" variant="light" />
+      </div>
+    );
+
+  } else {
+
+    return (
+      <StripeCheckout
+        label="Purchase ticket" //Component button text
+        name="Purchase Flight Ticket" //Modal Header
+        description="Confirm payment for ticket"
+        panelLabel="Confirm" //Submit button in modal
+        amount={15000} //Amount in cents 
+        token={onToken}
+        stripeKey={publishableKey}
+        image="https://img.icons8.com/bubbles/50/000000/airplane-take-off.png" //Pop-in header image
+        billingAddress={false}
+      >
+        <button type="submit" id="payment" style={button}>Payment</button>
+      </StripeCheckout>
+    );
+  }
 };

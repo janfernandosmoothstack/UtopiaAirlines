@@ -1,9 +1,12 @@
 import React from 'react';
 import './cancelReservation.css';
 import { Link } from 'react-router-dom';
-import { Form, Row, Col } from 'react-bootstrap';
+import { Form, Row, Col, Spinner } from 'react-bootstrap';
 import ReservationActions from '../../actions/reservationActions';
-import { render } from 'react-dom';
+import TicketStore from '../../store/ticketStore';
+import ItineraryStore from '../../store/itineraryStore';
+import FlightStore from '../../store/flightStore';
+import AirportStore from '../../store/airportStore';
 
 const button = {
   backgroundColor: "#48A1A3",
@@ -78,77 +81,112 @@ const button1 = {
 // zipCode: "99093"
 // airportCode: "LAX"
 
-export class CancelReservation extends React.Component {
-  //let content = '';
+export const CancelReservation = (props) => {
 
+  let content = '';
 
-  airportFormat(){
-    const arrivalAirport = props.airport.airportList.find(obj => obj.airportCode == props.flight.flightList[0].arrivalAirport);
-    const departureAirport = props.airport.airportList.find(obj => obj.airportCode == props.flight.flightList[0].departureAirport);
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    console.log("this is arrival airport object")
-    console.log(arrivalAirport);
+    TicketStore.resetReadState();
+    ItineraryStore.resetReadState();
+    FlightStore.resetReadState();
+    AirportStore.resetReadState();
 
-    console.log("this is the dep air obj")
-    console.log(departureAirport);
+    ReservationActions.readReservation(event.target.reservationId.value);
+  };
 
-    const arrivalString = arrivalAirport.city + ", " + arrivalAirport.airportCode + " (" + arrivalAirport.airportName + ")";
-    const departureString = departureAirport.city + ", " + departureAirport.airportCode + " (" + departureAirport.airportName + ")";
-
-    console.log("this is the dep string")
-    console.log(departureString)
-
-    console.log("this is the arrival string")
-    console.log(arrivalString)
-  }
+  if (props.ticket.readState.success && props.itinerary.readState.success &&
+    props.flight.readState.success && props.airport.readState.success) {
 
 
 
-  // content = (
-  //   <Form>
-  //     <Form.Group>
-  //       <Col md={{ span: 2, offset: 5 }}>
-  //         <Form.Label style={labelStyle}>Confirmation Number: {props.reservation.reservationList[0].reservationId}</Form.Label>
-  //       </Col>
-  //     </Form.Group>
+    //formar data into presentable format
+    let arrivalAirport = props.airport.airportList.find(obj => obj.airportCode == props.flight.flightList[0].arrivalAirport);
+    let departureAirport = props.airport.airportList.find(obj => obj.airportCode == props.flight.flightList[0].departureAirport);
 
-  //     <Form.Group>
-  //       <Col md={{ span: 2, offset: 5 }}>
-  //         <Form.Label style={labelStyle}>Flight Number: {props.ticket.selectedTicketList[0].flightNo}</Form.Label>
-  //       </Col>
-  //     </Form.Group>
+    let arrivalString = arrivalAirport.city + ", " + arrivalAirport.airportCode + " (" + arrivalAirport.airportName + ")";
+    let departureString = departureAirport.city + ", " + departureAirport.airportCode + " (" + departureAirport.airportName + ")";
 
-  //     <Row>
-  //       <Col md={{ span: 4, offset: 2 }}>
-  //         <Form.Group>
-  //           <Form.Label style={labelStyle}>Departure Information</Form.Label>
-  //           <Form.Control style={labelStyle} plaintext readOnly defaultValue={props.ticket.selectedTicketList[0].departureDate} />
-  //           <Form.Control style={labelStyle} plaintext readOnly defaultValue={props.ticket.selectedTicketList[0].departureTime} />
-  //           <Form.Control style={labelStyle} plaintext readOnly defaultValue={departureString} />
-  //         </Form.Group>
-  //       </Col>
+    props.itinerary.itineraryList[0].departureDate = props.itinerary.itineraryList[0].departureDate.substring(0, props.itinerary.itineraryList[0].departureDate.length - 14) + " (YYYY-MM-DD)";
 
-  //       <Col md={{ span: 4, offset: 1 }}>
-  //         <Form.Group>
-  //           <Form.Label style={labelStyle}>Arrival Information</Form.Label>
-  //           <Form.Control style={labelStyle} plaintext readOnly defaultValue={props.ticket.selectedTicketList[0].departureDate} />
-  //           <Form.Control style={labelStyle} plaintext readOnly defaultValue={props.ticket.selectedTicketList[0].arrivalTime} />
-  //           <Form.Control style={labelStyle} plaintext readOnly defaultValue={arrivalString} />
-  //         </Form.Group>
-  //       </Col>
-  //     </Row>
-  //   </Form>
-  // );
+    content = (
+      <Form>
+        <Form.Group>
+          <Col md={{ span: 2, offset: 5 }}>
+            <Form.Label style={labelStyle}>Confirmation Number: {props.ticket.ticketList[0].reservationId}</Form.Label>
+          </Col>
+        </Form.Group>
 
-  render() {
+        <Form.Group>
+          <Col md={{ span: 2, offset: 5 }}>
+            <Form.Label style={labelStyle}>Flight Number: {props.flight.flightList[0].flightNo}</Form.Label>
+          </Col>
+        </Form.Group>
 
-    const handleSubmit = (event) => {
-      event.preventDefault();
+        <Row>
+          <Col md={{ span: 4, offset: 2 }}>
+            <Form.Group>
+              <Form.Label style={labelStyle}>Departure Information</Form.Label>
+              <Form.Control style={labelStyle} plaintext readOnly defaultValue={props.itinerary.itineraryList[0].departureDate} />
+              <Form.Control style={labelStyle} plaintext readOnly defaultValue={props.flight.flightList[0].departureTime} />
+              <Form.Control style={labelStyle} plaintext readOnly defaultValue={departureString} />
+            </Form.Group>
+          </Col>
 
-      ReservationActions.readReservation(event.target.reservationId.value);
+          <Col md={{ span: 4, offset: 1 }}>
+            <Form.Group>
+              <Form.Label style={labelStyle}>Arrival Information</Form.Label>
+              <Form.Control style={labelStyle} plaintext readOnly defaultValue={props.itinerary.itineraryList[0].departureDate} />
+              <Form.Control style={labelStyle} plaintext readOnly defaultValue={props.flight.flightList[0].arrivalTime} />
+              <Form.Control style={labelStyle} plaintext readOnly defaultValue={arrivalString} />
+            </Form.Group>
+          </Col>
+        </Row>
 
-      airportFormat();
-    };
+        <Row>
+          <Col md={{ offset: 2 }}>
+            <Link to="/"><button type="submit" style={button}>Delete</button></Link>
+          </Col>
+        </Row>
+      </Form>
+    );
+
+    return (
+      <section className="custom-form-container">
+        <React.Fragment>
+          <h2 style={header}>Cancel Booking</h2>
+
+          <Form onSubmit={handleSubmit}>
+            <Row>
+              <Col md={{ span: 3, offset: 4 }}>
+                <Form.Group className="input">
+                  <Form.Label style={labelStyle}>Confirmation Number</Form.Label>
+                  <Form.Control name="reservationId" type="number" defaultValue={props.ticket.ticketList[0].reservationId} ></Form.Control>
+                </Form.Group>
+              </Col>
+
+              <Col md={{ span: 1 }}>
+                <Form.Group>
+                  <button type="submit" style={button1}>View Booking</button>
+                </Form.Group>
+              </Col>
+            </Row>
+          </Form>
+          <br></br>
+
+          {content}
+        </React.Fragment>
+      </section>
+    );
+
+  } else if (props.reservation.readState.pending) {
+
+    content = (
+      <div className="d-flex justify-content-center">
+        <Spinner animation="border" variant="light" />
+      </div>
+    );
 
     return (
       <section className="custom-form-container">
@@ -172,7 +210,70 @@ export class CancelReservation extends React.Component {
             </Row>
           </Form>
 
-          {/* <Link to="/"><button type="submit" style={button}>Delete</button></Link> */}
+          {content}
+        </React.Fragment>
+      </section>
+    );
+
+  } else if (props.ticket.readState.failure || props.itinerary.readState.failure ||
+    props.flight.readState.failure || props.airport.readState.failure) {
+
+    content = (
+      <div className="alert alert-danger" role="alert">
+        Record does not exist.
+      </div>
+    );
+
+    return (
+      <section className="custom-form-container">
+        <React.Fragment>
+          <h2 style={header}>Cancel Booking</h2>
+
+          <Form onSubmit={handleSubmit}>
+            <Row>
+              <Col md={{ span: 3, offset: 4 }}>
+                <Form.Group className="input">
+                  <Form.Label style={labelStyle}>Confirmation Number</Form.Label>
+                  <Form.Control name="reservationId" type="number" ></Form.Control>
+                </Form.Group>
+              </Col>
+
+              <Col md={{ span: 1 }}>
+                <Form.Group>
+                  <button type="submit" style={button1}>View Booking</button>
+                </Form.Group>
+              </Col>
+            </Row>
+          </Form>
+
+          {content}
+        </React.Fragment>
+      </section>
+    );
+
+  } else {
+
+    return (
+      <section className="custom-form-container">
+        <React.Fragment>
+          <h2 style={header}>Cancel Booking</h2>
+
+          <Form onSubmit={handleSubmit}>
+            <Row>
+              <Col md={{ span: 3, offset: 4 }}>
+                <Form.Group className="input">
+                  <Form.Label style={labelStyle}>Confirmation Number</Form.Label>
+                  <Form.Control name="reservationId" type="number" ></Form.Control>
+                </Form.Group>
+              </Col>
+
+              <Col md={{ span: 1 }}>
+                <Form.Group>
+                  <button type="submit" style={button1}>View Booking</button>
+                </Form.Group>
+              </Col>
+            </Row>
+          </Form>
         </React.Fragment>
       </section>
     );

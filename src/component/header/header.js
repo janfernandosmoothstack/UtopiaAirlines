@@ -24,6 +24,7 @@ export const Header = (props) => {
                         <NavDropdown.Item><Link className="dropDown" to="/flights">Flights</Link></NavDropdown.Item>
                         <NavDropdown.Item><Link className="dropDown" to="/tickets">Tickets</Link></NavDropdown.Item>
                         <NavDropdown.Item><Link className="dropDown" to="/traveler">Traveler Information</Link></NavDropdown.Item>
+                        <NavDropdown.Item><Link className="dropDown" to="/confirmation">Confirmation</Link></NavDropdown.Item>
                         <NavDropdown.Item><Link className="dropDown" to="/cancel">Cancel Booking</Link></NavDropdown.Item>
                     </NavDropdown>
                 </Nav>

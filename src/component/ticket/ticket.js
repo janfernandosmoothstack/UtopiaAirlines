@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Col } from 'react-bootstrap';
+import { Form, Col, Spinner } from 'react-bootstrap';
 import { Buy } from './buy';
 import TicketActions from '../../actions/ticketActions';
 import AirportActions from '../../actions/airportActions';
@@ -20,8 +20,8 @@ const labelStyle = {
 export class Ticket extends React.Component {
 
     createTicketRow(ticket) {
-        ticket.departureDate = ticket.departureDate.substring(0, ticket.departureDate.length-14) + " (YYYY-MM-DD)";
-        
+        ticket.departureDate = ticket.departureDate.substring(0, ticket.departureDate.length - 14) + " (YYYY-MM-DD)";
+
         return (
             <tr key={ticket.flightNo}>
                 <td> {ticket.flightNo} </td>
@@ -64,7 +64,7 @@ export class Ticket extends React.Component {
 
         const handleSubmit = (event) => {
             event.preventDefault();
-            
+
             this.props.flight.flightFilter = {
                 flightType: event.target.flightType.value,
                 departureDate: event.target.departureDate.value,
@@ -77,90 +77,346 @@ export class Ticket extends React.Component {
             TicketActions.readTickets(this.props.flight.flightFilter);
         }
 
-        content = (
-            <table class="table table-dark table-hover" >
-                <thead>
-                    <tr>
-                        <th>Flight No.</th>
-                        <th>Departure Date</th>
-                        <th>Departure Time</th>
-                        <th>Arrival Time</th>
-                        <th>Departure Airport</th>
-                        <th>Arrival Airport</th>
-                        <th>Price</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {this.props.ticket.ticketList.map(this.createTicketRow, this)}
-                </tbody>
-            </table>
-        );
+        if (this.props.ticket.readState.success) {
 
-        return (
-            <React.Fragment>
-                <Form onSubmit={handleSubmit} style={space}>
-                    <Form.Row>
+            content = (
+                <table class="table table-dark table-hover" >
+                    <thead>
+                        <tr>
+                            <th>Flight No.</th>
+                            <th>Departure Date</th>
+                            <th>Departure Time</th>
+                            <th>Arrival Time</th>
+                            <th>Departure Airport</th>
+                            <th>Arrival Airport</th>
+                            <th>Price</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.props.ticket.ticketList.map(this.createTicketRow, this)}
+                    </tbody>
+                </table>
+            );
 
-                        <Form.Group className="input">
-                            <Form.Label style={labelStyle}>From</Form.Label>
-                            
-                            <Form.Control name="departureAirport" as="select">
-                                <option defaultValue>{this.props.flight.flightFilter.departureAirport}</option>
-                                {this.props.airport.airportList.map(this.createAirportOptions, this)}
-                            </Form.Control>
-                        </Form.Group>
+            return (
+                <React.Fragment>
+                    <Form onSubmit={handleSubmit} style={space}>
+                        <Form.Row>
 
-                        <Form.Group className="input">
-                            <Form.Label style={labelStyle}>To</Form.Label>
-                            
-                            <Form.Control name="arrivalAirport" as="select">
-                                <option defaultValue>{this.props.flight.flightFilter.arrivalAirport}</option>
-                                {this.props.airport.airportList.map(this.createAirportOptions, this)}
-                            </Form.Control>
-                        </Form.Group>
+                            <Form.Group className="input">
+                                <Form.Label style={labelStyle}>From</Form.Label>
 
-                        <Form.Group className="input">
-                            <Form.Label style={labelStyle}>Departure Date</Form.Label>
-                            <Form.Control name="departureDate" type="date" defaultValue={this.props.flight.flightFilter.departureDate}></Form.Control>
-                        </Form.Group>
+                                <Form.Control name="departureAirport" as="select">
+                                    <option defaultValue>{this.props.flight.flightFilter.departureAirport}</option>
+                                    {this.props.airport.airportList.map(this.createAirportOptions, this)}
+                                </Form.Control>
+                            </Form.Group>
 
-                        <Form.Group className="input">
-                            <Form.Label style={labelStyle}>Return Date</Form.Label>
-                            <Form.Control id="returnDate" name="returnDate" type="date" defaultValue={this.props.flight.flightFilter.returnDate}></Form.Control>
-                        </Form.Group>
+                            <Form.Group className="input">
+                                <Form.Label style={labelStyle}>To</Form.Label>
 
-                        <Form.Group className="input">
-                            <Form.Label style={labelStyle}>Travelers</Form.Label>
-                            <Form.Control name="totalTravelers" type="number" defaultValue={this.props.flight.flightFilter.totalTravelers}></Form.Control>
-                        </Form.Group>
+                                <Form.Control name="arrivalAirport" as="select">
+                                    <option defaultValue>{this.props.flight.flightFilter.arrivalAirport}</option>
+                                    {this.props.airport.airportList.map(this.createAirportOptions, this)}
+                                </Form.Control>
+                            </Form.Group>
 
-                        <Form.Group className="radioStyle">
-                            <Col sm={10}>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" name="flightType" class="custom-control-input" value="roundTrip" id="roundTrip" onClick={disableTextBox} />
-                                    <label class="custom-control-label" htmlFor="roundTrip" style={labelStyle}>Round Trip</label>
-                                </div>
+                            <Form.Group className="input">
+                                <Form.Label style={labelStyle}>Departure Date</Form.Label>
+                                <Form.Control name="departureDate" type="date" defaultValue={this.props.flight.flightFilter.departureDate}></Form.Control>
+                            </Form.Group>
 
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" name="flightType" class="custom-control-input" value="oneWay" id="oneWay" onClick={disableTextBox} />
-                                    <label class="custom-control-label" htmlFor="oneWay" style={labelStyle}>One-way</label>
-                                </div>
-                            </Col>
-                        </Form.Group>
+                            <Form.Group className="input">
+                                <Form.Label style={labelStyle}>Return Date</Form.Label>
+                                <Form.Control id="returnDate" name="returnDate" type="date" defaultValue={this.props.flight.flightFilter.returnDate}></Form.Control>
+                            </Form.Group>
 
-                        <Form.Group>
-                            <button className="buttonStyle" type="submit">Search</button>
-                        </Form.Group>
+                            <Form.Group className="input">
+                                <Form.Label style={labelStyle}>Travelers</Form.Label>
+                                <Form.Control name="totalTravelers" type="number" defaultValue={this.props.flight.flightFilter.totalTravelers}></Form.Control>
+                            </Form.Group>
 
-                    </Form.Row>
-                </Form>
+                            <Form.Group className="radioStyle">
+                                <Col sm={10}>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="flightType" class="custom-control-input" value="roundTrip" id="roundTrip" onClick={disableTextBox} />
+                                        <label class="custom-control-label" htmlFor="roundTrip" style={labelStyle}>Round Trip</label>
+                                    </div>
 
-                <div>
-                    {content}
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="flightType" class="custom-control-input" value="oneWay" id="oneWay" onClick={disableTextBox} />
+                                        <label class="custom-control-label" htmlFor="oneWay" style={labelStyle}>One-way</label>
+                                    </div>
+                                </Col>
+                            </Form.Group>
+
+                            <Form.Group>
+                                <button className="buttonStyle" type="submit">Search</button>
+                            </Form.Group>
+
+                        </Form.Row>
+                    </Form>
+
+                    <div>
+                        {content}
+                    </div>
+                </React.Fragment>
+            );
+        } else if (this.props.ticket.readState.pending) {
+
+            content = (
+                <div className="d-flex justify-content-center">
+                    <Spinner animation="border" variant="light" />
                 </div>
-            </React.Fragment>
-        );
+            );
+
+            return (
+                <React.Fragment>
+                    <Form onSubmit={handleSubmit} style={space}>
+                        <Form.Row>
+
+                            <Form.Group className="input">
+                                <Form.Label style={labelStyle}>From</Form.Label>
+
+                                <Form.Control name="departureAirport" as="select">
+                                    <option defaultValue>{this.props.flight.flightFilter.departureAirport}</option>
+                                    {this.props.airport.airportList.map(this.createAirportOptions, this)}
+                                </Form.Control>
+                            </Form.Group>
+
+                            <Form.Group className="input">
+                                <Form.Label style={labelStyle}>To</Form.Label>
+
+                                <Form.Control name="arrivalAirport" as="select">
+                                    <option defaultValue>{this.props.flight.flightFilter.arrivalAirport}</option>
+                                    {this.props.airport.airportList.map(this.createAirportOptions, this)}
+                                </Form.Control>
+                            </Form.Group>
+
+                            <Form.Group className="input">
+                                <Form.Label style={labelStyle}>Departure Date</Form.Label>
+                                <Form.Control name="departureDate" type="date" defaultValue={this.props.flight.flightFilter.departureDate}></Form.Control>
+                            </Form.Group>
+
+                            <Form.Group className="input">
+                                <Form.Label style={labelStyle}>Return Date</Form.Label>
+                                <Form.Control id="returnDate" name="returnDate" type="date" defaultValue={this.props.flight.flightFilter.returnDate}></Form.Control>
+                            </Form.Group>
+
+                            <Form.Group className="input">
+                                <Form.Label style={labelStyle}>Travelers</Form.Label>
+                                <Form.Control name="totalTravelers" type="number" defaultValue={this.props.flight.flightFilter.totalTravelers}></Form.Control>
+                            </Form.Group>
+
+                            <Form.Group className="radioStyle">
+                                <Col sm={10}>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="flightType" class="custom-control-input" value="roundTrip" id="roundTrip" onClick={disableTextBox} />
+                                        <label class="custom-control-label" htmlFor="roundTrip" style={labelStyle}>Round Trip</label>
+                                    </div>
+
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="flightType" class="custom-control-input" value="oneWay" id="oneWay" onClick={disableTextBox} />
+                                        <label class="custom-control-label" htmlFor="oneWay" style={labelStyle}>One-way</label>
+                                    </div>
+                                </Col>
+                            </Form.Group>
+
+                            <Form.Group>
+                                <button className="buttonStyle" type="submit">Search</button>
+                            </Form.Group>
+
+                        </Form.Row>
+                    </Form>
+
+                    <div>
+                        <table class="table table-dark table-hover" >
+                            <thead>
+                                <tr>
+                                    <th>Flight No.</th>
+                                    <th>Departure Date</th>
+                                    <th>Departure Time</th>
+                                    <th>Arrival Time</th>
+                                    <th>Departure Airport</th>
+                                    <th>Arrival Airport</th>
+                                    <th>Price</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+
+                    {content}
+                </React.Fragment>
+            );
+
+        } else if (this.props.ticket.readState.failure) {
+
+            content = (
+                <div className="alert alert-danger" role="alert">
+                    No tickets available for the current search criteria.
+              </div>
+            );
+
+            return (
+                <React.Fragment>
+                    <Form onSubmit={handleSubmit} style={space}>
+                        <Form.Row>
+
+                            <Form.Group className="input">
+                                <Form.Label style={labelStyle}>From</Form.Label>
+
+                                <Form.Control name="departureAirport" as="select">
+                                    <option defaultValue>{this.props.flight.flightFilter.departureAirport}</option>
+                                    {this.props.airport.airportList.map(this.createAirportOptions, this)}
+                                </Form.Control>
+                            </Form.Group>
+
+                            <Form.Group className="input">
+                                <Form.Label style={labelStyle}>To</Form.Label>
+
+                                <Form.Control name="arrivalAirport" as="select">
+                                    <option defaultValue>{this.props.flight.flightFilter.arrivalAirport}</option>
+                                    {this.props.airport.airportList.map(this.createAirportOptions, this)}
+                                </Form.Control>
+                            </Form.Group>
+
+                            <Form.Group className="input">
+                                <Form.Label style={labelStyle}>Departure Date</Form.Label>
+                                <Form.Control name="departureDate" type="date" defaultValue={this.props.flight.flightFilter.departureDate}></Form.Control>
+                            </Form.Group>
+
+                            <Form.Group className="input">
+                                <Form.Label style={labelStyle}>Return Date</Form.Label>
+                                <Form.Control id="returnDate" name="returnDate" type="date" defaultValue={this.props.flight.flightFilter.returnDate}></Form.Control>
+                            </Form.Group>
+
+                            <Form.Group className="input">
+                                <Form.Label style={labelStyle}>Travelers</Form.Label>
+                                <Form.Control name="totalTravelers" type="number" defaultValue={this.props.flight.flightFilter.totalTravelers}></Form.Control>
+                            </Form.Group>
+
+                            <Form.Group className="radioStyle">
+                                <Col sm={10}>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="flightType" class="custom-control-input" value="roundTrip" id="roundTrip" onClick={disableTextBox} />
+                                        <label class="custom-control-label" htmlFor="roundTrip" style={labelStyle}>Round Trip</label>
+                                    </div>
+
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="flightType" class="custom-control-input" value="oneWay" id="oneWay" onClick={disableTextBox} />
+                                        <label class="custom-control-label" htmlFor="oneWay" style={labelStyle}>One-way</label>
+                                    </div>
+                                </Col>
+                            </Form.Group>
+
+                            <Form.Group>
+                                <button className="buttonStyle" type="submit">Search</button>
+                            </Form.Group>
+
+                        </Form.Row>
+                    </Form>
+
+                    <div>
+                        <table class="table table-dark table-hover" >
+                            <thead>
+                                <tr>
+                                    <th>Flight No.</th>
+                                    <th>Departure Date</th>
+                                    <th>Departure Time</th>
+                                    <th>Arrival Time</th>
+                                    <th>Departure Airport</th>
+                                    <th>Arrival Airport</th>
+                                    <th>Price</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+
+                    {content}
+                </React.Fragment>
+            );
+        } else {
+            return (
+                <React.Fragment>
+                    <Form onSubmit={handleSubmit} style={space}>
+                        <Form.Row>
+
+                            <Form.Group className="input">
+                                <Form.Label style={labelStyle}>From</Form.Label>
+
+                                <Form.Control name="departureAirport" as="select">
+                                    <option defaultValue>{this.props.flight.flightFilter.departureAirport}</option>
+                                    {this.props.airport.airportList.map(this.createAirportOptions, this)}
+                                </Form.Control>
+                            </Form.Group>
+
+                            <Form.Group className="input">
+                                <Form.Label style={labelStyle}>To</Form.Label>
+
+                                <Form.Control name="arrivalAirport" as="select">
+                                    <option defaultValue>{this.props.flight.flightFilter.arrivalAirport}</option>
+                                    {this.props.airport.airportList.map(this.createAirportOptions, this)}
+                                </Form.Control>
+                            </Form.Group>
+
+                            <Form.Group className="input">
+                                <Form.Label style={labelStyle}>Departure Date</Form.Label>
+                                <Form.Control name="departureDate" type="date" defaultValue={this.props.flight.flightFilter.departureDate}></Form.Control>
+                            </Form.Group>
+
+                            <Form.Group className="input">
+                                <Form.Label style={labelStyle}>Return Date</Form.Label>
+                                <Form.Control id="returnDate" name="returnDate" type="date" defaultValue={this.props.flight.flightFilter.returnDate}></Form.Control>
+                            </Form.Group>
+
+                            <Form.Group className="input">
+                                <Form.Label style={labelStyle}>Travelers</Form.Label>
+                                <Form.Control name="totalTravelers" type="number" defaultValue={this.props.flight.flightFilter.totalTravelers}></Form.Control>
+                            </Form.Group>
+
+                            <Form.Group className="radioStyle">
+                                <Col sm={10}>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="flightType" class="custom-control-input" value="roundTrip" id="roundTrip" onClick={disableTextBox} />
+                                        <label class="custom-control-label" htmlFor="roundTrip" style={labelStyle}>Round Trip</label>
+                                    </div>
+
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="flightType" class="custom-control-input" value="oneWay" id="oneWay" onClick={disableTextBox} />
+                                        <label class="custom-control-label" htmlFor="oneWay" style={labelStyle}>One-way</label>
+                                    </div>
+                                </Col>
+                            </Form.Group>
+
+                            <Form.Group>
+                                <button className="buttonStyle" type="submit">Search</button>
+                            </Form.Group>
+
+                        </Form.Row>
+                    </Form>
+
+                    <div>
+                        <table class="table table-dark table-hover" >
+                            <thead>
+                                <tr>
+                                    <th>Flight No.</th>
+                                    <th>Departure Date</th>
+                                    <th>Departure Time</th>
+                                    <th>Arrival Time</th>
+                                    <th>Departure Airport</th>
+                                    <th>Arrival Airport</th>
+                                    <th>Price</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </React.Fragment>
+            );
+        }
     }
 }
 

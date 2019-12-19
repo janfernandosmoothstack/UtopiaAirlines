@@ -66,7 +66,7 @@ Dispatcher.register((action) => {
             FlightStore.emitChange();
             break;
 
-        case 'read_flight_pending':
+        case 'read_flight_started':
             FlightStore.resetReadState();
             _flightStore.flight.readState.pending = true
             FlightStore.emitChange();

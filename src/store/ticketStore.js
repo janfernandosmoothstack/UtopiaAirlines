@@ -80,7 +80,7 @@ Dispatcher.register((action) => {
             TicketStore.emitChange();
             break;
 
-        case 'read_ticket_pending':
+        case 'read_ticket_started':
             TicketStore.resetReadState();
             _ticketStore.ticket.readState.pending = true
             TicketStore.emitChange();
@@ -98,7 +98,7 @@ Dispatcher.register((action) => {
             TicketStore.emitChange();
             break;
 
-        case 'create_ticket_pending':
+        case 'create_ticket_started':
             TicketStore.resetCreateState();
             _ticketStore.ticket.createState.pending = true
             TicketStore.emitChange();
