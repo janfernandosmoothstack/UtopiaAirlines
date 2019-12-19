@@ -6,24 +6,19 @@ import './account.css';
 import {Link} from 'react-router-dom';
 import AccountAction from '../../actions/accountActions';
 
-
 var bcrypt = require('bcryptjs');
 
 export const SignIn = (props) => {
-    
-    const [show, setShow] = React.useState(false);
-    const handleClose = () => {setShow(false);}
-    const handleShow = () => {setShow(true);}
-    
-    const handleSubmit = (event) => {
+  const [show, setShow] = React.useState(false);
+  const handleClose = () => {setShow(false);}
+  const handleShow = () => {setShow(true);}
+  const handleSubmit = (event) => {
       event.preventDefault();
-      var salt = bcrypt.genSaltSync(10);
-      var hash = bcrypt.hashSync(event.target.password.value, salt);
-    console.log(hash);
-    AccountAction.getUser(hash, props); 
-    };
-
-    return (
+      var pass = event.target.password.value;
+      AccountAction.getUser(pass, props);
+  };
+  
+  return (
       <React.Fragment>
         <Link className="accountLink" onClick={handleShow}>Sign In</Link>
         
@@ -54,5 +49,3 @@ export const SignIn = (props) => {
       </React.Fragment>
     );
 }
-
-

@@ -31,7 +31,7 @@ export const SignUp = (props) => {
       phoneNumber: event.target.phoneNumber.value,
       username: event.target.username.value
     }
-    AccountAction.createUser(user,hash, props); 
+    AccountAction.createUser(user, props); 
     }
     return (
       <React.Fragment>
@@ -94,4 +94,3 @@ export const SignUp = (props) => {
       </React.Fragment>
     );
 }
-        
