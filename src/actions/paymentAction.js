@@ -4,7 +4,6 @@ import axios from "axios";
 class PaymentAction extends React.Component {
 
     static validatePayment(body, props) {
-        
         return (
             axios.post("https://6fhjpe7mg2.execute-api.us-east-2.amazonaws.com/dev/pay", body)
                 .then(() => {
@@ -17,5 +16,4 @@ class PaymentAction extends React.Component {
         );
     };
 }
-
 export default PaymentAction;
