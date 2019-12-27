@@ -7,6 +7,7 @@ import TicketStore from '../../store/ticketStore';
 import ItineraryStore from '../../store/itineraryStore';
 import FlightStore from '../../store/flightStore';
 import AirportStore from '../../store/airportStore';
+import DeleteBtn from './deleteBooking';
 
 const button = {
   backgroundColor: "#48A1A3",
@@ -99,8 +100,6 @@ export const CancelReservation = (props) => {
   if (props.ticket.readState.success && props.itinerary.readState.success &&
     props.flight.readState.success && props.airport.readState.success) {
 
-
-
     //formar data into presentable format
     let arrivalAirport = props.airport.airportList.find(obj => obj.airportCode == props.flight.flightList[0].arrivalAirport);
     let departureAirport = props.airport.airportList.find(obj => obj.airportCode == props.flight.flightList[0].departureAirport);
@@ -146,7 +145,7 @@ export const CancelReservation = (props) => {
 
         <Row>
           <Col md={{ offset: 2 }}>
-            <Link to="/"><button type="submit" style={button}>Delete</button></Link>
+            <DeleteBtn reservationId={props.ticket.ticketList[0].reservationId}></DeleteBtn>
           </Col>
         </Row>
       </Form>
